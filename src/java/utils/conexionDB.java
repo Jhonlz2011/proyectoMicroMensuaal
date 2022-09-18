@@ -17,7 +17,7 @@ import java.sql.SQLException;
 public class conexionDB {
     
      private String strDriCon, strStrCon, strUsrCon, strClaCon;
-      private String strDriCon2, strStrCon2, strUsrCon2, strClaCon2;
+
    
     public conexionDB()
     {
@@ -43,10 +43,10 @@ public class conexionDB {
 //            proArc=null;
             
             
-            strDriCon2 = "org.postgresql.Driver";
-            strStrCon2 = "jdbc:postgresql://localhost:5433/dbproyectoweb";
-            strUsrCon2 = "postgres";
-            strClaCon2 = "admin";
+            strDriCon = "org.postgresql.Driver";
+            strStrCon = "jdbc:postgresql://localhost:5433/dbproyectoweb";
+            strUsrCon = "postgres";
+            strClaCon = "admin";
         }
 //        catch (java.io.IOException e)
 //        {
@@ -66,7 +66,7 @@ public class conexionDB {
      */
     public String getDriverConexion()
     {
-        return strDriCon2;
+        return strDriCon;
     }
     
     /**
@@ -75,7 +75,7 @@ public class conexionDB {
      */
     public String getStringConexion()
     {
-        return strStrCon2;
+        return strStrCon;
     }
     
     /**
@@ -84,7 +84,7 @@ public class conexionDB {
      */
     public String getUsuarioConexion()
     {
-        return strUsrCon2;
+        return strUsrCon;
     }
     
     /**
@@ -93,7 +93,7 @@ public class conexionDB {
      */
     public String getClaveConexion()
     {
-        return strClaCon2;
+        return strClaCon;
     }
     
     
