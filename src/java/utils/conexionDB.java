@@ -96,17 +96,5 @@ public class conexionDB {
         return strClaCon;
     }
     
-    
-    public Connection conectar ( ) {
-        
-    Connection cn = null ;
-    try{
-        Class.forName (strDriCon);
-        cn = DriverManager.getConnection(strStrCon ,strUsrCon, strClaCon);
-    }catch(ClassNotFoundException | SQLException e) {
-        System.out.println ("Error al conectar" + e.getMessage()) ;                              
-    }
-         return cn ;
-    }
 }
 
