@@ -31,21 +31,21 @@
     <!-- fin de header -->
 
     <div class="bg-formulario">
-        <form class="formulario" id="form">
+        <form class="formulario" id="form" name="frmIniSes" action="../iniciarSesControlador" method="post">
             <legend>Inicio de Sesion</legend>
             <fieldset class="formulario__fieldset">
 
                 <div class="input-contenedor">
                     <i class="fa-solid fa-user icon"></i>
-                    <input type="email" placeholder="Usuario" name="" id="email">
+                    <input type="Text" placeholder="Usuario" name="nombre_usuario">
                 </div>
 
                 <div class="input-contenedor">
                     <i class="fa-solid fa-key icon"></i>
-                    <input type="password" placeholder="Contraseña" name="" id="password">
+                    <input type="password" placeholder="Contraseña"  name="clave_usuario" id="password">
                 </div>
 
-                <a href="menu.jsp" class="button--login">Iniciar</a>
+                <input type="submit" value="Iniciar" class="button--login">
                 <!-- <input type="submit" value="Iniciar" class="button--login"> -->
             </fieldset>
         </form>
