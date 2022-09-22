@@ -26,6 +26,7 @@
             <a href="menu.html">
                 <img src="img/logo.png" alt="">
             </a>
+            <button class="btn--regresar">Regresar</button>
         </header>
     </div>
     <!-- fin de header -->
@@ -68,6 +69,13 @@
     <script src="scripts/jquery-3.6.0.js"></script>
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
     <script src="scripts/dataTable.js"></script>
+    <script>
+        btn__regresar = document.querySelector(".btn--regresar");
+
+        btn__regresar.addEventListener("click", function(){
+            window.location.href = "menu.html";
+        });
+    </script>
 </body>
 
 </html>
