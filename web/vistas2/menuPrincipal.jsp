@@ -15,7 +15,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Inicio</title>
-
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
         <!-- Google Font: Source Sans Pro -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
         <!-- Font Awesome Icons -->
@@ -199,7 +199,112 @@
 
                 <!-- Main content -->
                 <div class="content">
-                    <!-- /.container-fluid -->
+                       <form action="" class="container form">
+        <div class="formDiv">
+            <label class="formDiv__label" for="">Semestre:</label>
+            <select class="formDiv__select" name="" id="">
+                <option value="">-- Seleccione el Semestre --</option>
+                <option value="1">Primer Semestre</option>
+                <option value="2">Segundo Semestre</option>
+                <option value="3">Invierno</option>
+            </select>
+        </div>
+
+        <div class="formDiv">
+            <label class="formDiv__label" for="">Modulo:</label>
+            <select class="formDiv__select" name="" id="">
+                <option value="">-- Seleccione el Modulo --</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+            </select>
+        </div>
+
+        <div class="formDiv">
+            <label class="formDiv__label" for="">Docente:</label>
+            <select class="formDiv__select" name="" id="">
+                <option value="">-- Seleccione el Profesor --</option>
+                <option value="1234">Eddy Lino</option>
+                <option value="5678">Juan Marin</option>
+                <option value="1245">Luis Tama</option>
+                <option value="9854">Carlos Cabanilla</option>
+                <option value="0123">Enrique Villalta</option>
+            </select>
+        </div>
+        <button class="btn formButton">Buscar</button>
+    </form>
+    <!-- fin del form -->
+
+    <!-- inicio de la tabla -->
+    <div  class="container table">
+        <table id="example" class="display">
+            <thead>
+                <tr>
+                    <th>Materia</th>
+                    <th>Turno</th>
+                    <th>Descripcion</th>
+                    <th>Seleccionar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Big Data</td>
+                    <td>A</td>
+                    <td>Lunes: 18:15 a 22:15 / Viernes: 18:15 - 20:15</td>
+                    <td>
+                        <input type="checkbox" value="151515">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Big Data</td>
+                    <td>B</td>
+                    <td>Martes, Miercoles y Jueves 18:15 - 20:15</td>
+                    <td>
+                        <input type="checkbox" value="151515">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Big Data</td>
+                    <td>C</td>
+                    <td>Martes, Miercoles y Jueves 20:15 - 22:15</td>
+                    <td>
+                        <input type="checkbox" value="151515">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Programacion Web</td>
+                    <td>C</td>
+                    <td>Martes, Miercoles y Jueves 20:15 - 22:15</td>
+                    <td>
+                        <input type="checkbox" value="151515">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Fundamentos de programacion</td>
+                    <td>B</td>
+                    <td>Martes, Miercoles y Jueves 18:15 - 20:15</td>
+                    <td>
+                        <input type="checkbox" value="151515">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Desarrollo Movil 2</td>
+                    <td>A</td>
+                    <td>Lunes: 18:15 a 22:15 / Viernes: 18:15 - 20:15</td>
+                    <td>
+                        <input type="checkbox" value="151515">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Diseño e interactividad de paginas web</td>
+                    <td>A</td>
+                    <td>Lunes: 18:15 a 22:15 / Viernes: 18:15 - 20:15</td>
+                    <td>
+                        <input type="checkbox" value="151515">
+                    </td>
+                </tr>
+            </tbody>
+
+        </table> <!-- /.container-fluid -->
                 </div>
                 <!-- /.content -->
             </div>
@@ -230,6 +335,10 @@
         <script src="assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
         <!-- AdminLTE App -->
         <script src="assets/dist/js/adminlte.min.js"></script>
+        
+    <script src="scripts/jquery-3.6.0.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+    <script src="scripts/dataTable.js"></script>
         
     </body>
 </html>
