@@ -77,9 +77,27 @@
                 </div>
             </div>
             <!-- fin del card -->
-
+            
+            <!-- inicio del card -->
+            <div id="card_creacionMateria" class="card">
+                <img src="img/profesor.jpg" class="card-img" alt="...">
+                <div class="card-body">
+                    <h5 class="card_titulo">Creacion Nueva Materia</h5>
+                </div>
+                <!-- fin del card -->
+                
+                <!-- inicio del card -->
+            <div id="card_creacionProfesor" class="card">
+                <img src="img/profesor.jpg" class="card-img" alt="...">
+                <div class="card-body">
+                    <h5 class="card_titulo">Nuevo Profesor</h5>
+                </div>
+                <!-- fin del card -->
+                
     </main>
 
+    
+    
     <!-- footer -->
     <footer class="bg-footer">
         <div class="container">
@@ -108,6 +126,8 @@
         asgMateria = document.querySelector("#card__asgMateria");
         card_consMensual =  document.querySelector("#card_consMensual");
         card__aprobacion =  document.querySelector("#card__aprobacion");
+        card__creacionMateria =  document.querySelector("#card__creacionMateria");
+        card__creacionProfesor =  document.querySelector("#card__creacionProfesor");
         btn__regresar = document.querySelector(".btn--regresar");
 
         btn__regresar.addEventListener("click", function(){
@@ -128,6 +148,12 @@
 
         card__aprobacion.addEventListener("click", function(){
             window.location.href = "aprobacionMicros.html";
+        });
+       card_creacionMateria.addEventListener("click", function(){
+            window.location.href = "creacionMateria.html";
+        });
+        card_creacionProfesor.addEventListener("click", function(){
+            window.location.href = "creacionProfesor.html";
         });
     </script>
     <!-- fin de scripts -->
