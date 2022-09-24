@@ -14,6 +14,13 @@ public class Profesor {
     private int id_profesor;
     private String nombres_profesor, apellidos_profesor, estado;
     
+    public Profesor(int id_profesor, String nombres_profesor, String apellidos_profesor, String estado){
+        
+        this.id_profesor= id_profesor;
+        this.apellidos_profesor= apellidos_profesor;
+        this.nombres_profesor= nombres_profesor;
+        this.estado= estado;
+}
     public Profesor(){}
     /**
      * @return the id_profesor

@@ -3,29 +3,35 @@
     Created on : 22-sep-2022, 13:15:55
     Author     : user
 --%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
-           <%
-            String usr = request.getParameter("parNomUsr");
-        %>
-
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Inicio</title>
 
+        <!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">-->
         <!-- Google Font: Source Sans Pro -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
         <!-- Font Awesome Icons -->
-        <link rel="stylesheet" href="assets/plugins/fontawesome-free/css/all.min.css">
+        <script src="https://kit.fontawesome.com/67b7b97383.js" crossorigin="anonymous"></script>
         <!-- Theme style -->
-        <link rel="stylesheet" href="assets/dist/css/adminlte.min.css">
-        
-        
-        <link href="assets/plugins/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link rel="stylesheet" href="vistas2/assets/dist/css/adminlte.min.css">
+        <!-- SweetAlert2 -->
+        <link rel="stylesheet" href="vistas2/assets/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
+        <!-- Toastr -->
+        <link rel="stylesheet" href="vistas3/assets/plugins/toastr/toastr.min.css">
+
+        <!-- DataTables -->
+        <link href="vistas2/assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css"/>
+        <link href="vistas2/assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css"/>
+        <link href="vistas2/assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css"/>
+        <!--DataTable estilo-->
+        <link href="vistas2/assets/dist/css/estilos.css" rel="stylesheet" type="text/css"/>
+
     </head>
     <body class="hold-transition sidebar-mini ">
         <div class="wrapper">
@@ -49,7 +55,7 @@
                         <div class="navbar-search-block">
                             <form class="form-inline">
                                 <div class="input-group input-group-sm">
-                                    <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+                                    <input class="form-control form-control-navbar" type="search" placeholder="Buscar" aria-label="Search">
                                     <div class="input-group-append">
                                         <button class="btn btn-navbar" type="submit">
                                             <i class="fas fa-search"></i>
@@ -88,8 +94,8 @@
             <!-- Main Sidebar Container -->
             <aside class="main-sidebar sidebar-dark-primary elevation-4">
                 <!-- Brand Logo -->
-                <a href="index3.html" class="brand-link">
-                    <img src="assets/dist/img/logoTES4 .png" alt=""class="brand-image"/>
+                <a href="" class="brand-link">
+                    <img src="vistas2/assets/dist/img/logoTES4 .png" alt=""class="brand-image"/>
                     <span class="brand-text font-weight-light">Tecnologico Espiritu </span><br>
                 </a>
 
@@ -99,7 +105,7 @@
                     <div class="user-panel">
                         <div class="info" >
                             <p style=" margin-top:revert; color: white;text-align: center;font-size: 18px;font-weight: 600; font-family: system-ui;" >
-                                Bienvenido,  <%=usr%> </p>
+                                Bienvenido, Administrador </p>
 
                         </div>
                     </div>
@@ -107,7 +113,7 @@
                     <!-- SidebarSearch Form -->
                     <div class="form-inline">
                         <div class="input-group" data-widget="sidebar-search">
-                            <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+                            <input class="form-control form-control-sidebar" type="search" placeholder="Buscar" aria-label="Search">
                             <div class="input-group-append">
                                 <button class="btn btn-sidebar">
                                     <i class="fas fa-search fa-fw"></i>
@@ -122,7 +128,7 @@
                             <!-- Add icons to the links using the .nav-icon class
                                  with font-awesome or any other icon font library -->
                             <li class="nav-item">
-                                <a href="#" class="nav-link">
+                                <a href="vistas2/menuPrincipal.jsp" class="nav-link">
 
                                     <i class="nav-icon fas fa-home"></i>
                                     <p>
@@ -132,7 +138,7 @@
                             </li>
                             <li class="nav-item menu-open">
                                 <a href="#" class="nav-link active">
-                                    <i class="nav-icon fas fa-edit "></i>
+                                    <i class="nav-icon fas fa-edit"></i>
                                     <p>
                                         Registros
                                         <i class="right fas fa-angle-left"></i>
@@ -141,7 +147,7 @@
                                 <ul class="nav nav-treeview">
                                     <li class="nav-item">
                                         <a href="#" class="nav-link">
-                                            <i class="far fa fa-graduation-cap nav-icon"></i>
+                                            <i class="fa-solid fa-graduation-cap nav-icon"></i>
                                             <p>Carreras</p>
                                         </a>
                                     </li>
@@ -154,7 +160,7 @@
 
                                     <li class="nav-item">
                                         <a href="" class="nav-link active">
-                                            <i class="far fa fa-users nav-icon"></i>
+                                            <i class="fa-solid fa-person-chalkboard nav-icon"></i>
                                             <p>Profesores</p>
                                         </a>
                                     </li>
@@ -172,7 +178,7 @@
                                 <ul class="nav nav-treeview">
                                     <li class="nav-item">
                                         <a href="#" class="nav-link">
-                                            <i class=" nav-icon fa fa-files-o"></i>
+                                            <i class="fa-solid fa-chart-column nav-icon"></i>
                                             <p>Consolidado mensual</p>
                                         </a>
                                     </li>
@@ -192,52 +198,102 @@
                     <div class="container-fluid">
                         <div class="row mb-2">
                             <div class="col-sm-6">
-                                <h1 class="m-0">Profesores</h1>
-                            </div>
-                            <a  href="" class="btn btn-success">
-                                <i class="fa fa-plus"></i>Nuevo profesor
-                            </a>
+                                <h1>Profesores</h1>
+                            </div>                           
                         </div><!-- /.row -->
+                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-danger">
+                            <i class="fa fa-plus"></i> Nuevo profesor
+                        </button>
+
+                        </a>
                     </div><!-- /.container-fluid -->
                 </div>
                 <!-- /.content-header -->
 
                 <!-- Main content -->
-                <div class="content">
-                     <div class="box">    
-                        <div class="box-header with-border">             
-                            <h3 class="box-title">Listado de Profesores</h3>
-                        </div>
-                        <div class="box-body">
-                            <div>                                 
-                                <table border="1">
-                                  <tr>
-                <td><b>Usuario</b></td>
-                <td><b>Nombre</b></td>
-               
-            <tr>
-            <c:forEach items="${listadoProfesores}" var="profesor">     
-                    <tr>
-                        <td>${profesor.id_profesor}</td>
-                        <td><c:out value="${profesor.nombres_profesor}"/></td>
-                        <td><c:out value="${profesor.apellidos_profesor}"/></td> 
-                    </tr> 
-            </c:forEach>                                            
-                                </table>
+                <section class="content">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h3 class="card-title">Listado de profesores</h3>
+                                    </div>
+                                    <!-- /.card-header -->
+                                    <div class="card-body">
+                                        <table id="example1" class="table table-bordered table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>ID</th>
+                                                    <th>Nombre</th>
+                                                    <th>Apellidos</th>
+                                                    <th>Estado</th>
+                                                    <th>Acciones</th>
+                                                </tr>
+                                            </thead> 
+                                            <c:forEach var="profesor" items="${Profesores}">
+                                                <tr>
+                                                    <td >${profesor.id_profesor}</td>
+                                                    <td>${profesor.nombres_profesor}</td>
+                                                    <td>${profesor.apellidos_profesor}</td>
+                                                    <td>${profesor.estado}</td>
+                                                    <td class="text-center">
+                                                        <a><button type="button" class="btn btn-warning" data-toggle="tooltip"  title="Editar" data-original-title="Editar">
+                                                                <i class="fa-solid fa-pencil"></i></button></a>
+                                                        <a><button type="button" class="btn btn-danger" data-toggle="tooltip"  title="Eliminar" data-original-title="Eliminar">
+                                                                <i class="fa fa-trash"></i></button></a>
+                                                    </td>
+                                                </tr>
+                                            </c:forEach>
+                                        </table>
+                                    </div>
+                                    <!-- /.card-body -->
+                                </div>
+                                <!-- /.card -->
                             </div>
+                            <!-- /.col -->
                         </div>
-                        <!-- /.box-body -->
-                        <div class="box-footer">
-                            <!--Pie de página-->
-                        </div>
-                        <!-- /.box-footer-->
+                        <!-- /.row -->
                     </div>
                     <!-- /.container-fluid -->
-                </div>
+                </section>
                 <!-- /.content -->
             </div>
             <!-- /.content-wrapper -->
+            <!-- /.modal -->
 
+            <div class="modal fade" id="modal-danger">
+                <div class="modal-dialog">
+                    <div class="modal-content bg-danger" style="
+                         background: #487c3b !important;">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Nuevo Profesor</h4>
+
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="profesorControlador" method="POST">                   
+                                Nombres:<br>
+                                <input class="form-control" type="text" name="txtNombres" style="
+                                       border-color: black !important;"><br>
+                                Apellidos:<br>
+                                <input class="form-control" type="text" name="txtApellidos" style="
+                                       border-color: black !important; "><br>
+
+                                <div class="justify-content-between">
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa-solid fa-right-from-bracket"></i>  Cerrar</button>
+                                    <input type="submit" class="btn btn-success" value="Agregar" name="accion">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+            </div>
+            <!-- /.modal -->
 
             <!-- Main Footer -->
             <footer class="main-footer">
@@ -256,24 +312,35 @@
         <!-- ./wrapper -->
 
         <!-- REQUIRED SCRIPTS -->
-       <script>
-            $(document).ready(function () {
-                $('#tablaProfesores').DataTable({
-        "language":{
-                "url": "https://cdn.datatables.net/plug-ins/1.12.1/i18n/es-ES.json"
-                         }
-                    });
+
+        <!-- jQuery -->
+        <script src="vistas2/assets/plugins/jquery/jquery.min.js"></script>
+        <!-- Bootstrap 4 -->
+        <script src="vistas2/assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <!-- AdminLTE App -->
+        <script src="vistas2/assets/dist/js/adminlte.min.js"></script>
+
+
+        <!-- DataTables  & Plugins -->
+        <script src="vistas2/assets/plugins/datatables/jquery.dataTables.min.js" type="text/javascript"></script>
+        <script src="vistas2/assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js" type="text/javascript"></script>
+        <script src="vistas2/scripts/dataTable.js" type="text/javascript"></script>
+        <!-- SweetAlert2 -->
+        <script src="vistas2/assets/plugins/sweetalert2/sweetalert2.min.js"></script>
+        <!-- Toastr -->
+        <script src="vistas2/assets/plugins/toastr/toastr.min.js"></script>
+        <!--      <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+        -->
+
+        <script>
+            $(function () {
+                $("#example1").DataTable({
+                    "responsive": true, "lengthChange": false, "autoWidth": false,
+                    "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"],
+                    "language": {"url": "https://cdn.datatables.net/plug-ins/1.12.1/i18n/es-ES.json"}
+
+                }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
             });
         </script>
-        <!-- jQuery -->
-        <script src="assets/plugins/datatables.net/js/jquery.dataTables.min.js"></script>
-        <script src="assets/plugins/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-        
-        
-        <script src="assets/plugins/jquery/jquery.min.js"></script>
-        <!-- Bootstrap 4 -->
-        <script src="assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <!-- AdminLTE App -->
-        <script src="assets/dist/js/adminlte.min.js"></script>
     </body>
 </html>

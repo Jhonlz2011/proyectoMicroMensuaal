@@ -1,0 +1,54 @@
+/* Variables 
+:root {
+    --rojoPrimario: rgba(254, 72, 72, 1);
+    --rojoSecundario: rgba(168, 6, 6, 1);
+    --blanco: #fff;
+    --negro: #000;
+    --bgFooter: #302c2c;
+    --enlaceFooter: #1966d8;
+}
+*/
+/* Globales */
+
+/*table.dataTable thead{
+    background-color: #b41650 !important;
+    color: azure !important;
+    
+}
+.form-control:focus{
+    border-color: red brown;
+    
+}*/
+
+.page-item.active .page-link {
+  background: linear-gradient(to bottom, #ed1d1d 0%, #850000 100%) !important;
+  color: white !important;
+    
+}
+.page-link:hover{
+    background: linear-gradient(to bottom, #585858 0%, #111 100%) !important;
+    color: #fff !important;
+    border-color:  #3e4348;
+}
+
+.page-link{
+    color: #707070 !important ;
+}
+
+.page-link:focus{
+    box-shadow: none !important;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover{
+    color: white !important;
+    
+}
+
+.form-control:focus {
+    border-color: #e10000 !important;
+}
+
+td{
+    font-size: 1.2rem
+    
+}

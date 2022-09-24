@@ -6,9 +6,9 @@ import java.util.List;
 
 
 public interface CRUD {
-    public List listar();
-    public Profesor list(int id);
-    public boolean add(Profesor per);
-    public boolean edit(Profesor per);
-    public boolean eliminar(int id);
+    public List getProfesores();
+    public Profesor getProfesor(int id);
+    public int agregar(Profesor p);
+    public int editar(Profesor p);
+    public int eliminar(int id);
 }

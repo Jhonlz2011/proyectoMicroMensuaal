@@ -1,14 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package controladores;
 
+import Intefaces.CRUD;
 import entidades.Profesor;
 import entidadesDAO.ProfesorDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -24,24 +22,42 @@ import javax.servlet.http.HttpSession;
 @WebServlet(name = "profesorControlador", urlPatterns = {"/profesorControlador"})
 public class profesorControlador extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+   
+    ProfesorDAO dao;
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException{
-           try (PrintWriter out = response.getWriter())
-        {
-            ProfesorDAO p =new ProfesorDAO();
-            List<Profesor> objLisUsr= p.getListadoProfesor();
-            request.setAttribute("listadoUsuarios", objLisUsr); //Para que esté disponible en la página JSP.
-            request.getRequestDispatcher("vistas2/profesores.jsp").forward(request, response);
+        response.setContentType("text/html;charset=UTF-8");
+        
+        String accion=request.getParameter("accion");
+        List<Profesor> p = new ArrayList<>();
+        switch (accion){
+            case "listar":
+                dao= new ProfesorDAO();
+                p= dao.getProfesores();
+                request.setAttribute("Profesores", p);
+                request.getRequestDispatcher("/vistas2/profesores.jsp").forward(request, response);
+                break;
+            case "Agregar": 
+              int r=0;  
+              String nombres=request.getParameter("txtNombres");
+              String apellidos=request.getParameter("txtApellidos");
+              Profesor pro= new Profesor();
+              pro.setNombres_profesor(nombres);
+              pro.setApellidos_profesor(apellidos);
+              r=dao.agregar(pro);
+              if(r!=0){
+                 // request.setAttribute("config", "alert alert success");
+                 //request.setAttribute("mensaje", "Se guardo");
+                  request.getRequestDispatcher("profesorControlador?accion=listar").forward(request, response);
+              }else{
+                  request.getRequestDispatcher("errorInicio.jsp").forward(request, response);
+              }
+              break;
+            default:
+                throw new AssertionError();
+            
         }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -83,33 +99,5 @@ public class profesorControlador extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-      private void cerrarsession(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        HttpSession sesion = request.getSession();
-        sesion.setAttribute("usuario", null);
-        sesion.invalidate();
-        response.sendRedirect("index.jsp");
-
-    }
-
-    private void listarProfesor(HttpServletRequest request, HttpServletResponse response) {
-         ProfesorDAO p = new ProfesorDAO();
-         List<Profesor> profe = null;
-          try{
-            profe = p.getListadoProfesor();
-            request.setAttribute("profesor", profe);
-            
-        }catch(Exception e){
-            request.setAttribute("msje", "No se pudo listar los profesores" + e.getMessage());
-        }finally{
-            p = null;
-        }
-       try{
-            this.getServletConfig().getServletContext()
-                    .getRequestDispatcher("/vistas2/profesores.jsp").forward(request, response);
-        }catch(Exception ex){
-            request.setAttribute("msje", "No se puedo realizar la petición" + ex.getMessage());
-        }  
-    }
-    
     
 }
