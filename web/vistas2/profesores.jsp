@@ -221,7 +221,7 @@
                                     </div>
                                     <!-- /.card-header -->
                                     <div class="card-body">
-                                        <table id="example1" class="table table-bordered table-striped">
+                                        <table id="example1" class="selectorTabla table table-bordered table-striped">
                                             <thead>
                                                 <tr>
                                                     <th>ID</th>
@@ -238,7 +238,7 @@
                                                     <td>${profesor.apellidos_profesor}</td>
                                                     <td>${profesor.estado}</td>
                                                     <td class="text-center">
-                                                        <a><button type="button" class="btn btn-warning" data-toggle="tooltip"  title="Editar" data-original-title="Editar">
+                                                        <a class="button__editar--a"><button type="button" class="btn btn-warning button__editar--b" data-toggle="tooltip"  title="Editar" data-original-title="Editar">
                                                                 <i class="fa-solid fa-pencil"></i></button></a>
                                                         <a><button type="button" class="btn btn-danger" data-toggle="tooltip"  title="Eliminar" data-original-title="Eliminar">
                                                                 <i class="fa fa-trash"></i></button></a>
@@ -331,6 +331,40 @@
         <script src="vistas2/assets/plugins/toastr/toastr.min.js"></script>
         <!--      <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
         -->
+
+        <script>
+            //Obtener la tabla : 
+            
+            document.addEventListener("DOMContentLoaded", eventoTabla);
+            
+            function eventoTabla(){
+                const tabla = document.querySelector(".selectorTabla");
+                
+                tabla.addEventListener("click", function guardarId(e){
+                e.preventDefault();
+
+                const seleccion = e.target;
+                
+                //Si es que el click selecciono el boton
+                if (seleccion.classList.contains("button__editar--b")) {
+                    const fila = seleccion.parentElement.parentElement.parentElement;
+                    const id = fila.children[0].textContent;
+
+                    //console.log(id);
+                } else if (seleccion.classList.contains("button__editar--a")) { //Si es que el click selecciono el enlace a
+                    const fila = seleccion.parentElement.parentElement;
+                    const id = fila.children[0].textContent;
+
+                    //console.log(id);
+                }else if ( seleccion.classList.contains("fa-pencil")){
+                    const fila = seleccion.parentElement.parentElement.parentElement.parentElement;
+                    const id = fila.children[0].textContent;
+
+                    //console.log(id);
+                }
+            });
+            }
+        </script>
 
         <script>
             $(function () {
