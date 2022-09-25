@@ -239,8 +239,8 @@
                                                     <!-- <td></td>    -->
                                                     <td class="text-center">
 
-                                                        <a class="button__editar--a"><button type="button" class="btn btn-warning button__editar--b" data-toggle="tooltip"  title="Editar" data-original-title="Editar">
-                                                                <i class="fa-solid fa-pencil"></i></button></a>
+                                                        <button type="button" class="btn btn-warning button__editar--b" data-toggle="modal" data-target="#modal-danger1" title="Editar" data-original-title="Editar">
+                                                                <i class="fa-solid fa-pencil"></i></button>
                                                         <!-- <a><button type="button" class="btn btn-danger" data-toggle="tooltip"  title="Eliminar" data-original-title="Eliminar"> -->
 
                                                         <!-- ELIMINAR PROFESORES -->
@@ -304,7 +304,8 @@
             </div>
             <!-- /.modal -->
             <!-- /.modal -->
-
+            
+            <!--Editar profesor-->
             <div class="modal fade" id="modal-danger1">
                 <div class="modal-dialog">
                     <div class="modal-content bg-danger" style="
@@ -317,12 +318,14 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <form action="profesorControlador" method="POST">                   
+                            <form action="profesorControlador" method="POST">   
+                                <input  class="form-control inputId--editar" value="${profesor.nombres_profesor}" type="text" name="txtNombres" style="
+                                       border-color: black !important; display: none !important"><br> <!--  -->
                                 Nombres:<br>
-                                <input class="form-control" value="${profesor.nombres_profesor}" type="text" name="txtNombres" style="
+                                <input class="form-control inputNombre--editar" value="${profesor.nombres_profesor}" type="text" name="txtNombres" style="
                                        border-color: black !important;"><br>
                                 Apellidos:<br>
-                                <input class="form-control" value="${profesor.apellidos_profesor}" type="text" name="txtApellidos" style="
+                                <input class="form-control inputApellido--editar" value="${profesor.apellidos_profesor}" type="text" name="txtApellidos" style="
                                        border-color: black !important; "><br>
 
                                 <div class="justify-content-between">
@@ -386,25 +389,33 @@
                 
                 tabla.addEventListener("click", function guardarId(e){
                 e.preventDefault();
-
+                
                 const seleccion = e.target;
+                const editarNombre = document.querySelector(".inputNombre--editar");
+                const editarApellido = document.querySelector(".inputApellido--editar");
+                const inputId = document.querySelector(".inputId--editar");
                 
                 //Si es que el click selecciono el boton
                 if (seleccion.classList.contains("button__editar--b")) {
-                    const fila = seleccion.parentElement.parentElement.parentElement;
-                    const id = fila.children[0].textContent;
-
-                    console.log(id);
-                } else if (seleccion.classList.contains("button__editar--a")) { //Si es que el click selecciono el enlace a
                     const fila = seleccion.parentElement.parentElement;
                     const id = fila.children[0].textContent;
-
-                    console.log(id);
-                }else if ( seleccion.classList.contains("fa-pencil")){
-                    const fila = seleccion.parentElement.parentElement.parentElement.parentElement;
+                    const nombre = fila.children[2].textContent;
+                    const apellido = fila.children[1].textContent;
+                    
+                    editarNombre.value = nombre;
+                    editarApellido.value = apellido;
+                    inputId.value = id;
+                    
+                } else if ( seleccion.classList.contains("fa-pencil")){
+                    const fila = seleccion.parentElement.parentElement.parentElement;
                     const id = fila.children[0].textContent;
-
-                    console.log(id);
+                    const nombre = fila.children[2].textContent;
+                    const apellido = fila.children[1].textContent;
+                    
+                    editarNombre.value = nombre;
+                    editarApellido.value = apellido;
+                    inputId.value = id;
+                    
                 }
             });
             }
