@@ -9,11 +9,11 @@
 <!DOCTYPE html>
 <html>
     <head>
-       
+
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Inicio</title>
-        
+
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
         <!-- Google Font: Source Sans Pro -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -22,10 +22,10 @@
         <!-- Theme style -->
         <link rel="stylesheet" href="assets/dist/css/adminlte.min.css">
         <!-- DataTables -->
-       <!-- <link href="assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css"/>
-        <link href="assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css"/>
-        <link href="assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css"/> 
-       -->
+        <!-- <link href="assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css"/>
+         <link href="assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css"/>
+         <link href="assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css"/> 
+        -->
         <!--DataTable estilo-->
         <link href="assets/dist/css/estilos.css" rel="stylesheet" type="text/css"/>
     </head>
@@ -147,7 +147,7 @@
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="#" class="nav-link">
+                                        <a href="modulos/header.jsp" class="nav-link ">
                                             <i class="fa fa-book nav-icon"></i>
                                             <p>Materias</p>
                                         </a>
@@ -197,11 +197,11 @@
                                 <h1>Inicio</h1>
                             </div>
                             <div class="col-sm-6">
-                               <!-- <ol class="breadcrumb float-sm-right">
-                                    <li class="breadcrumb-item"><a href="#">Inicio</a></li>
-                                    
-                                </ol> 
-                               -->
+                                <!-- <ol class="breadcrumb float-sm-right">
+                                     <li class="breadcrumb-item"><a href="#">Inicio</a></li>
+                                     
+                                 </ol> 
+                                -->
                             </div>
                         </div>
                     </div><!-- /.container-fluid -->
@@ -678,31 +678,41 @@
 
 
             <!-- DataTables  & Plugins -->
-           <!-- <script src="assets/plugins/datatables/jquery.dataTables.min.js" type="text/javascript"></script>
-            <script src="assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js" type="text/javascript"></script>
-            <script src="assets/plugins/datatables-responsive/js/dataTables.responsive.min.js" type="text/javascript"></script>
-            <script src="assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js" type="text/javascript"></script>
-            <script src="assets/plugins/datatables-buttons/js/dataTables.buttons.min.js" type="text/javascript"></script>
-            <script src="assets/plugins/datatables-buttons/js/buttons.bootstrap4.min.js" type="text/javascript"></script>
-            <script src="assets/plugins/jszip/jszip.min.js" type="text/javascript"></script>
-            <script src="assets/plugins/pdfmake/pdfmake.min.js" type="text/javascript"></script>
-            <script src="assets/plugins/pdfmake/vfs_fonts.js" type="text/javascript"></script>
-            <script src="assets/plugins/datatables-buttons/js/buttons.html5.min.js" type="text/javascript"></script>
-            <script src="assets/plugins/datatables-buttons/js/buttons.print.min.js" type="text/javascript"></script>
-            <script src="assets/plugins/datatables-buttons/js/buttons.colVis.min.js" type="text/javascript"></script>
-           -->
- 
+            <!-- <script src="assets/plugins/datatables/jquery.dataTables.min.js" type="text/javascript"></script>
+             <script src="assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js" type="text/javascript"></script>
+             <script src="assets/plugins/datatables-responsive/js/dataTables.responsive.min.js" type="text/javascript"></script>
+             <script src="assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js" type="text/javascript"></script>
+             <script src="assets/plugins/datatables-buttons/js/dataTables.buttons.min.js" type="text/javascript"></script>
+             <script src="assets/plugins/datatables-buttons/js/buttons.bootstrap4.min.js" type="text/javascript"></script>
+             <script src="assets/plugins/jszip/jszip.min.js" type="text/javascript"></script>
+             <script src="assets/plugins/pdfmake/pdfmake.min.js" type="text/javascript"></script>
+             <script src="assets/plugins/pdfmake/vfs_fonts.js" type="text/javascript"></script>
+             <script src="assets/plugins/datatables-buttons/js/buttons.html5.min.js" type="text/javascript"></script>
+             <script src="assets/plugins/datatables-buttons/js/buttons.print.min.js" type="text/javascript"></script>
+             <script src="assets/plugins/datatables-buttons/js/buttons.colVis.min.js" type="text/javascript"></script>
+            -->
+
             <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
-            
-<script>
-  $(function () {
-    $("#example1").DataTable({
-      "responsive": true, "lengthChange": false, "autoWidth": false,
-      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"],
-      "language":{ "url": "https://cdn.datatables.net/plug-ins/1.12.1/i18n/es-ES.json"}
-      
-    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-  });
-</script>
+
+            <script>
+                $(function () {
+                    $("#example1").DataTable({
+                        "responsive": true, "lengthChange": false, "autoWidth": false,
+                        "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"],
+                        "language": {"url": "https://cdn.datatables.net/plug-ins/1.12.1/i18n/es-ES.json"}
+
+                    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+                });
+
+                $(function ($) {
+                    let url = window.location.href;
+                    $('nav ul li a').each(function () {
+                        if (this.href === url) {
+                            $(this).closest('li').addClass('active');
+                        }
+                    });
+                });
+
+            </script>
     </body>
 </html>

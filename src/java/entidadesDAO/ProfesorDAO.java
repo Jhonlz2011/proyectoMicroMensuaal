@@ -13,8 +13,8 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.List;
 import java.util.ArrayList;
-import entidades.Usuario;
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 import utils.conexionDB;
 
@@ -37,22 +37,26 @@ public class ProfesorDAO implements CRUD {
 
     @Override
     public List getProfesores() {
-        List<Profesor> listProfe = new ArrayList<>();
-        try {
-            con = DriverManager.getConnection(db.getStringConexion(), db.getUsuarioConexion(), db.getClaveConexion());
-            if (con != null) {
-                stm = con.createStatement();
-                strSQL = " SELECT *";
-                strSQL += " FROM tblprofesor";
-                // strSQL+=" WHERE estado='A'";
-                strSQL += " ORDER BY id_profesor";
-                rst = stm.executeQuery(strSQL);
-                while (rst.next()) {
-                    Profesor profesor = new Profesor();
+
+        List<Profesor> listProfe=new ArrayList<>();
+        try
+        {
+            con=DriverManager.getConnection(db.getStringConexion(), db.getUsuarioConexion(), db.getClaveConexion());
+            if (con!=null)
+            {
+                stm=con.createStatement();
+                strSQL=" SELECT id_profesor, nombres_profesor, apellidos_profesor";
+                strSQL+=" FROM tblprofesor";
+               strSQL+=" WHERE estado='A'";
+                strSQL+=" ORDER BY id_profesor";
+                rst=stm.executeQuery(strSQL);
+                while (rst.next())
+                {
+                    Profesor profesor=new Profesor();
                     profesor.setId_profesor(rst.getInt("id_profesor"));
                     profesor.setNombres_profesor(rst.getString("nombres_profesor"));
                     profesor.setApellidos_profesor(rst.getString("apellidos_profesor"));
-                    profesor.setEstado(rst.getString("estado"));
+                 //   profesor.setEstado(rst.getString("estado"));
                     listProfe.add(profesor);
                 }
                 rst.close();
@@ -72,6 +76,7 @@ public class ProfesorDAO implements CRUD {
 
     @Override
     public Profesor getProfesor(int id) {
+        /*
         Profesor profesorSeleccionado = new Profesor();
         try {
             con = DriverManager.getConnection(db.getStringConexion(), db.getUsuarioConexion(), db.getClaveConexion());
@@ -98,6 +103,30 @@ public class ProfesorDAO implements CRUD {
             System.out.println("Excepción: " + e.toString());
         }
         return profesorSeleccionado;
+          */
+        Profesor profesor= new Profesor();
+        try
+        {
+            
+            con=DriverManager.getConnection(db.getStringConexion(), db.getUsuarioConexion(), db.getClaveConexion());
+            if (con!=null)
+            {
+               
+               
+                pst=con.prepareStatement("SELECT nombres_profesor, apellidos_profesor from tblprofesor WHERE id_profesor'?");
+                pst.setInt(1, id);
+                rst = pst.executeQuery(strSQL);
+                
+                while (rst.next()){
+                 
+                    profesor.setNombres_profesor(rst.getString(1));
+                    profesor.setApellidos_profesor(rst.getString(2));
+                }
+            }
+        } catch (SQLException ex) {
+            System.err.println("Error "+ ex);
+        }
+        return profesor;
     }
 
     @Override
@@ -145,7 +174,7 @@ public class ProfesorDAO implements CRUD {
         return resultado;
     }
 
-    @Override
+    /*
     public int eliminar(int id) {
         int resultado = 0;
 
@@ -165,5 +194,21 @@ public class ProfesorDAO implements CRUD {
         }
         return resultado;
     }
-
+    */
+    @Override
+    public void eliminar(Profesor id_profesor) {
+       
+       try{
+           con=DriverManager.getConnection(db.getStringConexion(), db.getUsuarioConexion(), db.getClaveConexion());
+            if (con!=null){
+            pst=con.prepareStatement("UPDATE tblprofesor SET estado= 'I' WHERE id_profesor= " + id_profesor.getId_profesor());
+            pst.executeUpdate();
+            
+            pst.close();
+            con.close();
+            }
+       }catch(SQLException e){
+           System.out.println("Excepción: " + e.toString());
+       }
+    }   
 }
