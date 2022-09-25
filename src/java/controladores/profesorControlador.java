@@ -1,4 +1,3 @@
-
 package controladores;
 
 import Intefaces.CRUD;
@@ -22,42 +21,57 @@ import javax.servlet.http.HttpSession;
 @WebServlet(name = "profesorControlador", urlPatterns = {"/profesorControlador"})
 public class profesorControlador extends HttpServlet {
 
-   
     ProfesorDAO dao;
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException{
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
-        String accion=request.getParameter("accion");
+
+        String accion = request.getParameter("accion");
         List<Profesor> p = new ArrayList<>();
-        switch (accion){
+        switch (accion) {
             case "listar":
-                dao= new ProfesorDAO();
-                p= dao.getProfesores();
+                dao = new ProfesorDAO();
+                p = dao.getProfesores();
                 request.setAttribute("Profesores", p);
                 request.getRequestDispatcher("/vistas2/profesores.jsp").forward(request, response);
                 break;
-            case "Agregar": 
-              int r=0;  
-              String nombres=request.getParameter("txtNombres");
-              String apellidos=request.getParameter("txtApellidos");
-              Profesor pro= new Profesor();
-              pro.setNombres_profesor(nombres);
-              pro.setApellidos_profesor(apellidos);
-              r=dao.agregar(pro);
-              if(r!=0){
-                 // request.setAttribute("config", "alert alert success");
-                 //request.setAttribute("mensaje", "Se guardo");
-                  request.getRequestDispatcher("profesorControlador?accion=listar").forward(request, response);
-              }else{
-                  request.getRequestDispatcher("errorInicio.jsp").forward(request, response);
-              }
-              break;
+            case "Agregar":
+                int r = 0;
+                String nombres = request.getParameter("txtNombres");
+                String apellidos = request.getParameter("txtApellidos");
+                if (!"".equals(nombres) && !"".equals(apellidos)) {
+                    Profesor pro = new Profesor();
+                    pro.setNombres_profesor(nombres);
+                    pro.setApellidos_profesor(apellidos);
+                    r = dao.agregar(pro);
+                    if (r != 0) {
+                        // request.setAttribute("config", "alert alert success");
+                        //request.setAttribute("mensaje", "Se guardo");
+                        request.getRequestDispatcher("profesorControlador?accion=listar").forward(request, response);
+
+                    } else {
+                        request.getRequestDispatcher("errorInicio.jsp").forward(request, response);
+                    }
+                } else {
+                    request.getRequestDispatcher("errorAgregar.jsp").forward(request, response);
+                }
+                break;
+            case "Editar":
+                int id= Integer.valueOf(request.getParameter("id_profesor"));
+                Profesor persona = dao.getProfesor(id);
+                break;
+            case "Actualizar":
+
+                break;
+            case "eliminarProfesor":
+                eliminarProfesor(request, response);
+                break;
             default:
                 throw new AssertionError();
-            
+
         }
-        
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -99,5 +113,20 @@ public class profesorControlador extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-    
+    private void eliminarProfesor(HttpServletRequest request, HttpServletResponse response) {
+        ProfesorDAO DAO = new ProfesorDAO();
+        Profesor usus = new Profesor();
+        if (request.getParameter("id_profesor") != null) {
+            usus.setId_profesor(Integer.parseInt(request.getParameter("id_profesor")));
+            try {
+                DAO.eliminar(usus);
+                response.sendRedirect("profesorControlador?accion=listar");
+            } catch (IOException e) {
+                request.setAttribute("msje", "No se pudo acceder a la base de datos" + e.getMessage());
+            }
+        } else {
+            request.setAttribute("msje", "No se encontro el usuario");
+        }
+    }
+
 }

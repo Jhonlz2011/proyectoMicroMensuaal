@@ -20,10 +20,11 @@
         <script src="https://kit.fontawesome.com/67b7b97383.js" crossorigin="anonymous"></script>
         <!-- Theme style -->
         <link rel="stylesheet" href="vistas2/assets/dist/css/adminlte.min.css">
-        <!-- SweetAlert2 -->
-        <link rel="stylesheet" href="vistas2/assets/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
+        <!-- SweetAlert -->
+        <link href="vistas2/swetalert/sweetalert.css" rel="stylesheet" type="text/css"/>
+        <!-- <link rel="stylesheet" href="vistas2/assets/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css"> -->
         <!-- Toastr -->
-        <link rel="stylesheet" href="vistas3/assets/plugins/toastr/toastr.min.css">
+        <!--  <link rel="stylesheet" href="vistas3/assets/plugins/toastr/toastr.min.css"> -->
 
         <!-- DataTables -->
         <link href="vistas2/assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css"/>
@@ -225,22 +226,26 @@
                                             <thead>
                                                 <tr>
                                                     <th>ID</th>
-                                                    <th>Nombre</th>
-                                                    <th>Apellidos</th>
-                                                    <th>Estado</th>
+                                                    <th>Apellidos</th> 
+                                                    <th>Nombres</th>                                                 
                                                     <th>Acciones</th>
                                                 </tr>
                                             </thead> 
                                             <c:forEach var="profesor" items="${Profesores}">
                                                 <tr>
                                                     <td >${profesor.id_profesor}</td>
-                                                    <td>${profesor.nombres_profesor}</td>
                                                     <td>${profesor.apellidos_profesor}</td>
-                                                    <td>${profesor.estado}</td>
+                                                    <td>${profesor.nombres_profesor}</td>
+                                                    <!-- <td></td>    -->
                                                     <td class="text-center">
-                                                        <a><button type="button" class="btn btn-warning" data-toggle="tooltip"  title="Editar" data-original-title="Editar">
-                                                                <i class="fa-solid fa-pencil"></i></button></a>
-                                                        <a><button type="button" class="btn btn-danger" data-toggle="tooltip"  title="Eliminar" data-original-title="Eliminar">
+                                                        <button type="button" id="#btnEditar" class="btn btn-warning"> <!--data-toggle="modal" data-target="#modal-danger1"--> 
+                                                            <i class="fa-solid fa-pencil"></i></button>
+                                                        <!-- ELIMINAR PROFESORES -->
+                                                        <input type="hidden" id="id_profesor" value="${profesor.id_profesor}">
+                                                        <a id="deleteProfe" href="<c:url value="profesorControlador">
+                                                               <c:param name="accion" value="eliminarProfesor" />
+                                                               <c:param name="id_profesor" value="${profesor.id_profesor}" />
+                                                           </c:url>"><button type="button" class="btn btn-danger" data-toggle="tooltip"  title="Eliminar" data-original-title="Eliminar">
                                                                 <i class="fa fa-trash"></i></button></a>
                                                     </td>
                                                 </tr>
@@ -294,7 +299,40 @@
                 <!-- /.modal-dialog -->
             </div>
             <!-- /.modal -->
+            <!-- /.modal -->
 
+            <div class="modal fade" id="modal-danger1">
+                <div class="modal-dialog">
+                    <div class="modal-content bg-danger" style="
+                         background: #487c3b !important;">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Editar Profesor</h4>
+
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="profesorControlador" method="POST">                   
+                                Nombres:<br>
+                                <input class="form-control" value="${profesor.nombres_profesor}" type="text" name="txtNombres" style="
+                                       border-color: black !important;"><br>
+                                Apellidos:<br>
+                                <input class="form-control" value="${profesor.apellidos_profesor}" type="text" name="txtApellidos" style="
+                                       border-color: black !important; "><br>
+
+                                <div class="justify-content-between">
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal"<i class="fa-solid fa-right-from-bracket"></i>  Cerrar</button>
+                                    <input type="submit" class="btn btn-success" value="Editar" name="accion">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+            </div>
+            <!-- /.modal -->
             <!-- Main Footer -->
             <footer class="main-footer">
                 <!-- To the right -->
@@ -325,14 +363,56 @@
         <script src="vistas2/assets/plugins/datatables/jquery.dataTables.min.js" type="text/javascript"></script>
         <script src="vistas2/assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js" type="text/javascript"></script>
         <script src="vistas2/scripts/dataTable.js" type="text/javascript"></script>
-        <!-- SweetAlert2 -->
-        <script src="vistas2/assets/plugins/sweetalert2/sweetalert2.min.js"></script>
+        <!-- SweetAlert -->
+        <script src="vistas2/swetalert/sweetalert.js" type="text/javascript"></script>
+
+        <!-- <script src="vistas2/assets/plugins/sweetalert2/sweetalert2.min.js"></script> -->
         <!-- Toastr -->
-        <script src="vistas2/assets/plugins/toastr/toastr.min.js"></script>
+        <!-- <script src="vistas2/assets/plugins/toastr/toastr.min.js"></script> -->
         <!--      <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
         -->
-
         <script>
+            $(document).ready(function () {
+                $("tr #deleteProfe").click(function (e) {
+                    e.preventDefault();
+                    var id_profesor = $(this).parent().find('#id_profesor').val();
+                    swal({
+                        title: "Esta Seguro de Eliminar?",
+                        text: "Una vez eliminado no podra recuperarlo!",
+                        type: "warning",
+                        showCancelButton: true,
+                        confirmButtonClass: "btn-danger",
+                        confirmButtonText: "Sí, Eliminar!",
+                        cancelButtonText: "No, Cancelar!",
+                        closeOnConfirm: false,
+                        closeOnCancel: false
+                    },
+                            function (isConfirm) {
+                                if (isConfirm) {
+                                    eliminarProfesor(id_profesor);
+                                    swal("Eliminado!", "El profesor se ha eliminado con exito", "success");
+                                    setTimeout(function () {
+                                        parent.location.href = "profesorControlador?accion=listar"
+                                    }, 1800);
+                                } else {
+                                    swal("Cancelado", "Cancelaste la eliminación", "error");
+                                }
+                            });
+                });
+
+                function eliminarProfesor(id_profesor) {
+                    var url = "profesorControlador?accion=eliminarProfesor&id_profesor=" + id_profesor;
+                    console.log("eliminado");
+                    $.ajax({
+                        type: 'POST',
+                        url: url,
+                        async: true,
+                        success: function (r) {
+
+                        }
+                    });
+                }
+            });
             $(function () {
                 $("#example1").DataTable({
                     "responsive": true, "lengthChange": false, "autoWidth": false,
@@ -340,6 +420,14 @@
                     "language": {"url": "https://cdn.datatables.net/plug-ins/1.12.1/i18n/es-ES.json"}
 
                 }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+            });
+
+            $('.toastrDefaultSuccess').click(function () {
+                toastr.success('Profesor agregado con exito')
+            });
+
+            $(function () {
+                $(`.nav-link[href="${location.pathname}"]`).parent().addClass("active");
             });
         </script>
     </body>

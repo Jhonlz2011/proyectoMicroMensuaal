@@ -8,13 +8,29 @@
 <!DOCTYPE html>
 <html>
     <head>
-          <%
-            String usr = request.getParameter("parNomUsr");
-        %>
-
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>TES</title>
 
+        <!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">-->
+        <!-- Google Font: Source Sans Pro -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+        <!-- Font Awesome Icons -->
+        <script src="https://kit.fontawesome.com/67b7b97383.js" crossorigin="anonymous"></script>
+        <!-- Theme style -->
+        <link rel="stylesheet" href="../assets/dist/css/adminlte.min.css">
+        <!-- SweetAlert -->
+        <link href="../swetalert/sweetalert.css" rel="stylesheet" type="text/css"/>
+        <!-- <link rel="stylesheet" href="vistas2/assets/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css"> -->
+        <!-- Toastr -->
+        <!--  <link rel="stylesheet" href="vistas3/assets/plugins/toastr/toastr.min.css"> -->
+
+        <!-- DataTables -->
+        <link href="../assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css"/>
+        <!--DataTable estilo-->
+        <link href="../assets/dist/css/estilos.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
         <!-- Main Sidebar Container -->
@@ -31,7 +47,7 @@
                 <div class="user-panel">
                     <div class="info" >
                         <p style=" margin-top:revert; color: white;text-align: center;font-size: 18px;font-weight: 600; font-family: system-ui;" >
-                            Bienvenido,  <%=usr%> </p>
+                            Bienvenido, Administrador</p>
 
                     </div>
                 </div>
@@ -54,7 +70,7 @@
                         <!-- Add icons to the links using the .nav-icon class
                              with font-awesome or any other icon font library -->
                         <li class="nav-item">
-                            <a href="#" class="nav-link active">
+                            <a href="#" class="nav-link">
 
                                 <i class="nav-icon fas fa-home"></i>
                                 <p>
@@ -116,5 +132,26 @@
             </div>
             <!-- /.sidebar -->
         </aside>
+        
+        
+         <!-- REQUIRED SCRIPTS -->
+
+        <!-- jQuery -->
+        <script src="../assets/plugins/jquery/jquery.min.js"></script>
+        <!-- Bootstrap 4 -->
+        <script src="../assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <!-- AdminLTE App -->
+        <script src="../assets/dist/js/adminlte.min.js"></script>
+
+
+        <!-- DataTables  & Plugins -->
+        <script src="../assets/plugins/datatables/jquery.dataTables.min.js" type="text/javascript"></script>
+        <script src="../assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js" type="text/javascript"></script>
+        <script src="../scripts/dataTable.js" type="text/javascript"></script>
+        <!-- SweetAlert -->
+        <script src="../swetalert/sweetalert.js" type="text/javascript"></script>
+        
+        
+        
     </body>
 </html>
