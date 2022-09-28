@@ -56,7 +56,7 @@ public class ProfesorDAO implements CRUD {
                     profesor.setId_profesor(rst.getInt("id_profesor"));
                     profesor.setNombres_profesor(rst.getString("nombres_profesor"));
                     profesor.setApellidos_profesor(rst.getString("apellidos_profesor"));
-                 //   profesor.setEstado(rst.getString("estado"));
+        
                     listProfe.add(profesor);
                 }
                 rst.close();
@@ -76,44 +76,14 @@ public class ProfesorDAO implements CRUD {
 
     @Override
     public Profesor getProfesor(int id) {
-        /*
-        Profesor profesorSeleccionado = new Profesor();
-        try {
-            con = DriverManager.getConnection(db.getStringConexion(), db.getUsuarioConexion(), db.getClaveConexion());
-            if (con != null) {
-                stm = con.createStatement();
-                pst = con.prepareStatement("SELECT * FROM tblprofesor WHERE id_profesor='?'");
-                pst.setString(1, ""+id);
-                rst = stm.executeQuery(strSQL);
-
-                profesorSeleccionado.setId_profesor(id);
-                profesorSeleccionado.setNombres_profesor(rst.getString("nombres_profesor"));
-                profesorSeleccionado.setApellidos_profesor(rst.getString("apellidos_profesor"));
-                profesorSeleccionado.setEstado(rst.getString("estado"));
-
-                rst.close();
-                stm.close();
-                con.close();
-            }
-        } catch (java.sql.SQLException e) {
-            profesorSeleccionado = null;
-            System.out.println("Excepción: " + e.toString());
-        } catch (Exception e) {
-            profesorSeleccionado = null;
-            System.out.println("Excepción: " + e.toString());
-        }
-        return profesorSeleccionado;
-          */
         Profesor profesor= new Profesor();
         try
         {
             
             con=DriverManager.getConnection(db.getStringConexion(), db.getUsuarioConexion(), db.getClaveConexion());
             if (con!=null)
-            {
-               
-               
-                pst=con.prepareStatement("SELECT nombres_profesor, apellidos_profesor from tblprofesor WHERE id_profesor'?");
+            {        
+                pst=con.prepareStatement("SELECT nombres_profesor, apellidos_profesor from tblprofesor WHERE id_profesor=?");
                 pst.setInt(1, id);
                 rst = pst.executeQuery(strSQL);
                 
@@ -131,47 +101,45 @@ public class ProfesorDAO implements CRUD {
 
     @Override
     public int agregar(Profesor p) {
-        int resultado = 0;
-
-        try {
-            con = DriverManager.getConnection(db.getStringConexion(), db.getUsuarioConexion(), db.getClaveConexion());
-            if (con != null) {
-                stm = con.createStatement();
-                pst = con.prepareStatement("INSERT INTO tblprofesor(nombres_profesor, apellidos_profesor) VALUES (?,?)");
-                pst.setString(1, p.getNombres_profesor());
-                pst.setString(2, p.getApellidos_profesor());
-                resultado = pst.executeUpdate();
-                stm.close();
-                con.close();
-                pst.close();
+       int resultado=0;
+        
+         try{
+            con=DriverManager.getConnection(db.getStringConexion(), db.getUsuarioConexion(), db.getClaveConexion());
+            if (con!=null){
+           // stm=con.createStatement();
+            pst=con.prepareStatement("INSERT INTO tblprofesor(nombres_profesor, apellidos_profesor) VALUES (?,?)");
+            pst.setString(1, p.getNombres_profesor());
+            pst.setString(2, p.getApellidos_profesor());
+            resultado=pst.executeUpdate();
+          //  stm.close();
+            con.close();
+            pst.close();
             }
-        } catch (Exception e) {
-            System.out.println("Error al agregar en la BD");
-        }
-        return resultado;
+         }catch(SQLException e){
+             System.out.println("Error al agregar en la BD");
+         } 
+         return resultado;
     }
 
     @Override
     public int editar(Profesor p) {
-        int resultado = 0;
+        int r = 0;
 
         try {
             con = DriverManager.getConnection(db.getStringConexion(), db.getUsuarioConexion(), db.getClaveConexion());
             if (con != null) {
-                stm = con.createStatement();
-                pst = con.prepareStatement("UPDATE tblprofesor SET nombres_profesor='?', apellidos_profesor='?' WHERE id_profesor='?'");
+                pst = con.prepareStatement("UPDATE tblprofesor SET nombres_profesor=?, apellidos_profesor=? WHERE id_profesor=?");
                 pst.setString(1, p.getNombres_profesor());
                 pst.setString(2, p.getApellidos_profesor());
-                pst.setString(2, String.valueOf(p.getId_profesor()));
-                resultado = pst.executeUpdate();
-                stm.close();
+                pst.setInt(3, p.getId_profesor());
+                r = pst.executeUpdate();
                 con.close();
                 pst.close();
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("Error al actualizar en la BD");
         }
-        return resultado;
+        return r;
     }
 
     /*

@@ -6,10 +6,6 @@
 
 package utils;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-
 /**
  *
  * @author user
@@ -29,24 +25,11 @@ public class conexionDB {
        
         boolean res=true;
         try
-        {
-//          
-//            java.util.Properties proArc=new java.util.Properties();
-//            try (java.io.FileInputStream fis = new java.io.FileInputStream("config/conexion.properties")) {
-//                proArc.load(fis);
-//            }
-//           
-//            strDriCon=proArc.getProperty("DriverConexion");
-//            strStrCon=proArc.getProperty("StringConexion");
-//            strUsrCon=proArc.getProperty("UsuarioConexion");
-//            strClaCon=proArc.getProperty("ClaveConexion");
-//            proArc=null;
-            
-            
+        {     
             strDriCon = "org.postgresql.Driver";
-            strStrCon = "jdbc:postgresql://localhost:5434/dbproyectoweb";
+            strStrCon = "jdbc:postgresql://localhost:5433/prueba";
             strUsrCon = "postgres";
-            strClaCon = "1234";
+            strClaCon = "admin";
         }
 //        catch (java.io.IOException e)
 //        {

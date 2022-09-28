@@ -1,34 +1,31 @@
 <%-- 
-    Document   : menubien
-    Created on : 22-sep-2022, 1:59:50
+    Document   : consolidadoMensual
+    Created on : 27-sep-2022, 17:07:45
     Author     : user
 --%>
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="es">
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Inicio</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Informe</title>
 
-      <!--  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css"> -->
+
+
         <!-- Google Font: Source Sans Pro -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-        <!-- Font Awesome Icons -->
-        <script src="https://kit.fontawesome.com/67b7b97383.js" crossorigin="anonymous"></script>
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="assets/plugins/fontawesome-free/css/all.min.css">
+        <!-- DataTables -->
+        <link rel="stylesheet" href="assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+        <link rel="stylesheet" href="assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+        <link rel="stylesheet" href="assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
         <!-- Theme style -->
         <link rel="stylesheet" href="assets/dist/css/adminlte.min.css">
-        <!-- SweetAlert -->
-        <link href="assets/plugins/swetalert/sweetalert.css" rel="stylesheet" type="text/css"/>
-        <!-- DataTables -->
-        <link href="assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css"/>
-        <link href="assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css"/>
-        <link href="assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css"/>
         <!--DataTable estilo-->
-        <link href="assets/dist/css/estilos.css" rel="stylesheet" type="text/css"/>
-
+         <link href="assets/dist/css/estilos.css" rel="stylesheet" type="text/css"/>
     </head>
     <body  class="hold-transition sidebar-mini ">
         <div class="wrapper">
@@ -124,7 +121,7 @@
                             <!-- Add icons to the links using the .nav-icon class
                                  with font-awesome or any other icon font library -->
                             <li class="nav-item">
-                                <a href="#" class="nav-link active">
+                                <a href="#" class="nav-link">
 
                                     <i class="nav-icon fas fa-home"></i>
                                     <p>
@@ -175,7 +172,7 @@
                                     <li class="nav-item">
                                         <a href="informe.jsp" class="nav-link">
                                             <i class=" nav-icon fa-solid fa-chart-column"></i>
-                                                <p>Informe</p>
+                                            <p>Informe</p>
                                         </a>
                                     </li>
                                 </ul>
@@ -194,21 +191,21 @@
                     <div class="container-fluid">
                         <div class="row mb-2">
                             <div class="col-sm-6">
-                                <h1>Inicio</h1>
+                                <h1>Informe</h1>
                                 <a href="asignarProfesor.jsp">    <button  type="button" class="btn btn-success mt-3" data-toggle="modal" data-target="#modal-danger">
-                            <i class="fa fa-plus"></i> Asignar Profesor
-                        </button> </a> 
+                                        <i class="fa fa-plus"></i> Asignar Profesor
+                                    </button> </a> 
                             </div>
                             <div class="col-sm-6">
-                                <!-- <ol class="breadcrumb float-sm-right">
-                                     <li class="breadcrumb-item"><a href="#">Inicio</a></li>
-                                     
-                                 </ol> 
-                                -->
-                             
+                                <ol class="breadcrumb float-sm-right">
+                                    <li class="breadcrumb-item"><a href="#">Reportes</a></li>
+                                    <li class="breadcrumb-item active">Informe</li>
+                                </ol> 
+
+
                             </div>
-                          
-                            
+
+
                         </div>
                     </div><!-- /.container-fluid -->
                 </section>
@@ -227,29 +224,27 @@
                                         <table id="example1" class="table table-bordered table-striped">
                                             <thead>
                                                 <tr>
-                                                    <th>Revision</th>
+                                                    <th>Informe</th>
                                                     <th>Materia</th>
                                                     <th>Profesor</th>
                                                     <th>Periodo</th>
                                                     <th>Horario</th>
-                                                    <th>Micro</th>                                                 
-                                                    <th>Acciones</th>
+                                                    <th>Micro</th> 
+                                                    <th>Fecha de entrega</th> 
+
                                                 </tr>
                                             </thead>
-
-                                            <tr>
-                                                <td>1</td>
-                                                <td>Programacion con Base de datos</td>
-                                                <td>Eddye Lino</td>
-                                                <td>Semestre I Modulo I</td>
-                                                <td>A</td>
-                                                <td><span class="badge badge-danger">Pendiente</span></td>
-                                                <td class="text-center">
-                                                    <a id="" href="#" class="btn btn-info"  data-toggle="tooltip" title="Desactivar" data-original-title="Desactivar">
-                                                        <i class="fa-solid fa-eye"></i></a>
-                                                </td>
-                                            </tr>
-
+                                            <tbody>
+                                                <tr>
+                                                    <td>1</td>
+                                                    <td>Programacion con Base de datos</td>
+                                                    <td>Eddye Lino</td>
+                                                    <td>Semestre I Modulo I</td>
+                                                    <td>A</td>
+                                                    <td><span class="badge badge-success">Aprobado</span></td>
+                                                    <td>27/09/2022</td>
+                                                </tr>
+                                            </tbody>
                                         </table>
                                     </div>
                                     <!-- /.card-body -->
@@ -278,25 +273,49 @@
                 <strong>Copyright © 2012 - 2022 Tecnológico Espíritu Santo</a>.</strong> Todos los derechos reservados
             </footer>
 
+        </div>
 
+        <!-- REQUIRED SCRIPTS -->
 
-            <!-- REQUIRED SCRIPTS -->
+        <!-- jQuery -->
+        <script src="assets/plugins/jquery/jquery.min.js"></script>
+        <!-- Bootstrap 4 -->
+        <script src="assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <!-- DataTables  & Plugins -->
+        <script src="assets/plugins/datatables/jquery.dataTables.min.js"></script>
+        <script src="assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+        <script src="assets/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+        <script src="assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+        <script src="assets/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+        <script src="assets/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+        <script src="assets/plugins/jszip/jszip.min.js"></script>
+        <script src="assets/plugins/pdfmake/pdfmake.min.js"></script>
+        <script src="assets/plugins/pdfmake/vfs_fonts.js"></script>
+        <script src="assets/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+        <script src="assets/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+        <script src="assets/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+        <!-- AdminLTE App -->
+        <script src="assets/dist/js/adminlte.min.js"></script>
+       
+        <!-- Page specific script -->
+        <script>
+            $(function () {
+                $("#example1").DataTable({
 
-            <!-- jQuery -->
-            <script src="assets/plugins/jquery/jquery.min.js"></script>
-            <!-- Bootstrap 4 -->
-            <script src="assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-            <!-- AdminLTE App -->
-            <script src="assets/dist/js/adminlte.min.js"></script>
-
-            <!-- DataTables  & Plugins -->
-            <script src="assets/plugins/datatables/jquery.dataTables.min.js" type="text/javascript"></script>
-            <script src="assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js" type="text/javascript"></script>
-            <script src="scripts/dataTable.js" type="text/javascript"></script>
-            <!-- SweetAlert -->
-            <script src="assets/plugins/swetalert/sweetalert.js" type="text/javascript"></script>
-            <!-- Archivo principal Javascripts -->    
-            <script src="scripts/principal.js" type="text/javascript"></script> 
+                    "responsive": true, "lengthChange": false, "autoWidth": false,
+                    "buttons": ["excel", "pdf", "print", "colvis"]
+                }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+                $('#example2').DataTable({
+                    "paging": true,
+                    "lengthChange": false,
+                    "searching": false,
+                    "ordering": true,
+                    "info": true,
+                    "autoWidth": false,
+                    "responsive": true,
+                });
+            });
+        </script>
 
     </body>
 </html>

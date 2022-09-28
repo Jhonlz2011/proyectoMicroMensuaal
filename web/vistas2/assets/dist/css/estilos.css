@@ -55,3 +55,22 @@ td{
 .btn-warning.focus, .btn-warning:focus{
     background-color: #ffc107 !important;
 }
+
+.brand-link{
+    font-size: 1.01rem !important;
+    line-height: 1.8 !important;
+}
+
+.card-title{
+    font-size: 1.15rem !important;
+    font-weight: 600 !important;
+}
+
+body:not(.layout-fixed) .main-sidebar {
+    position: fixed !important;
+    }
+    
+.btn-secondary{
+        
+    background:linear-gradient(to bottom, #ed1d1d 0%, #850000 100%) !important
+    }

@@ -34,9 +34,6 @@ public class iniciarSesControlador extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            
-            
-            
             if (cargarDriver())
             {
                 nombre_usuario=request.getParameter("nombre_usuario")==null?"":request.getParameter("nombre_usuario");
