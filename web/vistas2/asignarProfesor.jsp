@@ -4,6 +4,12 @@
     Author     : user
 --%>
 
+<%@page import="entidades.Periodo"%>
+<%@page import="entidades.Temporada"%>
+<%@page import="entidades.Horario"%>
+<%@page import="entidades.Materia"%>
+<%@page import="entidades.Profesor"%>
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="es">
@@ -17,26 +23,26 @@
         <!-- Font Awesome -->
         <script src="https://kit.fontawesome.com/67b7b97383.js" crossorigin="anonymous"></script>
         <!-- daterange picker -->
-        <link rel="stylesheet" href="assets/plugins/daterangepicker/daterangepicker.css">
+        <link rel="stylesheet" href="vistas2/assets/plugins/daterangepicker/daterangepicker.css">
         <!-- iCheck for checkboxes and radio inputs -->
-        <link rel="stylesheet" href="assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+        <link rel="stylesheet" href="vistas2/assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
         <!-- Bootstrap Color Picker -->
-        <link rel="stylesheet" href="assets/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css">
+        <link rel="stylesheet" href="vistas2/assets/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css">
         <!-- Tempusdominus Bootstrap 4 -->
-        <link rel="stylesheet" href="assets/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+        <link rel="stylesheet" href="vistas2/assets/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
         <!-- Select2 -->
-        <link rel="stylesheet" href="assets/plugins/select2/css/select2.min.css">
-        <link rel="stylesheet" href="assets/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+        <link rel="stylesheet" href="vistas2/assets/plugins/select2/css/select2.min.css">
+        <link rel="stylesheet" href="vistas2/assets/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
         <!-- Bootstrap4 Duallistbox -->
-        <link rel="stylesheet" href="assets/plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
+        <link rel="stylesheet" href="vistas2/assets/plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
         <!-- BS Stepper -->
-        <link rel="stylesheet" href="assets/plugins/bs-stepper/css/bs-stepper.min.css">
+        <link rel="stylesheet" href="vistas2/assets/plugins/bs-stepper/css/bs-stepper.min.css">
         <!-- dropzonejs -->
-        <link rel="stylesheet" href="assets/plugins/dropzone/min/dropzone.min.css">
+        <link rel="stylesheet" href="vistas2/assets/plugins/dropzone/min/dropzone.min.css">
         <!-- Theme style -->
-        <link rel="stylesheet" href="assets/dist/css/adminlte.min.css">
+        <link rel="stylesheet" href="vistas2/assets/dist/css/adminlte.min.css">
 
-        <link href="assets/dist/css/estilos.css" rel="stylesheet" type="text/css"/> 
+        <link href="vistas2/assets/dist/css/estilos.css" rel="stylesheet" type="text/css"/> 
     </head>
     <body class="hold-transition sidebar-mini">
         <div class="wrapper">
@@ -99,7 +105,7 @@
             <aside class="main-sidebar sidebar-dark-primary elevation-4">
                 <!-- Brand Logo -->
                 <a href="" class="brand-link">
-                    <img src="assets/dist/img/logoTES4 .png" alt=""class="brand-image"/>
+                    <img src="vistas2/assets/dist/img/logoTES4 .png" alt=""class="brand-image"/>
                     <span class="brand-text font-weight-light">Tecnológico Espíritu Santo</span><br>
                 </a>
 
@@ -132,7 +138,7 @@
                             <!-- Add icons to the links using the .nav-icon class
                                  with font-awesome or any other icon font library -->
                             <li class="nav-item">
-                                <a href="menuPrincipal.jsp" class="nav-link active">
+                                <a href="vistas2/menuPrincipal.jsp" class="nav-link active">
 
                                     <i class="nav-icon fas fa-home"></i>
                                     <p>
@@ -180,7 +186,7 @@
                                 </a>
                                 <ul class="nav nav-treeview">
                                     <li class="nav-item">
-                                        <a href="informe.jsp" class="nav-link">
+                                        <a href="vistas2/informe.jsp" class="nav-link">
                                             <i class="fa-solid fa-chart-column nav-icon"></i>
                                             <p>Informe</p>
                                         </a>
@@ -218,44 +224,41 @@
                     <div class="container-fluid">
                         <!-- SELECT2 EXAMPLE -->
                         <div class="card card-default">
-                            <form>
+                            <form action="asignacionControlador" method="post">
                                 <!-- /.card-header -->
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Profesor</label>
-                                                <select class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger" data-placeholder="Selecciona una materia" style="width: 100%;">
-                                                    <option>Eddye Lino</option>
-                                                    <option>Juan Marin</option>
-                                                    <option>Jessica Armijos</option>
-                                                    <option>Tanya Espin</option>
-                                                    <option>Billy Soto</option>
-                                                    <option>Rubi Salas</option>
-                                                    <option>Carlos Cabanilla</option>
+                                                <select id="cboProfesor" class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger" data-placeholder="Selecciona un profesor" style="width: 100%;">
+                                                    <% List<Profesor> listaProfesor = (List<Profesor>) request.getAttribute("Profesores");
+                                                        if (listaProfesor != null)//ESTO TMBN ES IMPORTANTE 
+                                                            for (Profesor profesor : listaProfesor) {%>
+                                                    <option value="<%=profesor.getId_profesor()%>"><%=profesor.getNombres_profesor()%> <%=profesor.getApellidos_profesor()%></option>
+                                                    <%}%>
                                                 </select>
                                             </div>
                                             <!-- /.form-group -->
                                             <div class="form-group">
                                                 <label>Materia</label>
-                                                <select  class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger" style="width: 100%;">
-                                                    <option>Big data</option>
-                                                    <option>Base de datos</option>
-                                                    <option>Programacion con base de datos</option>
-                                                    <option>Programacion con framework</option>
-                                                    <option>Programacion Moviles I</option>
-                                                    <option>Progrmacion Moviles II</option>
-                                                    <option>Programacion web</option>
+                                                <select id="cboMaterias" class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger" style="width: 100%;">
+                                                    <% List<Materia> listam = (List<Materia>) request.getAttribute("Materias");
+                                                     if (listam != null)//ESTO TMBN ES IMPORTANTE 
+                                                         for (Materia m : listam) {%>
+                                                    <option value="<%=m.getId_materia()%>"><%=m.getNombre_materia()%></option>
+                                                    <%}%>
                                                 </select>
                                             </div>
                                             <!-- /.form-group -->
                                             <div class="form-group">                                    
                                                 <label>Horario</label>
-                                                <select class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger" data-placeholder="Selecciona una materia" style="width: 100%;">
-                                                    <option>A</option>
-                                                    <option>B</option>
-                                                    <option>C</option>
-                                                    <option>D</option>                                        
+                                                <select id="cboHorario" class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger" data-placeholder="Selecciona una materia" style="width: 100%;">
+                                                    <% List<Horario> listah = (List<Horario>) request.getAttribute("Horario");
+                                                     if (listah != null)//ESTO TMBN ES IMPORTANTE 
+                                                         for (Horario h : listah) {%>
+                                                    <option value="<%=h.getId_horario()%>"><%=h.getHorario()%></option>
+                                                    <%}%>                                     
                                                 </select>                                          
                                             </div>
 
@@ -264,32 +267,23 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Semestre</label>
-                                                <select class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger" style="width: 100%;">
-                                                    <option>Semestre I </option>
-                                                    <option>Semestre II </option>      
-                                                    <option>Invierno</option>                                    
+                                                <select id="cboPeriodo" class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger" style="width: 100%;">
+                                                    <% List<Periodo> lista = (List<Periodo>) request.getAttribute("Periodo");
+                                                     if (lista != null)//ESTO TMBN ES IMPORTANTE 
+                                                         for (Periodo p : lista) {%>
+                                                    <option value="<%=p.getId_periodo()%>"><%=p.getSemestre_modulo()%></option>
+                                                    <%}%>                            
                                                 </select>
                                             </div>        
-                                            <!-- /.form-group -->
-
-                                            <div class="form-group">
-                                                <label>Modulo</label>
-                                                <select class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger" style="width: 100%;">
-                                                    <option>Modulo I</option>
-                                                    <option>Modulo II</option>
-                                                    <option>Modulo Invierno</option>                                    
-                                                </select>
-                                            </div>        
+                                            <!-- /.form-group -->     
                                             <div class="form-group">
                                                 <label>Año</label>
-                                                <select class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger" style="width: 100%;">
-                                                    <option>2022</option>
-                                                    <option>2023</option>
-                                                    <option>2024</option>
-                                                    <option>2025</option>
-                                                    <option>2026</option>
-                                                    <option>2027</option>
-                                                    <option>2028</option>
+                                                <select id="cboTemp" class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger" style="width: 100%;">
+                                                    <% List<Temporada> listat = (List<Temporada>) request.getAttribute("Temporada");
+                                                     if (listat != null)//ESTO TMBN ES IMPORTANTE 
+                                                         for (Temporada t : listat) {%>
+                                                    <option value="<%=t.getId_temp()%>"><%=t.getTemp()%></option>
+                                                    <%}%> 
                                                 </select>
                                             </div>
 
@@ -302,7 +296,7 @@
                                 </div>
                                 <!-- /.card-body -->
                                 <div class="card-footer">
-                                  <a href="menuPrincipal.jsp"  class="btn btn-danger">Asignar</a> 
+                                    <a href="asignacionControlador?accion=asignar"  class="btn btn-danger">Asignar</a> 
                                 </div>
                             </form>
                         </div>
@@ -332,13 +326,13 @@
 <!-- ./wrapper -->
 
 <!-- jQuery -->
-<script src="assets/plugins/jquery/jquery.min.js"></script>
+<script src="vistas2/assets/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
-<script src="assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="vistas2/assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- Select2 -->
-<script src="assets/plugins/select2/js/select2.full.min.js"></script>   
+<script src="vistas2/assets/plugins/select2/js/select2.full.min.js"></script>   
 <!-- AdminLTE App -->
-<script src="assets/dist/js/adminlte.min.js"></script>
+<script src="vistas2/assets/dist/js/adminlte.min.js"></script>
 
 <!-- Page specific script -->
 <script>

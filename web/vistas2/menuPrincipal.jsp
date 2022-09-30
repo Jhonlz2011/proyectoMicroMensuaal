@@ -195,9 +195,8 @@
                         <div class="row mb-2">
                             <div class="col-sm-6">
                                 <h1>Inicio</h1>
-                                <a href="asignarProfesor.jsp">    <button  type="button" class="btn btn-success mt-3" data-toggle="modal" data-target="#modal-danger">
-                            <i class="fa fa-plus"></i> Asignar Profesor
-                        </button> </a> 
+                                <a class="btn btn-success mt-3" href="../asignacionControlador?accion=abrirNuevaAsignacion">
+                            <i class="fa fa-plus"></i> Asignar Profesor</a> 
                             </div>
                             <div class="col-sm-6">
                                 <!-- <ol class="breadcrumb float-sm-right">
@@ -245,8 +244,33 @@
                                                 <td>A</td>
                                                 <td><span class="badge badge-danger">Pendiente</span></td>
                                                 <td class="text-center">
+                                                     <button type="button" class="btn btn-warning button__editar--b" data-toggle="modal" data-target="#modal-danger1" title="Editar" data-original-title="Editar">
+                                                            <i class="fa-solid fa-pencil"></i></button>
                                                     <a id="" href="#" class="btn btn-info"  data-toggle="tooltip" title="Desactivar" data-original-title="Desactivar">
                                                         <i class="fa-solid fa-eye"></i></a>
+                                                        <button type="button" class="btn btn-danger" data-toggle="tooltip"  title="Eliminar" data-original-title="Eliminar">
+
+                                                                <i class="fa fa-trash"></i></button>
+                                                
+                                                
+                                                
+                                                </td>
+                                            </tr>
+                                            
+                                            <tr>
+                                                <td>2</td>
+                                                <td>Programacion con framework</td>
+                                                <td>Juan Marin</td>
+                                                <td>Semestre I Modulo I</td>
+                                                <td>C</td>
+                                                <td><span class="badge badge-info">Correccion</span></td>
+                                                <td class="text-center">
+                                                     <button type="button" class="btn btn-warning button__editar--b" data-toggle="modal" data-target="#modal-danger1" title="Editar" data-original-title="Editar">
+                                                            <i class="fa-solid fa-pencil"></i></button>
+                                                    <a id="" href="#" class="btn btn-info"  data-toggle="tooltip" title="Desactivar" data-original-title="Desactivar">
+                                                        <i class="fa-solid fa-eye"></i></a>
+                                                        <button type="button" class="btn btn-danger" data-toggle="tooltip"  title="Eliminar" data-original-title="Eliminar">
+                                                                <i class="fa fa-trash"></i></button>                                   
                                                 </td>
                                             </tr>
 
@@ -292,6 +316,7 @@
             <!-- DataTables  & Plugins -->
             <script src="assets/plugins/datatables/jquery.dataTables.min.js" type="text/javascript"></script>
             <script src="assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js" type="text/javascript"></script>
+           
             <script src="scripts/dataTable.js" type="text/javascript"></script>
             <!-- SweetAlert -->
             <script src="assets/plugins/swetalert/sweetalert.js" type="text/javascript"></script>

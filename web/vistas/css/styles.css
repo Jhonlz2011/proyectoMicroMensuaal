@@ -345,3 +345,10 @@ legend{
 .table {
     margin-bottom: 10rem;
 }
+
+#btn-Inicio:hover{
+    color: #f7f7f7;
+    background-color: #08c;
+    top: 3px;
+    box-shadow: 0 2px 0 #006394;
+}

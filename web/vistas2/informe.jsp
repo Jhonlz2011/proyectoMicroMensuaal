@@ -17,7 +17,7 @@
         <!-- Google Font: Source Sans Pro -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
         <!-- Font Awesome -->
-        <link rel="stylesheet" href="assets/plugins/fontawesome-free/css/all.min.css">
+         <script src="https://kit.fontawesome.com/67b7b97383.js" crossorigin="anonymous"></script>
         <!-- DataTables -->
         <link rel="stylesheet" href="assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
         <link rel="stylesheet" href="assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
@@ -25,7 +25,7 @@
         <!-- Theme style -->
         <link rel="stylesheet" href="assets/dist/css/adminlte.min.css">
         <!--DataTable estilo-->
-         <link href="assets/dist/css/estilos.css" rel="stylesheet" type="text/css"/>
+        <link href="assets/dist/css/estilos.css" rel="stylesheet" type="text/css"/>
     </head>
     <body  class="hold-transition sidebar-mini ">
         <div class="wrapper">
@@ -121,7 +121,7 @@
                             <!-- Add icons to the links using the .nav-icon class
                                  with font-awesome or any other icon font library -->
                             <li class="nav-item">
-                                <a href="#" class="nav-link">
+                                <a href="menuPrincipal.jsp" class="nav-link">
 
                                     <i class="nav-icon fas fa-home"></i>
                                     <p>
@@ -160,8 +160,8 @@
                                 </ul>
                             </li>
 
-                            <li class="nav-item">
-                                <a href="" class="nav-link">
+                            <li class="nav-item menu-open">
+                                <a href="" class="nav-link active">
                                     <i class="nav-icon fas fa-chart-pie"></i>
                                     <p>
                                         Reportes
@@ -170,7 +170,7 @@
                                 </a>
                                 <ul class="nav nav-treeview">
                                     <li class="nav-item">
-                                        <a href="informe.jsp" class="nav-link">
+                                        <a href="informe.jsp" class="nav-link active">
                                             <i class=" nav-icon fa-solid fa-chart-column"></i>
                                             <p>Informe</p>
                                         </a>
@@ -192,9 +192,7 @@
                         <div class="row mb-2">
                             <div class="col-sm-6">
                                 <h1>Informe</h1>
-                                <a href="asignarProfesor.jsp">    <button  type="button" class="btn btn-success mt-3" data-toggle="modal" data-target="#modal-danger">
-                                        <i class="fa fa-plus"></i> Asignar Profesor
-                                    </button> </a> 
+                 
                             </div>
                             <div class="col-sm-6">
                                 <ol class="breadcrumb float-sm-right">
@@ -296,24 +294,31 @@
         <script src="assets/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
         <!-- AdminLTE App -->
         <script src="assets/dist/js/adminlte.min.js"></script>
-       
+
         <!-- Page specific script -->
         <script>
             $(function () {
                 $("#example1").DataTable({
 
                     "responsive": true, "lengthChange": false, "autoWidth": false,
-                    "buttons": ["excel", "pdf", "print", "colvis"]
+                    "buttons": ["excel", "pdf", "print", "colvis"],
+                    "language": {
+                        "lengthMenu": "Mostrar _MENU_ registros",
+                        "zeroRecords": "No se encontraron resultados",
+                        "info": "Mostrando registros del _START_ al _END_ de _TOTAL_ registros",
+                        "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                        "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+                        "sSearch": "Buscar:",
+                        "oPaginate": {
+                            "sFirst": "Primero",
+                            "sLast": "Último",
+                            "sNext": "Siguiente",
+                            "sPrevious": "Anterior"
+                        },
+                        "sProcessing": "Procesando...",
+                    }
                 }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-                $('#example2').DataTable({
-                    "paging": true,
-                    "lengthChange": false,
-                    "searching": false,
-                    "ordering": true,
-                    "info": true,
-                    "autoWidth": false,
-                    "responsive": true,
-                });
+
             });
         </script>
 
