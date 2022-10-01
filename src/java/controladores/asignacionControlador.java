@@ -13,8 +13,11 @@ import entidades.Profesor;
 import entidades.Temporada;
 import entidadesDAO.AsignarDAO;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -31,29 +34,28 @@ public class asignacionControlador extends HttpServlet {
     AsignarDAO dao;
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         response.setContentType("text/html;charset=UTF-8");
+        List <Asignar> a = new ArrayList <> ();
          String accion = request.getParameter("accion");
        switch(accion){
+           
             case"abrirNuevaAsignacion":
                 cargarComboProfesores(request,response);
                 break;
             case "asignar":
-                Materia m = new Materia();
-                Profesor p = new Profesor();
-                Horario h = new Horario();
-                Periodo pe = new Periodo();
-                Temporada t = new Temporada();
-                int r = 0;
-                m.setId_materia(Integer.parseInt(request.getParameter("cboMaterias")));
-                p.setId_profesor(Integer.parseInt(request.getParameter("cboProfesor")));           
-                h.setId_horario(Integer.parseInt(request.getParameter("cboHorario"))); 
-                pe.setId_periodo(Integer.parseInt(request.getParameter("cboPeriodo"))); 
-                t.setId_temp(Integer.parseInt(request.getParameter("cboTemp"))); 
-                
+asignar (request,response);
+
+                break;
+            case "listar":
+           dao = new AsignarDAO ();
+           a = dao.getAsignaciones();
+           request.setAttribute("asignaciones",a);
+           request.getRequestDispatcher("vistas2/menuPrincipal.jsp").forward(request, response);
                 break;
                 
-                
         }
+       
     }
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -102,23 +104,55 @@ public class asignacionControlador extends HttpServlet {
         List<Profesor> ListaProfesor = DAO.getCboProfesor(); 
         request.setAttribute("Profesores", ListaProfesor);
         //Cargar combobox Materias
-         AsignarDAO DAO1 = new AsignarDAO();
-        List<Materia> ListaMateria = DAO1.getCboMateria(); 
+         
+        List<Materia> ListaMateria = DAO.getCboMateria(); 
         request.setAttribute("Materias", ListaMateria);
         //Cargar combobox Horario
-        AsignarDAO DAO2 = new AsignarDAO();
-        List<Horario> ListaHorario = DAO2.getCboHorario(); 
+        
+        List<Horario> ListaHorario = DAO.getCboHorario(); 
         request.setAttribute("Horario", ListaHorario);
         //Cargar combobox Año
-        AsignarDAO DAO3 = new AsignarDAO();
-        List<Periodo> Lista = DAO3.getCboPeriodo(); 
+        
+        List<Periodo> Lista = DAO.getCboPeriodo(); 
         request.setAttribute("Periodo", Lista);
         //Cargar combobox Modulo
-         AsignarDAO DAO4 = new AsignarDAO();
-        List<Temporada> Listat = DAO4.getCboTemporada(); 
+         
+        List<Temporada> Listat = DAO.getCboTemporada(); 
         request.setAttribute("Temporada", Listat);
         request.getRequestDispatcher("vistas2/asignarProfesor.jsp").forward(request, response);
         // en que JSP esta el combobox
        
+    }
+
+    private void asignar(HttpServletRequest request, HttpServletResponse response) {
+        try {
+                Materia m = new Materia();
+                Profesor p = new Profesor();
+                Horario h = new Horario();
+                Periodo pe = new Periodo();
+                Temporada t = new Temporada();
+                int r = 0;
+                m.setId_materia(Integer.parseInt(request.getParameter("cboMaterias")));
+                p.setId_profesor(Integer.parseInt(request.getParameter("cboProfesor")));           
+                h.setId_horario(Integer.parseInt(request.getParameter("cboHorario"))); 
+                pe.setId_periodo(Integer.parseInt(request.getParameter("cboPeriodo"))); 
+                t.setId_temp(Integer.parseInt(request.getParameter("cboTemp"))); 
+                Asignar asignar = new Asignar();
+                asignar.setMateria(m);
+                asignar.setProfesor(p);
+                asignar.setHorario(h);
+                asignar.setPeriodo(pe);
+                asignar.setTemporada(t);
+                AsignarDAO asignardao = new AsignarDAO();
+                asignardao.agregar(asignar);
+                        
+                response.sendRedirect("vistas2/menuPrincipal.jsp");
+ } catch(Exception e){
+            try {
+                response.sendRedirect("errorAgregar.jsp");
+            } catch (IOException ex) {
+                Logger.getLogger(asignacionControlador.class.getName()).log(Level.SEVERE, null, ex);
+            }
+ } //To change body of generated methods, choose Tools | Templates.
     }
 }

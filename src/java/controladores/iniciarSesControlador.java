@@ -40,7 +40,7 @@ public class iniciarSesControlador extends HttpServlet {
                 clave_usuario=request.getParameter("clave_usuario")==null?"":request.getParameter("clave_usuario");
                 if (isUsuarioValido())
                 {
-                    response.sendRedirect("vistas2/menuPrincipal.jsp?usr=" + nombre);
+                    response.sendRedirect("asignacionControlador?accion=listar");
                 } else
                 {
                    // response.sendRedirect("vistas/SisPanErr.jsp");

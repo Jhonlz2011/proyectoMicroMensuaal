@@ -296,7 +296,7 @@
                                 </div>
                                 <!-- /.card-body -->
                                 <div class="card-footer">
-                                    <a href="asignacionControlador?accion=asignar"  class="btn btn-danger">Asignar</a> 
+                                    <input  class="btn btn-danger" type="submit" name="accion" value="asignar"> 
                                 </div>
                             </form>
                         </div>

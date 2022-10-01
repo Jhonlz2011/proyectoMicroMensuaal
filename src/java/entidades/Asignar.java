@@ -21,8 +21,9 @@ public class Asignar {
     private Micro micro;
     private Date fecha_entrega;
     private String estado_asignacion;
+    private Temporada temporada;
     
-    public Asignar() {}
+    public Asignar() {profesor = new Profesor();}
     
 
     public Asignar(int id_asignacion, Materia materia, Profesor profesor, Periodo periodo, Horario horario, Micro micro, Date fecha_entrega) {
@@ -106,6 +107,20 @@ public class Asignar {
 
     public void setEstado_asignacion(String estado_asignacion) {
         this.estado_asignacion = estado_asignacion;
+    }
+
+    /**
+     * @return the temporada
+     */
+    public Temporada getTemporada() {
+        return temporada;
+    }
+
+    /**
+     * @param temporada the temporada to set
+     */
+    public void setTemporada(Temporada temporada) {
+        this.temporada = temporada;
     }
 
 }

@@ -19,15 +19,15 @@
         <!-- Font Awesome Icons -->
         <script src="https://kit.fontawesome.com/67b7b97383.js" crossorigin="anonymous"></script>
         <!-- Theme style -->
-        <link rel="stylesheet" href="assets/dist/css/adminlte.min.css">
+        <link rel="stylesheet" href="vistas2/assets/dist/css/adminlte.min.css">
         <!-- SweetAlert -->
-        <link href="assets/plugins/swetalert/sweetalert.css" rel="stylesheet" type="text/css"/>
+        <link href="vistas2/assets/plugins/swetalert/sweetalert.css" rel="stylesheet" type="text/css"/>
         <!-- DataTables -->
-        <link href="assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css"/>
-        <link href="assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css"/>
-        <link href="assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css"/>
+        <link href="vistas2/assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css"/>
+        <link href="vistas2/assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css"/>
+        <link href="vistas2/assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css"/>
         <!--DataTable estilo-->
-        <link href="assets/dist/css/estilos.css" rel="stylesheet" type="text/css"/>
+        <link href="vistas2/assets/dist/css/estilos.css" rel="stylesheet" type="text/css"/>
 
     </head>
     <body  class="hold-transition sidebar-mini ">
@@ -90,8 +90,8 @@
             <!-- Main Sidebar Container -->
             <aside class="main-sidebar sidebar-dark-primary elevation-4">
                 <!-- Brand Logo -->
-                <a href="menuPrincipal.jsp" class="brand-link">
-                    <img src="assets/dist/img/logoTES4 .png" alt=""class="brand-image"/>
+                <a href="vistas2/menuPrincipal.jsp" class="brand-link">
+                    <img src="vistas2/assets/dist/img/logoTES4 .png" alt=""class="brand-image"/>
                     <span class="brand-text font-weight-light">Tecnológico Espíritu Santo</span><br>
                 </a>
 
@@ -142,20 +142,20 @@
                                 </a>
                                 <ul class="nav nav-treeview">
                                     <li class="nav-item">
-                                        <a href="../carreraControlador?accion=listar" class="nav-link">
+                                        <a href="carreraControlador?accion=listar" class="nav-link">
                                             <i class="fa-solid fa-graduation-cap nav-icon"></i>
                                             <p>Carreras</p>
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="../materiaControlador?accion=listar" class="nav-link ">
+                                        <a href="materiaControlador?accion=listar" class="nav-link ">
                                             <i class="fa fa-book nav-icon"></i>
                                             <p>Materias</p>
                                         </a>
                                     </li>
 
                                     <li class="nav-item">
-                                        <a href="../profesorControlador?accion=listar" class="nav-link">
+                                        <a href="profesorControlador?accion=listar" class="nav-link">
                                             <i class="fa-solid fa-person-chalkboard nav-icon"></i>
                                             <p>Profesores</p>
                                         </a>
@@ -195,7 +195,7 @@
                         <div class="row mb-2">
                             <div class="col-sm-6">
                                 <h1>Inicio</h1>
-                                <a class="btn btn-success mt-3" href="../asignacionControlador?accion=abrirNuevaAsignacion">
+                                <a class="btn btn-success mt-3" href="asignacionControlador?accion=abrirNuevaAsignacion">
                             <i class="fa fa-plus"></i> Asignar Profesor</a> 
                             </div>
                             <div class="col-sm-6">
@@ -236,44 +236,30 @@
                                                 </tr>
                                             </thead>
 
-                                            <tr>
-                                                <td>1</td>
-                                                <td>Programacion con Base de datos</td>
-                                                <td>Eddye Lino</td>
-                                                <td>Semestre I Modulo I</td>
-                                                <td>A</td>
-                                                <td><span class="badge badge-danger">Pendiente</span></td>
-                                                <td class="text-center">
-                                                     <button type="button" class="btn btn-warning button__editar--b" data-toggle="modal" data-target="#modal-danger1" title="Editar" data-original-title="Editar">
+                                            <c:forEach var="asignar" items="${asignaciones}">
+                                                <tr>
+                                                    <td >${asignar.id_asignacion}</td>
+                                                    <td>${asignar.nombre_materia}</td>
+                                                    <td>${asignar.nombres_profesor}</td>
+                                                    <td>${asignar.nombres_periodo}</td>
+                                                    <td>${asignar.nombres_horario}</td>
+                                                    <td> Pendiente </td>
+                                                    <td class="text-center">
+                                                        <button type="button" class="btn btn-warning button__editar--b" data-toggle="modal" data-target="#modal-danger1" title="Editar" data-original-title="Editar">
                                                             <i class="fa-solid fa-pencil"></i></button>
-                                                    <a id="" href="#" class="btn btn-info"  data-toggle="tooltip" title="Desactivar" data-original-title="Desactivar">
-                                                        <i class="fa-solid fa-eye"></i></a>
-                                                        <button type="button" class="btn btn-danger" data-toggle="tooltip"  title="Eliminar" data-original-title="Eliminar">
+                                                        <!-- <a><button type="button" class="btn btn-danger" data-toggle="tooltip"  title="Eliminar" data-original-title="Eliminar"> -->
 
-                                                                <i class="fa fa-trash"></i></button>
-                                                
-                                                
-                                                
-                                                </td>
-                                            </tr>
-                                            
-                                            <tr>
-                                                <td>2</td>
-                                                <td>Programacion con framework</td>
-                                                <td>Juan Marin</td>
-                                                <td>Semestre I Modulo I</td>
-                                                <td>C</td>
-                                                <td><span class="badge badge-info">Correccion</span></td>
-                                                <td class="text-center">
-                                                     <button type="button" class="btn btn-warning button__editar--b" data-toggle="modal" data-target="#modal-danger1" title="Editar" data-original-title="Editar">
-                                                            <i class="fa-solid fa-pencil"></i></button>
-                                                    <a id="" href="#" class="btn btn-info"  data-toggle="tooltip" title="Desactivar" data-original-title="Desactivar">
-                                                        <i class="fa-solid fa-eye"></i></a>
-                                                        <button type="button" class="btn btn-danger" data-toggle="tooltip"  title="Eliminar" data-original-title="Eliminar">
-                                                                <i class="fa fa-trash"></i></button>                                   
-                                                </td>
-                                            </tr>
+                                                        <!-- ELIMINAR CARRERAS -->
+                                                        <input type="hidden" id="id_carrera" value="${carrera.id_carrera}">
+                                                        <a id="deleteCarre" href="<c:url value="carreraControlador" >
+                                                               <c:param name="accion" value="eliminarCarrera" />
+                                                               <c:param name="id_carrera" value="${carrera.id_carrera}" />
+                                                           </c:url>"><button type="button" class="btn btn-danger" data-toggle="tooltip"  title="Eliminar" data-original-title="Eliminar">
 
+                                                                <i class="fa fa-trash"></i></button></a>
+                                                    </td>
+                                                </tr>
+                                            </c:forEach>
                                         </table>
                                     </div>
                                     <!-- /.card-body -->
@@ -307,21 +293,21 @@
             <!-- REQUIRED SCRIPTS -->
 
             <!-- jQuery -->
-            <script src="assets/plugins/jquery/jquery.min.js"></script>
+            <script src="vistas2/assets/plugins/jquery/jquery.min.js"></script>
             <!-- Bootstrap 4 -->
-            <script src="assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+            <script src="vistas2/assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
             <!-- AdminLTE App -->
-            <script src="assets/dist/js/adminlte.min.js"></script>
+            <script src="vistas2/assets/dist/js/adminlte.min.js"></script>
 
             <!-- DataTables  & Plugins -->
-            <script src="assets/plugins/datatables/jquery.dataTables.min.js" type="text/javascript"></script>
-            <script src="assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js" type="text/javascript"></script>
+            <script src="vistas2/assets/plugins/datatables/jquery.dataTables.min.js" type="text/javascript"></script>
+            <script src="vistas2/assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js" type="text/javascript"></script>
            
-            <script src="scripts/dataTable.js" type="text/javascript"></script>
+            <!--<script src="vistas2/scripts/dataTable.js" type="text/javascript"></script>
             <!-- SweetAlert -->
-            <script src="assets/plugins/swetalert/sweetalert.js" type="text/javascript"></script>
+            <script src="vistas2/assets/plugins/swetalert/sweetalert.js" type="text/javascript"></script>
             <!-- Archivo principal Javascripts -->    
-            <script src="scripts/principal.js" type="text/javascript"></script> 
+            <script src="vistas2/scripts/principal.js" type="text/javascript"></script> 
 
     </body>
 </html>
