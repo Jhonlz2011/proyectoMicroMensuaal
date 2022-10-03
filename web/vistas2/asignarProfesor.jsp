@@ -138,7 +138,7 @@
                             <!-- Add icons to the links using the .nav-icon class
                                  with font-awesome or any other icon font library -->
                             <li class="nav-item">
-                                <a href="vistas2/menuPrincipal.jsp" class="nav-link active">
+                                <a href="asignacionControlador?accion=listar" class="nav-link active">
 
                                     <i class="nav-icon fas fa-home"></i>
                                     <p>
@@ -186,7 +186,7 @@
                                 </a>
                                 <ul class="nav nav-treeview">
                                     <li class="nav-item">
-                                        <a href="vistas2/informe.jsp" class="nav-link">
+                                        <a href="reporteControlador?accion=listar" class="nav-link">
                                             <i class="fa-solid fa-chart-column nav-icon"></i>
                                             <p>Informe</p>
                                         </a>

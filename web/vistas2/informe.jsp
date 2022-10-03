@@ -19,13 +19,13 @@
         <!-- Font Awesome -->
          <script src="https://kit.fontawesome.com/67b7b97383.js" crossorigin="anonymous"></script>
         <!-- DataTables -->
-        <link rel="stylesheet" href="assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
-        <link rel="stylesheet" href="assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
-        <link rel="stylesheet" href="assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+        <link rel="stylesheet" href="vistas2/assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+        <link rel="stylesheet" href="vistas2/assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+        <link rel="stylesheet" href="vistas2/assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
         <!-- Theme style -->
-        <link rel="stylesheet" href="assets/dist/css/adminlte.min.css">
+        <link rel="stylesheet" href="vistas2/assets/dist/css/adminlte.min.css">
         <!--DataTable estilo-->
-        <link href="assets/dist/css/estilos.css" rel="stylesheet" type="text/css"/>
+        <link href="vistas2/assets/dist/css/estilos.css" rel="stylesheet" type="text/css"/>
     </head>
     <body  class="hold-transition sidebar-mini ">
         <div class="wrapper">
@@ -88,7 +88,7 @@
             <aside class="main-sidebar sidebar-dark-primary elevation-4">
                 <!-- Brand Logo -->
                 <a href="menuPrincipal.jsp" class="brand-link">
-                    <img src="assets/dist/img/logoTES4 .png" alt=""class="brand-image"/>
+                    <img src="vistas2/assets/dist/img/logoTES4 .png" alt=""class="brand-image"/>
                     <span class="brand-text font-weight-light">Tecnológico Espíritu Santo</span><br>
                 </a>
 
@@ -121,7 +121,7 @@
                             <!-- Add icons to the links using the .nav-icon class
                                  with font-awesome or any other icon font library -->
                             <li class="nav-item">
-                                <a href="menuPrincipal.jsp" class="nav-link">
+                                <a href="asignacionControlador?accion=listar" class="nav-link">
 
                                     <i class="nav-icon fas fa-home"></i>
                                     <p>
@@ -233,6 +233,19 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                <c:forEach varStatus="iteracion" var="a" items="${asignaciones}">
+                                                    
+                                                    <tr>
+                                                        <td >${iteracion.index+1}</td>
+                                                        <td>${a.materia.nombre_materia}</td>
+                                                        <td>${a.profesor.nombres_profesor}</td>
+                                                        <td>${a.periodo.semestre_modulo}</td>
+                                                        <td>${a.horario.horario}</td>
+                                                        <td class="text-center" ><span class="badge badge-success">Aprobado</span></td> 
+                                                        <td>01/01/2001</td>
+                                                    </tr>
+                                                </c:forEach>
+                                                <!--
                                                 <tr>
                                                     <td>1</td>
                                                     <td>Programacion con Base de datos</td>
@@ -242,6 +255,7 @@
                                                     <td><span class="badge badge-success">Aprobado</span></td>
                                                     <td>27/09/2022</td>
                                                 </tr>
+                                                -->
                                             </tbody>
                                         </table>
                                     </div>
@@ -276,24 +290,24 @@
         <!-- REQUIRED SCRIPTS -->
 
         <!-- jQuery -->
-        <script src="assets/plugins/jquery/jquery.min.js"></script>
+        <script src="vistas2/assets/plugins/jquery/jquery.min.js"></script>
         <!-- Bootstrap 4 -->
-        <script src="assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="vistas2/assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
         <!-- DataTables  & Plugins -->
-        <script src="assets/plugins/datatables/jquery.dataTables.min.js"></script>
-        <script src="assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script src="assets/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-        <script src="assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-        <script src="assets/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
-        <script src="assets/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
-        <script src="assets/plugins/jszip/jszip.min.js"></script>
-        <script src="assets/plugins/pdfmake/pdfmake.min.js"></script>
-        <script src="assets/plugins/pdfmake/vfs_fonts.js"></script>
-        <script src="assets/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
-        <script src="assets/plugins/datatables-buttons/js/buttons.print.min.js"></script>
-        <script src="assets/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+        <script src="vistas2/assets/plugins/datatables/jquery.dataTables.min.js"></script>
+        <script src="vistas2/assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+        <script src="vistas2/assets/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+        <script src="vistas2/assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+        <script src="vistas2/assets/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+        <script src="vistas2/assets/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+        <script src="vistas2/assets/plugins/jszip/jszip.min.js"></script>
+        <script src="vistas2/assets/plugins/pdfmake/pdfmake.min.js"></script>
+        <script src="vistas2/assets/plugins/pdfmake/vfs_fonts.js"></script>
+        <script src="vistas2/assets/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+        <script src="vistas2/assets/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+        <script src="vistas2/assets/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
         <!-- AdminLTE App -->
-        <script src="assets/dist/js/adminlte.min.js"></script>
+        <script src="vistas2/assets/dist/js/adminlte.min.js"></script>
 
         <!-- Page specific script -->
         <script>

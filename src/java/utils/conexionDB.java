@@ -27,9 +27,9 @@ public class conexionDB {
         try
         {     
             strDriCon = "org.postgresql.Driver";
-            strStrCon = "jdbc:postgresql://localhost:5433/prueba";
+            strStrCon = "jdbc:postgresql://localhost:5434/dbproyectoweb";
             strUsrCon = "postgres";
-            strClaCon = "admin";
+            strClaCon = "1234";
         }
 //        catch (java.io.IOException e)
 //        {
