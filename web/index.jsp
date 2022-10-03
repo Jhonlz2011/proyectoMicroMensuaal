@@ -13,13 +13,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Login</title>
 
-
-        <link rel="preaload" href="vistas/css/normalize.css" as="style">
-        <link rel="stylesheet" href="vistas/css/normalize.css">
-
+        <link href="vistas2/assets/dist/css/styles.css" rel="stylesheet" type="text/css"/>
+        <link rel="preaload" href="vistas2/css/normalize.css" as="style">
+        <link href="vistas/css/normalize.css" rel="preload" type="text/css"/>
         <!-- hoja de estilos -->
-        <link rel="preaload" href="vistas/css/styles.css" as="style">
-        <link rel="stylesheet" href="vistas/css/styles.css">
+        <link rel="preaload" href="vistas2/css/styles.css" as="style">
+        <link rel="stylesheet" href="vistas2/css/styles.css">
     </head>
     <body class="bg-login">
         <!-- header -->
@@ -72,6 +71,6 @@
         <!-- fin de footer -->
 
         <script src="https://kit.fontawesome.com/be015c5e68.js" crossorigin="anonymous"></script>
-        <script src="script.js"></script>
+        
     </body>
 </html>

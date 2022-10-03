@@ -22,7 +22,7 @@
         <link rel="stylesheet" href="vistas2/assets/dist/css/adminlte.min.css">
         <!-- SweetAlert -->
         <link href="vistas2/assets/plugins/swetalert/sweetalert.css" rel="stylesheet" type="text/css"/>
-        
+
         <!-- Toastr -->
         <!--  <link rel="stylesheet" href="vistas3/assets/plugins/toastr/toastr.min.css"> -->
 
@@ -202,8 +202,14 @@
                                 <h1>Profesores</h1>
                                 <button type="button" class="btn btn-success mt-3" data-toggle="modal" data-target="#modal-danger">
                                     <i class="fa fa-plus"></i> Nuevo profesor
-                                </button>   
-                            </div>                           
+                                </button> 
+                            </div>         
+                            <div class="col-sm-6">
+                                <ol class="breadcrumb float-sm-right">
+                                    <li class="breadcrumb-item"><a href="#">Registros</a></li>
+                                    <li class="breadcrumb-item active">Profesores</li>
+                                </ol> 
+                            </div>
                         </div><!-- /.row -->
 
                     </div><!-- /.container-fluid -->

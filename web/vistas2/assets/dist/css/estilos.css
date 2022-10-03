@@ -21,9 +21,9 @@
 }*/
 
 .page-item.active .page-link {
-  background: linear-gradient(to bottom, #ed1d1d 0%, #850000 100%) !important;
-  color: white !important;
-    
+    background: linear-gradient(to bottom, #ed1d1d 0%, #850000 100%) !important;
+    color: white !important;
+
 }
 .page-link:hover{
     background: linear-gradient(to bottom, #585858 0%, #111 100%) !important;
@@ -41,7 +41,7 @@
 
 .dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover{
     color: white !important;
-    
+
 }
 
 .form-control:focus {
@@ -50,7 +50,7 @@
 
 td{
     font-size: 1.2rem
-    
+
 }
 .btn-warning.focus, .btn-warning:focus{
     background-color: #ffc107 !important;
@@ -68,9 +68,14 @@ td{
 
 body:not(.layout-fixed) .main-sidebar {
     position: fixed !important;
-    }
-    
+}
+
 .btn-secondary{
-        
+
     background:linear-gradient(to bottom, #ed1d1d 0%, #850000 100%) !important
-    }
+}
+#btnEliminar1{
+    background-color: #df5c0f !important;
+        border-color: #db6918  !important;
+        color: #ffffff !important;
+}

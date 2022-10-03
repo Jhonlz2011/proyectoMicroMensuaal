@@ -5,21 +5,14 @@
  */
 package controladores;
 
-import entidades.Asignar;
-import entidades.Horario;
 import entidades.Informe;
-import entidades.Materia;
-import entidades.Periodo;
-import entidades.Profesor;
-import entidades.Temporada;
-import entidadesDAO.AsignarDAO;
+
+
 import entidadesDAO.InformeDAO;
 import java.io.IOException;
 import java.util.ArrayList;
-
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;

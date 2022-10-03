@@ -13,7 +13,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Inicio</title>
 
-        <
         <!-- Google Font: Source Sans Pro -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
         <!-- Font Awesome Icons -->
@@ -237,7 +236,7 @@
                                                         <td>${a.materia.nombre_materia}</td>
                                                         <td>${a.profesor.nombres_profesor}</td>
                                                         <td>${a.periodo.semestre_modulo}</td>
-                                                        <td>${a.horario.horario}</td>
+                                                        <td class="text-center">${a.horario.horario}</td>
                                                         <!-- COLUMNA MICRO -->
                                                         <c:if test="${a.micro == 1}">
                                                             <td class="text-center" ><span class="badge badge-danger">Pendiente</span></td> 
@@ -245,32 +244,37 @@
                                                         <c:if test="${a.micro == 2}">
                                                             <td class="text-center" ><span class="badge badge-info">Correcion</span></td> 
                                                         </c:if>
+                                                        <c:if test="${a.micro == 3}">
+                                                            <td class="text-center" ><span class="badge badge-success">Aprobado</span></td> 
+                                                        </c:if>
                                                         <!-- </td>    -->
                                                         <td class="text-center">
-                                                               <!-- EDITAR / AGREGAR COMENTARIO -->
-                                                            <button type="button" class="btn btn-warning button__editar--b" data-toggle="" data-target="" title="Editar" data-original-title="Editar">
-                                                                <i class="fa-solid fa-pencil"></i></button>
+                                                            <!-- EDITAR / AGREGAR COMENTARIO -->
+
                                                             <!-- APROBADO /CORREGIDO/ENTREGADO MICRO -->
                                                             <c:choose>
                                                                 <c:when test="${a.micro == 1}">
                                                                     <input type="hidden" id="item" value="${a.id_asignacion}">
-                                                                     <a id="corregir" href="asignacionControlador?cambiar=desactivar&id_asignacion=${a.id_asignacion}" class="btn btn-danger" data-toggle="tooltip" title="Correccion" data-original-title="">
-                                                                    <i class="fa-solid fa-file-circle-xmark"></i></a>
-                                                                </c:when>
-                                                                <c:otherwise>
+                                                                    <a id="corregir" href="asignacionControlador?cambiar=desactivar&id_asignacion=${a.id_asignacion}" class="btn btn-danger" data-toggle="tooltip" title="Correccion" data-original-title="">
+                                                                        <i class="fa-regular fa-clock"></i></a>
+                                                                    </c:when>
+                                                                    <c:when test="${a.micro == 2}">
                                                                     <input type="hidden" id="item" value="${a.id_asignacion}">
-                                                                    <a id="activar" href="asignacionControlador?cambiar=activar&id_asignacion=${a.id_asignacion}" class="btn btn-info" data-toggle="tooltip" title="Aprobar" data-original-title="">
-                                                                       <i class="fa-solid fa-eye"></i></a>
-                                                                    </c:otherwise>                                                                  
+                                                                    <a id="corregir" href="asignacionControlador?cambiar=aprobar&id_asignacion=${a.id_asignacion}" class="btn btn-info" data-toggle="tooltip" title="Correccion" data-original-title="">
+                                                                        <i class="fa-solid fa-eye"></i></i></a>
+                                                                    </c:when>
+                                                                    <c:otherwise>
+                                                                    <input type="hidden" id="item" value="${a.id_asignacion}">
+                                                                    <a id="activar" href="asignacionControlador?cambiar=activar&id_asignacion=${a.id_asignacion}" class="btn btn-success" data-toggle="tooltip" title="Aprobar" data-original-title="">
+                                                                        <i class="fa-solid fa-check-to-slot"></i></a>
+                                                                    </c:otherwise>     
                                                                 </c:choose>
-                                                           
                                                             <!-- ELIMINAR PROFESORES -->
-                                                            <input type="hidden" id="" value="">
-                                                            <a id="deleteProfe" href="<c:url value="">
-                                                                   <c:param name="accion" value="" />
-                                                                   <c:param name="id_profesor" value="" />
-                                                               </c:url>"><button type="button" class="btn btn-danger" data-toggle="tooltip"  title="Eliminar" data-original-title="Eliminar">
-
+                                                            <input type="hidden" id="id_asignacion" value="${a.id_asignacion}">
+                                                            <a id="delete" href="<c:url value="asignacionControlador">
+                                                                   <c:param name="accion" value="eliminar" />
+                                                                   <c:param name="id_asignacion" value="${a.id_asignacion}" />
+                                                               </c:url>"><button id="btnEliminar1" type="button" class="btn" data-toggle="tooltip"  title="Eliminar" data-original-title="Eliminar">
                                                                     <i class="fa fa-trash"></i></button></a>
                                                         </td>
                                                     </tr>
@@ -322,14 +326,50 @@
             <script src="vistas2/scripts/dataTable.js" type="text/javascript"></script>
             <!-- SweetAlert -->
             <script src="vistas2/assets/plugins/swetalert/sweetalert.js" type="text/javascript"></script>
-
             <script src="vistas2/scripts/principal.js" type="text/javascript"></script> 
 
-            <script >$(function () {
-                $("#example1").DataTable({
-                "responsive": true, "lengthChange": false, "autoWidth": false,
-                        "language": {"url": "https://cdn.datatables.net/plug-ins/1.12.1/i18n/es-ES.json"}
+            <script >
+                  
+                    $(document).ready(function () {
+                    $("tr #delete").click(function (e) {
+                        e.preventDefault();
+                        var id_asignacion = $(this).parent().find('#id_asignacion').val();
+                        swal({
+                            title: "Esta Seguro de Eliminar?",
+                            text: "Una vez eliminado no podra recuperarlo!",
+                            type: "warning",
+                            showCancelButton: true,
+                            confirmButtonClass: "btn-danger",
+                            confirmButtonText: "Sí, Eliminar!",
+                            cancelButtonText: "No, Cancelar!",
+                            closeOnConfirm: false,
+                            closeOnCancel: false
+                        },
+                                function (isConfirm) {
+                                    if (isConfirm) {
+                                        eliminar(id_asignacion);
+                                        swal("Eliminado!", "La asignacion se ha eliminado con exito", "success");
+                                        setTimeout(function () {
+                                            parent.location.href = "asignacionControlador?accion=listar";
+                                        }, 1800);
+                                    } else {
+                                        swal("Cancelado", "Cancelaste la eliminación", "error");
+                                    }
+                                });
+                    });
+                    function eliminar(id_asignacion) {
+                        var url = "asignacionControlador?accion=eliminar&id_asignacion=" + id_asignacion;
+                        console.log("eliminado");
+                        $.ajax({
+                            type: 'POST',
+                            url: url,
+                            async: true,
+                            success: function (r) {
 
+                            }
+                    });
+                }
+            });
             </script>
     </body>
 </html>

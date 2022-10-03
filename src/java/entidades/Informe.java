@@ -13,7 +13,7 @@ import java.sql.Date;
  */
 public class Informe {
 
-    private int id_informe;
+   
     private Materia materia;
     private Profesor profesor;
     private Periodo periodo;
@@ -24,22 +24,14 @@ public class Informe {
     public Informe() {}
     
 
-    public Informe(int id_informe, Materia materia, Profesor profesor, Periodo periodo, Horario horario, int micro, Date fecha_entrega) {
-        this.id_informe = id_informe;
+    public Informe( Materia materia, Profesor profesor, Periodo periodo, Horario horario, int micro, Date fecha_entrega) {
+       
         this.materia = materia;
         this.profesor = profesor;
         this.periodo = periodo;
         this.horario = horario;
         this.micro = micro;
         this.fecha_entrega = fecha_entrega;
-    }
-       
-    public int getId_informe() {
-        return id_informe;
-    }
-
-    public void setId_informe(int id_informe) {
-        this.id_informe = id_informe;
     }
 
     public Materia getMateria() {

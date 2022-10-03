@@ -89,7 +89,7 @@ legend{
 }
 
 .bg-login {
-    background-image: url(../img/loginFondo.jpg);
+    background-image: url(vistas2/assets/img/loginFondo.jpg);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

@@ -142,27 +142,7 @@ public class ProfesorDAO implements CRUD {
         return r;
     }
 
-    /*
-    public int eliminar(int id) {
-        int resultado = 0;
-
-        try {
-            con = DriverManager.getConnection(db.getStringConexion(), db.getUsuarioConexion(), db.getClaveConexion());
-            if (con != null) {
-                stm = con.createStatement();
-                pst = con.prepareStatement("DELETE FROM tblprofesor WHERE id_profesor='?'");
-                pst.setString(1, String.valueOf(id));
-                resultado = pst.executeUpdate();
-                stm.close();
-                con.close();
-                pst.close();
-            }
-        } catch (Exception e) {
-            System.out.println("Error al borrar en la BD");
-        }
-        return resultado;
-    }
-    */
+  
     @Override
     public void eliminar(Profesor id_profesor) {
        

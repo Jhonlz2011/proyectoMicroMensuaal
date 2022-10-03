@@ -17,7 +17,7 @@
         <!-- Google Font: Source Sans Pro -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
         <!-- Font Awesome -->
-         <script src="https://kit.fontawesome.com/67b7b97383.js" crossorigin="anonymous"></script>
+        <script src="https://kit.fontawesome.com/67b7b97383.js" crossorigin="anonymous"></script>
         <!-- DataTables -->
         <link rel="stylesheet" href="vistas2/assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
         <link rel="stylesheet" href="vistas2/assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
@@ -139,20 +139,20 @@
                                 </a>
                                 <ul class="nav nav-treeview">
                                     <li class="nav-item">
-                                        <a href="../carreraControlador?accion=listar" class="nav-link">
+                                        <a href="carreraControlador?accion=listar" class="nav-link">
                                             <i class="fa-solid fa-graduation-cap nav-icon"></i>
                                             <p>Carreras</p>
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="../materiaControlador?accion=listar" class="nav-link ">
+                                        <a href="materiaControlador?accion=listar" class="nav-link ">
                                             <i class="fa fa-book nav-icon"></i>
                                             <p>Materias</p>
                                         </a>
                                     </li>
 
                                     <li class="nav-item">
-                                        <a href="../profesorControlador?accion=listar" class="nav-link">
+                                        <a href="profesorControlador?accion=listar" class="nav-link">
                                             <i class="fa-solid fa-person-chalkboard nav-icon"></i>
                                             <p>Profesores</p>
                                         </a>
@@ -170,7 +170,7 @@
                                 </a>
                                 <ul class="nav nav-treeview">
                                     <li class="nav-item">
-                                        <a href="informe.jsp" class="nav-link active">
+                                        <a href="#" class="nav-link active">
                                             <i class=" nav-icon fa-solid fa-chart-column"></i>
                                             <p>Informe</p>
                                         </a>
@@ -192,15 +192,13 @@
                         <div class="row mb-2">
                             <div class="col-sm-6">
                                 <h1>Informe</h1>
-                 
+
                             </div>
                             <div class="col-sm-6">
                                 <ol class="breadcrumb float-sm-right">
                                     <li class="breadcrumb-item"><a href="#">Reportes</a></li>
                                     <li class="breadcrumb-item active">Informe</li>
                                 </ol> 
-
-
                             </div>
 
 
@@ -234,7 +232,7 @@
                                             </thead>
                                             <tbody>
                                                 <c:forEach varStatus="iteracion" var="a" items="${asignaciones}">
-                                                    
+
                                                     <tr>
                                                         <td >${iteracion.index+1}</td>
                                                         <td>${a.materia.nombre_materia}</td>
@@ -242,20 +240,9 @@
                                                         <td>${a.periodo.semestre_modulo}</td>
                                                         <td>${a.horario.horario}</td>
                                                         <td class="text-center" ><span class="badge badge-success">Aprobado</span></td> 
-                                                        <td>01/01/2001</td>
+                                                        <td>${a.fecha_entrega}</td>
                                                     </tr>
                                                 </c:forEach>
-                                                <!--
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td>Programacion con Base de datos</td>
-                                                    <td>Eddye Lino</td>
-                                                    <td>Semestre I Modulo I</td>
-                                                    <td>A</td>
-                                                    <td><span class="badge badge-success">Aprobado</span></td>
-                                                    <td>27/09/2022</td>
-                                                </tr>
-                                                -->
                                             </tbody>
                                         </table>
                                     </div>
@@ -313,13 +300,17 @@
         <script>
             $(function () {
                 $("#example1").DataTable({
-
+                    "dom": "Bfrtip",
                     "responsive": true, "lengthChange": false, "autoWidth": false,
-                    "buttons": ["excel", "pdf", "print", "colvis"],
+                    "buttons": [
+                        {"extend": "pdf", "exportOptions": {columns: ':visible'}, },
+                        {"extend": "excel", "columns": "visible"},
+                        {"extend": "print", "exportOptions": {columns: ':visible'}, "oSelectorOpts": {filter: 'applied', order: 'current'}},
+                        "colvis"],
                     "language": {
                         "lengthMenu": "Mostrar _MENU_ registros",
                         "zeroRecords": "No se encontraron resultados",
-                        "info": "Mostrando registros del _START_ al _END_ de _TOTAL_ registros",
+                        "info": "Mostrando micros aprobados del _START_ al _END_ de _TOTAL_ registros",
                         "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
                         "infoFiltered": "(filtrado de un total de _MAX_ registros)",
                         "sSearch": "Buscar:",
@@ -331,8 +322,7 @@
                         },
                         "sProcessing": "Procesando...",
                     }
-                }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-
+                }).buttons().container().appendTo();
             });
         </script>
 

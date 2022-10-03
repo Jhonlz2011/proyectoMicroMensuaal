@@ -39,7 +39,6 @@ a {
     text-decoration: none;
 }
 
-
 th,
 td {
     text-align: center !important;
@@ -118,10 +117,6 @@ legend{
     width: 90%;
     margin: 0 auto;
     max-width: 110rem;
-}
-
-.active2{
-    
 }
 
 .container--tabla{
@@ -212,7 +207,6 @@ legend{
     border-radius: 10px;
 
 }
-
 
 .button--login{
     margin-top: 2rem;
@@ -350,4 +344,11 @@ legend{
 
 .table {
     margin-bottom: 10rem;
+}
+
+#btn-Inicio:hover{
+    color: #f7f7f7;
+    background-color: #08c;
+    top: 3px;
+    box-shadow: 0 2px 0 #006394;
 }

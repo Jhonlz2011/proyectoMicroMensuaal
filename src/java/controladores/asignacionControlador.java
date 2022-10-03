@@ -52,6 +52,8 @@ public class asignacionControlador extends HttpServlet {
                 case "listar":
                     listar(request, response);
                     break;
+                case "eliminar":
+                    eliminar(request, response);
                 default:
                     response.sendRedirect("errorAgregar.jsp");
 
@@ -169,6 +171,8 @@ public class asignacionControlador extends HttpServlet {
 
             if (request.getParameter("cambiar").equals("activar")) {
                 asig.setMicro(1);
+            } else if (request.getParameter("cambiar").equals("aprobar")) {
+                asig.setMicro(3);
             } else {
                 asig.setMicro(2);
             }
@@ -192,5 +196,21 @@ public class asignacionControlador extends HttpServlet {
         ad = dao.getAsignaciones();
         request.setAttribute("asignaciones", ad);
         request.getRequestDispatcher("/vistas2/menuPrincipal.jsp").forward(request, response);
+    }
+
+    private void eliminar(HttpServletRequest request, HttpServletResponse response) {
+        AsignarDAO dao = new AsignarDAO();
+        Asignar a = new Asignar();
+        if (request.getParameter("id_asignacion") != null) {
+            a.setId_asignacion(Integer.parseInt(request.getParameter("id_asignacion")));
+            try {
+                dao.eliminar(a);
+
+            } catch (Exception e) {
+                request.setAttribute("msje", "No se pudo acceder a la base de datos" + e.getMessage());
+            }
+        } else {
+            request.setAttribute("msje", "No se encontro el usuario");
+        }
     }
 }

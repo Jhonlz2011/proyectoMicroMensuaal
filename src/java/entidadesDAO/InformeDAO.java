@@ -50,8 +50,8 @@ public class InformeDAO implements InformeCRUD {
             con = DriverManager.getConnection(db.getStringConexion(), db.getUsuarioConexion(), db.getClaveConexion());
             if (con != null) {
                 stm = con.createStatement();
-                strSQL = " SELECT a.id_asignacion,  p.id_profesor,p.nombres_profesor,h.id_horario, h.horario,\n"
-                        + "pe.id_periodo,pe.semestre_modulo,a.id_micro, m.id_materia,m.nombre_materia\n"
+                strSQL = " SELECT a.id_asignacion, a.fecha_entrega, a.id_micro, p.id_profesor,p.nombres_profesor,h.id_horario, h.horario,\n"
+                        + "pe.id_periodo,pe.semestre_modulo, m.id_materia,m.nombre_materia\n"
                         + "FROM public.tblasignar a \n"
                         + "JOIN public.tblprofesor p ON a.id_profesor=p.id_profesor\n"
                         + "JOIN public.tblhorario h ON a.id_horario = h.id_horario \n"
@@ -63,7 +63,6 @@ public class InformeDAO implements InformeCRUD {
                 
                 while (rst.next()) {
                     Informe a = new Informe();
-                    a.setId_informe(rst.getInt(i));
                     a.setMateria(new Materia(rst.getInt("id_materia"),
                             rst.getString("nombre_materia")));
                     a.setProfesor(new Profesor(rst.getInt("id_profesor"),
@@ -73,20 +72,21 @@ public class InformeDAO implements InformeCRUD {
                     a.setPeriodo(new Periodo(rst.getInt("id_periodo"),
                             rst.getString("semestre_modulo")));
                     a.setMicro(rst.getInt("id_micro"));
+                    a.setFecha_entrega(rst.getDate("fecha_entrega"));
 
                     list.add(a);
                     
-                    i++;
+                    
                 }
                 rst.close();
                 stm.close();
                 con.close();
             }
         } catch (java.sql.SQLException e) {
-            list = null;
+            
             System.out.println("Excepción: " + e.toString());
         } catch (Exception e) {
-            list = null;
+            
             System.out.println("Excepción: " + e.toString());
         }
         return list;

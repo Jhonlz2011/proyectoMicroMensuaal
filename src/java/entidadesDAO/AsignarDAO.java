@@ -7,12 +7,10 @@ package entidadesDAO;
 
 import Intefaces.AsignarCRUD;
 import entidades.Asignar;
-import entidades.Carrera;
 import entidades.Horario;
 import entidades.Materia;
 import entidades.Periodo;
 import entidades.Profesor;
-import entidades.Temporada;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -89,7 +87,7 @@ public class AsignarDAO implements AsignarCRUD {
                         + "JOIN public.tblprofesor p ON a.id_profesor=p.id_profesor\n"
                         + "JOIN public.tblhorario h ON a.id_horario = h.id_horario \n"
                         + "JOIN public.tblperiodo pe ON a.id_periodo = pe.id_periodo\n"
-                        + "JOIN public.tblmaterias m ON a.id_materia = m.id_materia";
+                        + "JOIN public.tblmaterias m ON a.id_materia = m.id_materia WHERE a.estado_asignacion='A'";
                 rst = stm.executeQuery(strSQL);
                 while (rst.next()) {
                     Asignar a = new Asignar();
@@ -153,7 +151,18 @@ public class AsignarDAO implements AsignarCRUD {
 
     @Override
     public void eliminar(Asignar id_asignacion) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+     try{
+           con=DriverManager.getConnection(db.getStringConexion(), db.getUsuarioConexion(), db.getClaveConexion());
+            if (con!=null){
+            pst=con.prepareStatement("UPDATE tblasignar SET estado_asignacion= 'I' WHERE id_asignacion= " + id_asignacion.getId_asignacion());
+            pst.executeUpdate();
+            
+            pst.close();
+            con.close();
+            }
+       }catch(SQLException e){
+           System.out.println("Excepción: " + e.toString());
+       }
     }
 
     @Override
@@ -161,8 +170,8 @@ public class AsignarDAO implements AsignarCRUD {
         try {
             con = DriverManager.getConnection(db.getStringConexion(), db.getUsuarioConexion(), db.getClaveConexion());
             if (con != null) {
-                pst = con.prepareStatement("UPDATE tblasignacion SET id_micro="
-                        + (a.getMicro()== 1 ? "1" : "2")
+                pst = con.prepareStatement("UPDATE tblasignar SET fecha_entrega=now(), id_micro="
+                        + (a.getMicro()== 1 || a.getMicro()== 2 ? 2 : 3 )
                         + " WHERE id_asignacion = " + a.getId_asignacion());
  
                 pst.executeUpdate();
