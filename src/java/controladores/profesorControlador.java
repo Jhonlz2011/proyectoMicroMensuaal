@@ -23,7 +23,7 @@ public class profesorControlador extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-                response.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
 
         String accion = request.getParameter("accion");
         List<Profesor> p = new ArrayList<>();
@@ -39,38 +39,36 @@ public class profesorControlador extends HttpServlet {
                 String nombres = request.getParameter("txtNombres");
                 String apellidos = request.getParameter("txtApellidos");
                 if (!"".equals(nombres) && !"".equals(apellidos)) {
-                 //   for (int i = 0; i < nombres.length(); i++) {
-                       String name = nombres;
-                       String lastname= apellidos;
-                       name= Normalizer.normalize(name, Normalizer.Form.NFD);
-                       lastname= Normalizer.normalize(lastname, Normalizer.Form.NFD);
-                        Profesor pro = new Profesor();
-                        pro.setNombres_profesor(nombres);
-                        pro.setApellidos_profesor(apellidos);
-                        r = dao.agregar(pro);
-                        if (r != 0) {
-                            request.getRequestDispatcher("profesorControlador?accion=listar").forward(request, response);
-                        } else {
-                            request.getRequestDispatcher("errorAgregar.jsp").forward(request, response);
-                        }
-                    }else {
+                    //   for (int i = 0; i < nombres.length(); i++) {
+                    String name = nombres;
+                    String lastname = apellidos;
+                    name = Normalizer.normalize(name, Normalizer.Form.NFD);
+                    lastname = Normalizer.normalize(lastname, Normalizer.Form.NFD);
+                    Profesor pro = new Profesor();
+                    pro.setNombres_profesor(nombres);
+                    pro.setApellidos_profesor(apellidos);
+                    r = dao.agregar(pro);
+                    if (r != 0) {
+                        request.getRequestDispatcher("profesorControlador?accion=listar").forward(request, response);
+                    } else {
+                        request.getRequestDispatcher("errorAgregar.jsp").forward(request, response);
+                    }
+                } else {
                     request.getRequestDispatcher("errorInicio.jsp").forward(request, response);
                 }
-                    break;
+                break;
 
-                
-        
-        case "Actualizar":
-                
-                int id= Integer.valueOf(request.getParameter("txtid"));
-                String n= request.getParameter("txtNombre");
-                String a= request.getParameter("txtApellido");
-                
-                Profesor prof = new Profesor(id,n,a);
-                int respuesta=dao.editar(prof);
-                if(respuesta != 0){
-                     request.getRequestDispatcher("profesorControlador?accion=listar").forward(request, response);
-                }else {
+            case "Actualizar":
+
+                int id = Integer.valueOf(request.getParameter("txtid"));
+                String n = request.getParameter("txtNombre");
+                String a = request.getParameter("txtApellido");
+
+                Profesor prof = new Profesor(id, n, a);
+                int respuesta = dao.editar(prof);
+                if (respuesta != 0) {
+                    request.getRequestDispatcher("profesorControlador?accion=listar").forward(request, response);
+                } else {
                     request.getRequestDispatcher("errorAgregar.jsp").forward(request, response);
                 }
                 break;
@@ -94,40 +92,34 @@ public class profesorControlador extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-        protected void doGet
-        (HttpServletRequest request, HttpServletResponse response)
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            processRequest(request, response);
-        }
+        processRequest(request, response);
+    }
 
-        /**
-         * Handles the HTTP <code>POST</code> method.
-         *
-         * @param request servlet request
-         * @param response servlet response
-         * @throws ServletException if a servlet-specific error occurs
-         * @throws IOException if an I/O error occurs
-         */
-        @Override
-        protected void doPost
-        (HttpServletRequest request, HttpServletResponse response)
+    /**
+     * Handles the HTTP <code>POST</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            processRequest(request, response);
-        }
+        processRequest(request, response);
+    }
 
-        /**
-         * Returns a short description of the servlet.
-         *
-         * @return a String containing servlet description
-         */
-        @Override
-        public String getServletInfo
-        
-            () {
+    /**
+     * Returns a short description of the servlet.
+     *
+     * @return a String containing servlet description
+     */
+    @Override
+    public String getServletInfo() {
         return "Short description";
-        }// </editor-fold>
-
-    
+    }// </editor-fold>
 
     private void eliminarProfesor(HttpServletRequest request, HttpServletResponse response) {
         ProfesorDAO DAO = new ProfesorDAO();

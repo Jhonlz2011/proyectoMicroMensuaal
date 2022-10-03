@@ -15,6 +15,11 @@ public class Horario {
     private String horario;
 
      public Horario() {}
+
+    public Horario(int id_horario, String horario) {
+     this.id_horario= id_horario;   
+     this.horario= horario;
+    }
     /**
      * @return the id_horario
      */

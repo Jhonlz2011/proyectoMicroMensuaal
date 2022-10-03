@@ -8,6 +8,11 @@ package entidadesDAO;
 import Intefaces.AsignarCRUD;
 import entidades.Asignar;
 import entidades.Carrera;
+import entidades.Horario;
+import entidades.Materia;
+import entidades.Periodo;
+import entidades.Profesor;
+import entidades.Temporada;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -72,12 +77,13 @@ public class AsignarDAO implements AsignarCRUD {
 
     @Override
     public List getAsignaciones() {
+
         List<Asignar> list = new ArrayList<>();
         try {
             con = DriverManager.getConnection(db.getStringConexion(), db.getUsuarioConexion(), db.getClaveConexion());
             if (con != null) {
                 stm = con.createStatement();
-                strSQL = " SELECT a.id_asignacion,p.id_profesor,p.nombres_profesor,h.id_horario, h.horario,\n"
+                strSQL = " SELECT a.id_asignacion, a.id_micro, p.id_profesor,p.nombres_profesor,h.id_horario, h.horario,\n"
                         + "pe.id_periodo,pe.semestre_modulo,m.id_materia,m.nombre_materia\n"
                         + "FROM public.tblasignar a \n"
                         + "JOIN public.tblprofesor p ON a.id_profesor=p.id_profesor\n"
@@ -87,14 +93,17 @@ public class AsignarDAO implements AsignarCRUD {
                 rst = stm.executeQuery(strSQL);
                 while (rst.next()) {
                     Asignar a = new Asignar();
-                    a.getProfesor().setId_profesor(rst.getInt("id_profesor"));
-                    a.getProfesor().setNombres_profesor(rst.getString("nombres_profesor"));
-                    a.getMateria().setId_materia(rst.getInt("id_materia"));
-                    a.getMateria().setNombre_materia(rst.getString("nombre_materia"));
-                    a.getPeriodo().setId_periodo(rst.getInt("id_periodo"));
-                    a.getPeriodo().setSemestre_modulo(rst.getString("semestre_modulo"));
-                    a.getHorario().setId_horario(rst.getInt("id_horario"));
-                    a.getHorario().setHorario(rst.getString("horario"));
+                    a.setId_asignacion(rst.getInt("id_asignacion"));
+                    a.setMateria(new Materia(rst.getInt("id_materia"),
+                            rst.getString("nombre_materia")));
+                    a.setProfesor(new Profesor(rst.getInt("id_profesor"),
+                            rst.getString("nombres_profesor")));
+                    a.setHorario(new Horario(rst.getInt("id_horario"),
+                            rst.getString("horario")));
+                    a.setPeriodo(new Periodo(rst.getInt("id_periodo"),
+                            rst.getString("semestre_modulo")));
+                    a.setMicro(rst.getInt("id_micro"));
+
                     list.add(a);
                 }
                 rst.close();
@@ -119,13 +128,13 @@ public class AsignarDAO implements AsignarCRUD {
             if (con != null) {
                 stm = con.createStatement();
                 pst = con.prepareStatement("INSERT INTO tblasignar(\n"
-                        + "	id_profesor, id_materia, id_periodo, id_horario)\n"
-                        + "	VALUES (?, ?, ?, ?);");
+                        + " id_profesor, id_materia, id_periodo, id_horario, id_temp)\n"
+                        + " VALUES (?, ?, ?, ?, ?);");
                 pst.setInt(1, a.getProfesor().getId_profesor());
                 pst.setInt(2, a.getMateria().getId_materia());
                 pst.setInt(3, a.getPeriodo().getId_periodo());
                 pst.setInt(4, a.getHorario().getId_horario());
-
+                pst.setInt(5, a.getTemporada().getId_temp());
                 resultado = pst.executeUpdate();
                 stm.close();
                 con.close();
@@ -145,6 +154,24 @@ public class AsignarDAO implements AsignarCRUD {
     @Override
     public void eliminar(Asignar id_asignacion) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void cambiarEstadoMicro(Asignar a) {
+        try {
+            con = DriverManager.getConnection(db.getStringConexion(), db.getUsuarioConexion(), db.getClaveConexion());
+            if (con != null) {
+                pst = con.prepareStatement("UPDATE tblasignacion SET id_micro="
+                        + (a.getMicro()== 1 ? "1" : "2")
+                        + " WHERE id_asignacion = " + a.getId_asignacion());
+ 
+                pst.executeUpdate();
+                con.close();
+                pst.close();
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al actualizar estado en la BD");
+        }
     }
 
 }

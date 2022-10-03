@@ -11,18 +11,25 @@ package entidades;
  */
 public class Profesor {
 
-    
     private int id_profesor;
     private String nombres_profesor, apellidos_profesor, estado;
-    
-    public Profesor(int id_profesor, String nombres_profesor, String apellidos_profesor){
-        
-        this.id_profesor= id_profesor;
-        this.apellidos_profesor= apellidos_profesor;
-        this.nombres_profesor= nombres_profesor;
-   
-}
-    public Profesor(){}
+
+    public Profesor(int id_profesor, String nombres_profesor, String apellidos_profesor) {
+
+        this.id_profesor = id_profesor;
+        this.apellidos_profesor = apellidos_profesor;
+        this.nombres_profesor = nombres_profesor;
+
+    }
+
+    public Profesor() {
+    }
+
+    public Profesor(int id_profesor, String nombres_profesor) {
+        this.id_profesor = id_profesor;
+        this.nombres_profesor = nombres_profesor;
+    }
+
     /**
      * @return the id_profesor
      */

@@ -13,7 +13,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Inicio</title>
 
-      <!--  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css"> -->
+        <
         <!-- Google Font: Source Sans Pro -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
         <!-- Font Awesome Icons -->
@@ -173,9 +173,9 @@
                                 </a>
                                 <ul class="nav nav-treeview">
                                     <li class="nav-item">
-                                        <a href="informe.jsp" class="nav-link">
+                                        <a href="vistas2/informe.jsp" class="nav-link">
                                             <i class=" nav-icon fa-solid fa-chart-column"></i>
-                                                <p>Informe</p>
+                                            <p>Informe</p>
                                         </a>
                                     </li>
                                 </ul>
@@ -196,18 +196,13 @@
                             <div class="col-sm-6">
                                 <h1>Inicio</h1>
                                 <a class="btn btn-success mt-3" href="asignacionControlador?accion=abrirNuevaAsignacion">
-                            <i class="fa fa-plus"></i> Asignar Profesor</a> 
+                                    <i class="fa fa-plus"></i> Asignar Profesor</a> 
                             </div>
                             <div class="col-sm-6">
-                                <!-- <ol class="breadcrumb float-sm-right">
-                                     <li class="breadcrumb-item"><a href="#">Inicio</a></li>
-                                     
-                                 </ol> 
-                                -->
-                             
+                                <ol class="breadcrumb float-sm-right">
+                                    <li class="breadcrumb-item"><a href="#">Inicio</a></li>                            
+                                </ol> 
                             </div>
-                          
-                            
                         </div>
                     </div><!-- /.container-fluid -->
                 </section>
@@ -226,7 +221,7 @@
                                         <table id="example1" class="table table-bordered table-striped">
                                             <thead>
                                                 <tr>
-                                                    <th>Revision</th>
+                                                    <th>ID</th>
                                                     <th>Materia</th>
                                                     <th>Profesor</th>
                                                     <th>Periodo</th>
@@ -235,31 +230,52 @@
                                                     <th>Acciones</th>
                                                 </tr>
                                             </thead>
+                                            <tbody>
+                                                <c:forEach var="a" items="${asignaciones}">
+                                                    <tr>
+                                                        <td >${a.id_asignacion}</td>
+                                                        <td>${a.materia.nombre_materia}</td>
+                                                        <td>${a.profesor.nombres_profesor}</td>
+                                                        <td>${a.periodo.semestre_modulo}</td>
+                                                        <td>${a.horario.horario}</td>
+                                                        <!-- COLUMNA MICRO -->
+                                                        <c:if test="${a.micro == 1}">
+                                                            <td class="text-center" ><span class="badge badge-danger">Pendiente</span></td> 
+                                                        </c:if>
+                                                        <c:if test="${a.micro == 2}">
+                                                            <td class="text-center" ><span class="badge badge-info">Correcion</span></td> 
+                                                        </c:if>
+                                                        <!-- </td>    -->
+                                                        <td class="text-center">
+                                                               <!-- EDITAR / AGREGAR COMENTARIO -->
+                                                            <button type="button" class="btn btn-warning button__editar--b" data-toggle="" data-target="" title="Editar" data-original-title="Editar">
+                                                                <i class="fa-solid fa-pencil"></i></button>
+                                                            <!-- APROBADO /CORREGIDO/ENTREGADO MICRO -->
+                                                            <c:choose>
+                                                                <c:when test="${a.micro == 1}">
+                                                                    <input type="hidden" id="item" value="${a.id_asignacion}">
+                                                                     <a id="corregir" href="asignacionControlador?cambiar=desactivar&id_asignacion=${a.id_asignacion}" class="btn btn-danger" data-toggle="tooltip" title="Correccion" data-original-title="">
+                                                                    <i class="fa-solid fa-file-circle-xmark"></i></a>
+                                                                </c:when>
+                                                                <c:otherwise>
+                                                                    <input type="hidden" id="item" value="${a.id_asignacion}">
+                                                                    <a id="activar" href="asignacionControlador?cambiar=activar&id_asignacion=${a.id_asignacion}" class="btn btn-info" data-toggle="tooltip" title="Aprobar" data-original-title="">
+                                                                       <i class="fa-solid fa-eye"></i></a>
+                                                                    </c:otherwise>                                                                  
+                                                                </c:choose>
+                                                           
+                                                            <!-- ELIMINAR PROFESORES -->
+                                                            <input type="hidden" id="" value="">
+                                                            <a id="deleteProfe" href="<c:url value="">
+                                                                   <c:param name="accion" value="" />
+                                                                   <c:param name="id_profesor" value="" />
+                                                               </c:url>"><button type="button" class="btn btn-danger" data-toggle="tooltip"  title="Eliminar" data-original-title="Eliminar">
 
-                                            <c:forEach var="asignar" items="${asignaciones}">
-                                                <tr>
-                                                    <td >${asignar.id_asignacion}</td>
-                                                    <td>${asignar.nombre_materia}</td>
-                                                    <td>${asignar.nombres_profesor}</td>
-                                                    <td>${asignar.nombres_periodo}</td>
-                                                    <td>${asignar.nombres_horario}</td>
-                                                    <td> Pendiente </td>
-                                                    <td class="text-center">
-                                                        <button type="button" class="btn btn-warning button__editar--b" data-toggle="modal" data-target="#modal-danger1" title="Editar" data-original-title="Editar">
-                                                            <i class="fa-solid fa-pencil"></i></button>
-                                                        <!-- <a><button type="button" class="btn btn-danger" data-toggle="tooltip"  title="Eliminar" data-original-title="Eliminar"> -->
-
-                                                        <!-- ELIMINAR CARRERAS -->
-                                                        <input type="hidden" id="id_carrera" value="${carrera.id_carrera}">
-                                                        <a id="deleteCarre" href="<c:url value="carreraControlador" >
-                                                               <c:param name="accion" value="eliminarCarrera" />
-                                                               <c:param name="id_carrera" value="${carrera.id_carrera}" />
-                                                           </c:url>"><button type="button" class="btn btn-danger" data-toggle="tooltip"  title="Eliminar" data-original-title="Eliminar">
-
-                                                                <i class="fa fa-trash"></i></button></a>
-                                                    </td>
-                                                </tr>
-                                            </c:forEach>
+                                                                    <i class="fa fa-trash"></i></button></a>
+                                                        </td>
+                                                    </tr>
+                                                </c:forEach>
+                                            </tbody>
                                         </table>
                                     </div>
                                     <!-- /.card-body -->
@@ -298,16 +314,22 @@
             <script src="vistas2/assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
             <!-- AdminLTE App -->
             <script src="vistas2/assets/dist/js/adminlte.min.js"></script>
-
             <!-- DataTables  & Plugins -->
             <script src="vistas2/assets/plugins/datatables/jquery.dataTables.min.js" type="text/javascript"></script>
             <script src="vistas2/assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js" type="text/javascript"></script>
-           
-            <!--<script src="vistas2/scripts/dataTable.js" type="text/javascript"></script>
+            <script src="vistas2/assets/plugins/datatables-responsive/js/dataTables.responsive.min.js" type="text/javascript"></script>
+            <script src="vistas2/assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js" type="text/javascript"></script>
+            <script src="vistas2/scripts/dataTable.js" type="text/javascript"></script>
             <!-- SweetAlert -->
             <script src="vistas2/assets/plugins/swetalert/sweetalert.js" type="text/javascript"></script>
-            <!-- Archivo principal Javascripts -->    
+
             <script src="vistas2/scripts/principal.js" type="text/javascript"></script> 
 
+            <script >$(function () {
+                $("#example1").DataTable({
+                "responsive": true, "lengthChange": false, "autoWidth": false,
+                        "language": {"url": "https://cdn.datatables.net/plug-ins/1.12.1/i18n/es-ES.json"}
+
+            </script>
     </body>
 </html>

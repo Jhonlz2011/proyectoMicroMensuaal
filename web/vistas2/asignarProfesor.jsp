@@ -231,7 +231,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Profesor</label>
-                                                <select id="cboProfesor" class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger" data-placeholder="Selecciona un profesor" style="width: 100%;">
+                                                <select name="cboProfesor" id="cboProfesor" class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger" data-placeholder="Selecciona un profesor" style="width: 100%;">
                                                     <% List<Profesor> listaProfesor = (List<Profesor>) request.getAttribute("Profesores");
                                                         if (listaProfesor != null)//ESTO TMBN ES IMPORTANTE 
                                                             for (Profesor profesor : listaProfesor) {%>
@@ -242,7 +242,7 @@
                                             <!-- /.form-group -->
                                             <div class="form-group">
                                                 <label>Materia</label>
-                                                <select id="cboMaterias" class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger" style="width: 100%;">
+                                                <select name="cboMaterias" id="cboMaterias" class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger" style="width: 100%;">
                                                     <% List<Materia> listam = (List<Materia>) request.getAttribute("Materias");
                                                      if (listam != null)//ESTO TMBN ES IMPORTANTE 
                                                          for (Materia m : listam) {%>
@@ -253,7 +253,7 @@
                                             <!-- /.form-group -->
                                             <div class="form-group">                                    
                                                 <label>Horario</label>
-                                                <select id="cboHorario" class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger" data-placeholder="Selecciona una materia" style="width: 100%;">
+                                                <select name="cboHorario" id="cboHorario" class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger" data-placeholder="Selecciona una materia" style="width: 100%;">
                                                     <% List<Horario> listah = (List<Horario>) request.getAttribute("Horario");
                                                      if (listah != null)//ESTO TMBN ES IMPORTANTE 
                                                          for (Horario h : listah) {%>
@@ -267,7 +267,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Semestre</label>
-                                                <select id="cboPeriodo" class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger" style="width: 100%;">
+                                                <select name="cboPeriodo" id="cboPeriodo" class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger" style="width: 100%;">
                                                     <% List<Periodo> lista = (List<Periodo>) request.getAttribute("Periodo");
                                                      if (lista != null)//ESTO TMBN ES IMPORTANTE 
                                                          for (Periodo p : lista) {%>
@@ -278,7 +278,7 @@
                                             <!-- /.form-group -->     
                                             <div class="form-group">
                                                 <label>Año</label>
-                                                <select id="cboTemp" class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger" style="width: 100%;">
+                                                <select name="cboTemp" id="cboTemp" class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger" style="width: 100%;">
                                                     <% List<Temporada> listat = (List<Temporada>) request.getAttribute("Temporada");
                                                      if (listat != null)//ESTO TMBN ES IMPORTANTE 
                                                          for (Temporada t : listat) {%>
@@ -296,7 +296,7 @@
                                 </div>
                                 <!-- /.card-body -->
                                 <div class="card-footer">
-                                    <input  class="btn btn-danger" type="submit" name="accion" value="asignar"> 
+                                    <input class="btn btn-danger" type="submit" name="accion" value="Asignar"> 
                                 </div>
                             </form>
                         </div>

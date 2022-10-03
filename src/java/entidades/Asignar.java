@@ -18,31 +18,31 @@ public class Asignar {
     private Profesor profesor;
     private Periodo periodo;
     private Horario horario;
-    private Micro micro;
+    private int micro;
     private Date fecha_entrega;
     private String estado_asignacion;
     private Temporada temporada;
     
-    public Asignar() {profesor = new Profesor();}
+    public Asignar() {}
     
 
-    public Asignar(int id_asignacion, Materia materia, Profesor profesor, Periodo periodo, Horario horario, Micro micro, Date fecha_entrega) {
+    public Asignar(int id_asignacion, Materia materia, Profesor profesor, Periodo periodo, Horario horario, int micro) {
         this.id_asignacion = id_asignacion;
         this.materia = materia;
         this.profesor = profesor;
         this.periodo = periodo;
         this.horario = horario;
         this.micro = micro;
-        this.fecha_entrega= fecha_entrega;
+        
     }
     
-    public Asignar(int id_asignacion, Materia materia, Profesor profesor, Periodo periodo, Horario horario, Micro micro) {
+    public Asignar(int id_asignacion, Materia materia, Profesor profesor, Periodo periodo, Horario horario) {
         this.id_asignacion = id_asignacion;
         this.materia = materia;
         this.profesor = profesor;
-        this.periodo = periodo;
-        this.horario = horario;
-        this.micro = micro;    
+      //  this.periodo = periodo;
+    //    this.horario = horario;
+      
     }
     
     public int getId_asignacion() {
@@ -85,11 +85,11 @@ public class Asignar {
         this.horario = horario;
     }
 
-    public Micro getMicro() {
+    public int getMicro() {
         return micro;
     }
 
-    public void setMicro(Micro micro) {
+    public void setMicro(int micro) {
         this.micro = micro;
     }
 

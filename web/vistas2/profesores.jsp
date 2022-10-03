@@ -22,7 +22,7 @@
         <link rel="stylesheet" href="vistas2/assets/dist/css/adminlte.min.css">
         <!-- SweetAlert -->
         <link href="vistas2/assets/plugins/swetalert/sweetalert.css" rel="stylesheet" type="text/css"/>
-        <!-- <link rel="stylesheet" href="vistas2/assets/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css"> -->
+        
         <!-- Toastr -->
         <!--  <link rel="stylesheet" href="vistas3/assets/plugins/toastr/toastr.min.css"> -->
 
@@ -363,13 +363,11 @@
         <script src="vistas2/assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
         <!-- AdminLTE App -->
         <script src="vistas2/assets/dist/js/adminlte.min.js"></script>
-
-
         <!-- DataTables  & Plugins -->
         <script src="vistas2/assets/plugins/datatables/jquery.dataTables.min.js" type="text/javascript"></script>
         <script src="vistas2/assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js" type="text/javascript"></script>
         <script src="vistas2/assets/plugins/datatables-responsive/js/dataTables.responsive.min.js" type="text/javascript"></script>
-        <script src="vistas/assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js" type="text/javascript"></script>
+        <script src="vistas2/assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js" type="text/javascript"></script>
         <script src="vistas2/scripts/dataTable.js" type="text/javascript"></script>
         <!-- SweetAlert -->
         <script src="vistas2/assets/plugins/swetalert/sweetalert.js" type="text/javascript"></script>

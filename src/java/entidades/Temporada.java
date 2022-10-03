@@ -11,8 +11,17 @@ package entidades;
  */
 public class Temporada {
 
-    
-     public Temporada(){}
+    private int id_temp;
+    private String temp;
+
+    public Temporada() {
+    }
+
+    public Temporada(int id_temp, String temp) {
+        this.id_temp= id_temp;
+        this.temp= temp;
+    }
+
     /**
      * @return the id_temp
      */
@@ -40,6 +49,5 @@ public class Temporada {
     public void setTemp(String temp) {
         this.temp = temp;
     }
-     private int id_temp;
-    private String temp;
+
 }

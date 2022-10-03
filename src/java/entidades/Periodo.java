@@ -13,10 +13,15 @@ public class Periodo {
 
     private int id_periodo;
     private String semestre_modulo;
-    private Temporada temporada;
+
     
     public Periodo(){}
-    
+
+    public Periodo(int id_periodo, String semestre_modulo) {
+        this.id_periodo= id_periodo;
+        this.semestre_modulo= semestre_modulo;
+    }
+
     /**
      * @return the id_periodo
      */
@@ -45,20 +50,4 @@ public class Periodo {
     public void setSemestre_modulo(String semestre_modulo) {
         this.semestre_modulo = semestre_modulo;
     }
-   
-
-    /**
-     * @return the temporada
-     */
-    public Temporada getTemporada() {
-        return temporada;
-    }
-
-    /**
-     * @param temporada the temporada to set
-     */
-    public void setTemporada(Temporada temporada) {
-        this.temporada = temporada;
-    }
-
 }
