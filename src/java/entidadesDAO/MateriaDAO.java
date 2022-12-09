@@ -145,7 +145,7 @@ public class MateriaDAO implements MateriaCRUD {
        try{
            con=DriverManager.getConnection(db.getStringConexion(), db.getUsuarioConexion(), db.getClaveConexion());
             if (con!=null){
-            pst=con.prepareStatement("UPDATE tblmaterias SET estado_materia= 'I' WHERE id_profesor= " + id_materia.getId_materia());
+            pst=con.prepareStatement("UPDATE tblmaterias SET estado_materia= 'I' WHERE id_materia= " + id_materia.getId_materia());
             pst.executeUpdate();
             pst.close();
             con.close();

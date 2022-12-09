@@ -1754,16 +1754,14 @@
             this.c = $$1.extend(true, {}, SearchPanes.defaults, opts);
             // Add extra elements to DOM object including clear
             this.dom = {
-                clearAll: $$1('<button type="button">Clear All</button>').addClass(this.classes.clearAll),
-                collapseAll: $$1('<button type="button">Collapse All</button>').addClass(this.classes.collapseAll),
+                clearAll: $$1('<button type="button">Resetear filtros</button>').addClass(this.classes.clearAll),
+                collapseAll: $$1('<button type="button">Colapsar</button>').addClass(this.classes.collapseAll).addClass(this.classes.disabledButton).attr('disabled', 'true'),
                 container: $$1('<div/>').addClass(this.classes.panes).text(table.i18n('searchPanes.loadMessage', this.c.i18n.loadMessage)),
                 emptyMessage: $$1('<div/>').addClass(this.classes.emptyMessage),
                 options: $$1('<div/>').addClass(this.classes.container),
                 panes: $$1('<div/>').addClass(this.classes.container),
-                showAll: $$1('<button type="button">Show All</button>')
-                    .addClass(this.classes.showAll)
-                    .addClass(this.classes.disabledButton)
-                    .attr('disabled', 'true'),
+                showAll: $$1('<button type="button">Mostrar</button>')
+                    .addClass(this.classes.showAll), 
                 title: $$1('<div/>').addClass(this.classes.title),
                 titleRow: $$1('<div/>').addClass(this.classes.titleRow),
                 wrapper: $$1('<div/>')
@@ -3019,7 +3017,7 @@
                 emptyPanes: 'No SearchPanes',
                 loadMessage: 'Loading Search Panes...',
                 showMessage: 'Show All',
-                title: 'Filters Active - %d'
+                title: 'Filtros activos - %d'
             },
             layout: 'auto',
             order: [],

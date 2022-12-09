@@ -67,7 +67,6 @@
                                                                <c:param name="accion" value="eliminarMateria" />
                                                                <c:param name="id_materia" value="${materia.id_materia}" />
                                                            </c:url>"><button type="button" class="btn btn-danger" data-toggle="tooltip"  title="Eliminar" data-original-title="Eliminar">
-
                                                                 <i class="fa fa-trash"></i></button></a>
                                                     </td>
                                                 </tr>

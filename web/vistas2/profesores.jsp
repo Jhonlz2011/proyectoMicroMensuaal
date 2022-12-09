@@ -80,7 +80,7 @@
                         </a>
                     </li>  
                     <li class="nav-item">
-                        <a class="nav-link"  href="" role="button" >
+                        <a class="nav-link"  href="index.jsp" role="button" >
                             <i class="fas fa fa-power-off"></i>
                         </a>
                     </li>
@@ -95,7 +95,7 @@
             <!-- Main Sidebar Container -->
             <aside class="main-sidebar sidebar-dark-primary elevation-4">
                 <!-- Brand Logo -->
-                <a href="" class="brand-link">
+                <a href="asignacionControlador?accion=listar" class="brand-link">
                     <img src="vistas2/assets/dist/img/logoTES4 .png" alt=""class="brand-image"/>
                     <span class="brand-text font-weight-light">Tecnológico Espíritu Santo</span><br>
                 </a>
@@ -254,7 +254,6 @@
                                                                <c:param name="accion" value="eliminarProfesor" />
                                                                <c:param name="id_profesor" value="${profesor.id_profesor}" />
                                                            </c:url>"><button type="button" class="btn btn-danger" data-toggle="tooltip"  title="Eliminar" data-original-title="Eliminar">
-
                                                                 <i class="fa fa-trash"></i></button></a>
                                                     </td>
                                                 </tr>

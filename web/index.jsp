@@ -24,7 +24,8 @@
         <!-- header -->
         <div class="bg-header header-login">
             <header class="container header">
-                <img src="vistas/img/logo.png" alt="">
+             
+                <img src="vistas2/assets/dist/img/LogoIndex.png" alt=""/>
             </header>
         </div>
         <!-- fin de header -->
@@ -45,14 +46,7 @@
                         <input type="password" placeholder="Contraseña"  name="clave_usuario" id="password">
                     </div>
 
-                    <input id="btn-Inicio" type="submit" value="Iniciar" style="
-                           color: #FFF;
-                           background-color: rgb(227 31 31) !important;
-                           box-shadow: 0 5px 0 rgb(168 6 6) !important;
-                           border-radius: 2rem !important;
-                           padding-inline: 3rem;
-                           padding-block: 1rem;
-                           border-color: rgb(227 31 31 / 92%);">
+                    <input id="btn-Inicio" type="submit" value="Iniciar">
                 </fieldset>
             </form>
         </div>

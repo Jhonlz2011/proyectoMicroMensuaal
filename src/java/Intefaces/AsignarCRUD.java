@@ -17,5 +17,5 @@ public interface AsignarCRUD {
     public int editar(Asignar p);
     public void eliminar(Asignar id_asignacion);
     public void cambiarEstadoMicro(Asignar a);
-    
+    public int limpiar(Asignar a);
 }

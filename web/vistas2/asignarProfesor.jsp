@@ -41,8 +41,8 @@
         <link rel="stylesheet" href="vistas2/assets/plugins/dropzone/min/dropzone.min.css">
         <!-- Theme style -->
         <link rel="stylesheet" href="vistas2/assets/dist/css/adminlte.min.css">
-
         <link href="vistas2/assets/dist/css/estilos.css" rel="stylesheet" type="text/css"/> 
+        
     </head>
     <body class="hold-transition sidebar-mini">
         <div class="wrapper">
@@ -89,9 +89,11 @@
                         </a>
                     </li>  
                     <li class="nav-item">
-                        <a class="nav-link"  href="" role="button" >
+                        <a class="nav-link"  href="index.jsp" role="button" >
                             <i class="fas fa fa-power-off"></i>
                         </a>
+                        
+                        
                     </li>
 
                 </ul>
@@ -297,6 +299,8 @@
                                 <!-- /.card-body -->
                                 <div class="card-footer">
                                     <input class="btn btn-danger" type="submit" name="accion" value="Asignar"> 
+                                    <a  class="btn btn-dark" id="darkbutton" href="asignacionControlador?accion=listar">
+                                    <i class="fa-solid fa-right-from-bracket"></i> Volver</a> 
                                 </div>
                             </form>
                         </div>

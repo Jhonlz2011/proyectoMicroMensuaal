@@ -79,3 +79,29 @@ body:not(.layout-fixed) .main-sidebar {
         border-color: #db6918  !important;
         color: #ffffff !important;
 }
+
+.btn-dark{
+    background-color: #d42828 !important;
+    border-color:#dc3545 !important;
+}
+.btn-dark:hover{
+    background-color:  #bd0000 !important;
+    border-color: #bd003b !important;
+}
+#darkbutton{
+    background-color: #343a40 !important;
+    border-color: #343a40 !important;
+    color: #ffffff !important;
+}
+.btn-dark:hover{
+    background-color:  #f18429 !important;
+    border-color: #fd7e14 !important;
+}
+
+table.dataTable tbody>tr.selected, table.dataTable tbody>tr>.selected{
+    background-color: #d42828 !important;
+    
+}
+table.dataTable tbody tr.selected, table.dataTable tbody th.selected, table.dataTable tbody td.selected{
+    color: rgb(255, 255 ,255)!important;
+}

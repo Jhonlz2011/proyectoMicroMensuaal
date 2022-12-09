@@ -54,6 +54,10 @@ public class asignacionControlador extends HttpServlet {
                     break;
                 case "eliminar":
                     eliminar(request, response);
+                    break;
+                case "limpiar":
+                    limpiar(request, response);
+                    break;
                 default:
                     response.sendRedirect("errorAgregar.jsp");
 
@@ -211,6 +215,19 @@ public class asignacionControlador extends HttpServlet {
             }
         } else {
             request.setAttribute("msje", "No se encontro el usuario");
+        }
+    }
+
+    private void limpiar(HttpServletRequest request, HttpServletResponse response) {
+        AsignarDAO dao = new AsignarDAO();
+        Asignar a = new Asignar();
+        try {
+            a.setMicro(3);
+            dao.limpiar(a);
+            
+            response.sendRedirect("asignacionControlador?accion=listar");
+        } catch (Exception e) {
+            request.setAttribute("msje", "No se pudo acceder a la base de datos" + e.getMessage());
         }
     }
 }

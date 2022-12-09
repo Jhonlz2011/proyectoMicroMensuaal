@@ -12,7 +12,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>TES</title>
-      
+
         <!-- Google Font: Source Sans Pro -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
         <!-- Font Awesome Icons -->
@@ -33,8 +33,8 @@
         <link href="vistas2/assets/dist/css/estilos.css" rel="stylesheet" type="text/css"/>
     </head>
     <body class="hold-transition sidebar-mini" >
-         <div class="wrapper">
-        <!-- Navbar -->
+        <div class="wrapper">
+            <!-- Navbar -->
             <nav class="main-header navbar navbar-expand navbar-white navbar-light" style="background: linear-gradient(180deg, rgba(254, 72, 72, 1) 0%, rgba(168, 6, 6, 1) 100%);">
                 <!-- Left navbar links -->
                 <ul class="navbar-nav">
@@ -77,7 +77,7 @@
                         </a>
                     </li>  
                     <li class="nav-item">
-                        <a class="nav-link"  href="" role="button" >
+                        <a class="nav-link"  href="index.jsp" role="button" >
                             <i class="fas fa fa-power-off"></i>
                         </a>
                     </li>
@@ -88,11 +88,11 @@
 
             </nav>
             <!-- /.navbar -->
-            
-        <!-- Main Sidebar Container -->
+
+            <!-- Main Sidebar Container -->
             <aside class="main-sidebar sidebar-dark-primary elevation-4">
                 <!-- Brand Logo -->
-                <a href="" class="brand-link">
+                <a href="asignacionControlador?accion=listar" class="brand-link">
                     <img src="vistas2/assets/dist/img/logoTES4 .png" alt=""class="brand-image"/>
                     <span class="brand-text font-weight-light">Tecnológico Espíritu Santo</span><br>
                 </a>
@@ -188,23 +188,64 @@
                 <!-- /.sidebar -->
             </aside>
 
-        <!-- REQUIRED SCRIPTS -->
+            <!-- REQUIRED SCRIPTS -->
 
-        <!-- jQuery -->
-        <script src="vistas2/assets/plugins/jquery/jquery.min.js"></script>
-        <!-- Bootstrap 4 -->
-        <script src="vistas2/assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <!-- AdminLTE App -->
-        <script src="vistas2/assets/dist/js/adminlte.min.js"></script>
+            <!-- jQuery -->
+            <script src="vistas2/assets/plugins/jquery/jquery.min.js"></script>
+            <!-- Bootstrap 4 -->
+            <script src="vistas2/assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+            <!-- AdminLTE App -->
+            <script src="vistas2/assets/dist/js/adminlte.min.js"></script>
 
 
-        <!-- DataTables  & Plugins -->
-        <script src="vistas2/assets/plugins/datatables/jquery.dataTables.min.js" type="text/javascript"></script>
-        <script src="vistas2/assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js" type="text/javascript"></script>
-        <script src="vistas2/scripts/dataTable.js" type="text/javascript"></script>
-        <!-- SweetAlert -->
-        <script src="vistas2/assets/plugins/swetalert/sweetalert.js" type="text/javascript"></script>
-        <script src="vistas2/scripts/principal.js" type="text/javascript"></script>
-     
+            <!-- DataTables  & Plugins -->
+            <script src="vistas2/assets/plugins/datatables/jquery.dataTables.min.js" type="text/javascript"></script>
+            <script src="vistas2/assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js" type="text/javascript"></script>
+            <script src="vistas2/scripts/dataTable.js" type="text/javascript"></script>
+            <!-- SweetAlert -->
+            <script src="vistas2/assets/plugins/swetalert/sweetalert.js" type="text/javascript"></script>
+            <script src="vistas2/scripts/principal.js" type="text/javascript"></script>
+
+            <script>
+                $(document).ready(function () {
+                    $("tr #deleteMate").click(function (e) {
+                        e.preventDefault();
+                        var id_materia = $(this).parent().find('#id_materia').val();
+                        swal({
+                            title: "Esta Seguro de Eliminar?",
+                            text: "Una vez eliminado no podra recuperarlo!",
+                            type: "warning",
+                            showCancelButton: true,
+                            confirmButtonClass: "btn-danger",
+                            confirmButtonText: "Sí, Eliminar!",
+                            cancelButtonText: "No, Cancelar!",
+                            closeOnConfirm: false,
+                            closeOnCancel: false
+                        },
+                                function (isConfirm) {
+                                    if (isConfirm) {
+                                        eliminarMateria(id_materia);
+                                        swal("Eliminado!", "La materia se ha eliminado con exito", "success");
+                                        setTimeout(function () {
+                                            parent.location.href = "materiaControlador?accion=listar";
+                                        }, 1800);
+                                    } else {
+                                        swal("Cancelado", "Cancelaste la eliminación", "error");
+                                    }
+                                });
+                    });
+                    function eliminarMateria(id_materia) {
+                        var url = "materiaControlador?accion=eliminarMateria&id_materia=" + id_materia;
+                        console.log("eliminado");
+                        $.ajax({
+                            type: 'POST',
+                            url: url,
+                            async: true,
+                            success: function (r) {
+                            }
+                        });
+                    }
+                });
+            </script>
     </body>
 </html>

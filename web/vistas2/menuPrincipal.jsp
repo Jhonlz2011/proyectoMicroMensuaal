@@ -28,6 +28,9 @@
         <!--DataTable estilo-->
         <link href="vistas2/assets/dist/css/estilos.css" rel="stylesheet" type="text/css"/>
 
+        <link href="vistas2/assets/plugins/datatables-searchpanes/css/searchPanes.bootstrap4.min.css" rel="stylesheet" type="text/css"/>
+        <link href="vistas2/assets/plugins/datatables-select/css/select.bootstrap4.min.css" rel="stylesheet" type="text/css"/>
+
     </head>
     <body  class="hold-transition sidebar-mini ">
         <div class="wrapper">
@@ -74,7 +77,7 @@
                         </a>
                     </li>  
                     <li class="nav-item">
-                        <a class="nav-link"  href="" role="button" >
+                        <a class="nav-link"  href="index.jsp" role="button" >
                             <i class="fas fa fa-power-off"></i>
                         </a>
                     </li>
@@ -89,7 +92,7 @@
             <!-- Main Sidebar Container -->
             <aside class="main-sidebar sidebar-dark-primary elevation-4">
                 <!-- Brand Logo -->
-                <a href="vistas2/menuPrincipal.jsp" class="brand-link">
+                <a href="asignacionControlador?accion=listar" class="brand-link">
                     <img src="vistas2/assets/dist/img/logoTES4 .png" alt=""class="brand-image"/>
                     <span class="brand-text font-weight-light">Tecnológico Espíritu Santo</span><br>
                 </a>
@@ -195,7 +198,9 @@
                             <div class="col-sm-6">
                                 <h1>Inicio</h1>
                                 <a class="btn btn-success mt-3" href="asignacionControlador?accion=abrirNuevaAsignacion">
-                                    <i class="fa fa-plus"></i> Asignar Profesor</a> 
+                                    <i class="fa fa-plus"></i>  Asignar Profesor</a> 
+                                <a class="btn btn-dark mt-3 ml-2" href="asignacionControlador?accion=limpiar">
+                                    <i class="fa-solid fa-brush"></i>  Limpiar aprobados</a>     
                             </div>
                             <div class="col-sm-6">
                                 <ol class="breadcrumb float-sm-right">
@@ -307,69 +312,107 @@
                 <!-- Default to the left -->
                 <strong>Copyright © 2012 - 2022 Tecnológico Espíritu Santo</a>.</strong> Todos los derechos reservados
             </footer>
+        </div>
 
 
+        <!-- REQUIRED SCRIPTS -->
 
-            <!-- REQUIRED SCRIPTS -->
+        <!-- jQuery -->
+        <script src="vistas2/assets/plugins/jquery/jquery.min.js"></script>
+        <!-- Bootstrap 4 -->
+        <script src="vistas2/assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <!-- AdminLTE App -->
+        <script src="vistas2/assets/dist/js/adminlte.min.js"></script>
+        <!-- DataTables  & Plugins -->
+        <script src="vistas2/assets/plugins/datatables/jquery.dataTables.min.js" type="text/javascript"></script>
+        <script src="vistas2/assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js" type="text/javascript"></script>
+        <script src="vistas2/assets/plugins/datatables-responsive/js/dataTables.responsive.min.js" type="text/javascript"></script>
+        <script src="vistas2/assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js" type="text/javascript"></script>
+        <script src="vistas2/scripts/dataTable.js" type="text/javascript"></script>
+        <!-- SweetAlert -->
+        <script src="vistas2/assets/plugins/swetalert/sweetalert.js" type="text/javascript"></script>
+        <!-- <script src="vistas2/scripts/principal.js" type="text/javascript"></script> -->
 
-            <!-- jQuery -->
-            <script src="vistas2/assets/plugins/jquery/jquery.min.js"></script>
-            <!-- Bootstrap 4 -->
-            <script src="vistas2/assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-            <!-- AdminLTE App -->
-            <script src="vistas2/assets/dist/js/adminlte.min.js"></script>
-            <!-- DataTables  & Plugins -->
-            <script src="vistas2/assets/plugins/datatables/jquery.dataTables.min.js" type="text/javascript"></script>
-            <script src="vistas2/assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js" type="text/javascript"></script>
-            <script src="vistas2/assets/plugins/datatables-responsive/js/dataTables.responsive.min.js" type="text/javascript"></script>
-            <script src="vistas2/assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js" type="text/javascript"></script>
-            <script src="vistas2/scripts/dataTable.js" type="text/javascript"></script>
-            <!-- SweetAlert -->
-            <script src="vistas2/assets/plugins/swetalert/sweetalert.js" type="text/javascript"></script>
-            <script src="vistas2/scripts/principal.js" type="text/javascript"></script> 
+        <script src="vistas2/assets/plugins/datatables-searchpanes/js/dataTables.searchPanes.min.js" type="text/javascript"></script>
+        <script src="vistas2/assets/plugins/datatables-searchpanes/js/searchPanes.bootstrap4.min.js" type="text/javascript"></script>
 
-            <script >
-                  
-                    $(document).ready(function () {
-                    $("tr #delete").click(function (e) {
-                        e.preventDefault();
-                        var id_asignacion = $(this).parent().find('#id_asignacion').val();
-                        swal({
-                            title: "Esta Seguro de Eliminar?",
-                            text: "Una vez eliminado no podra recuperarlo!",
-                            type: "warning",
-                            showCancelButton: true,
-                            confirmButtonClass: "btn-danger",
-                            confirmButtonText: "Sí, Eliminar!",
-                            cancelButtonText: "No, Cancelar!",
-                            closeOnConfirm: false,
-                            closeOnCancel: false
-                        },
-                                function (isConfirm) {
-                                    if (isConfirm) {
-                                        eliminar(id_asignacion);
-                                        swal("Eliminado!", "La asignacion se ha eliminado con exito", "success");
-                                        setTimeout(function () {
-                                            parent.location.href = "asignacionControlador?accion=listar";
-                                        }, 1800);
-                                    } else {
-                                        swal("Cancelado", "Cancelaste la eliminación", "error");
-                                    }
-                                });
-                    });
-                    function eliminar(id_asignacion) {
-                        var url = "asignacionControlador?accion=eliminar&id_asignacion=" + id_asignacion;
-                        console.log("eliminado");
-                        $.ajax({
-                            type: 'POST',
-                            url: url,
-                            async: true,
-                            success: function (r) {
 
-                            }
+        <script src="vistas2/assets/plugins/datatables-select/js/dataTables.select.min.js" type="text/javascript"></script>
+        <script src="vistas2/assets/plugins/datatables-select/js/select.bootstrap4.min.js" type="text/javascript"></script>
+        <script>
+
+            $(document).ready(function () {
+                $("tr #delete").click(function (e) {
+                    e.preventDefault();
+                    var id_asignacion = $(this).parent().find('#id_asignacion').val();
+                    swal({
+                        title: "Esta Seguro de Eliminar?",
+                        text: "Una vez eliminado no podra recuperarlo!",
+                        type: "warning",
+                        showCancelButton: true,
+                        confirmButtonClass: "btn-danger",
+                        confirmButtonText: "Sí, Eliminar!",
+                        cancelButtonText: "No, Cancelar!",
+                        closeOnConfirm: false,
+                        closeOnCancel: false
+                    },
+                            function (isConfirm) {
+                                if (isConfirm) {
+                                    eliminar(id_asignacion);
+                                    swal("Eliminado!", "La asignacion se ha eliminado con exito", "success");
+                                    setTimeout(function () {
+                                        parent.location.href = "asignacionControlador?accion=listar";
+                                    }, 1800);
+                                } else {
+                                    swal("Cancelado", "Cancelaste la eliminación", "error");
+                                }
+                            });
+                });
+                function eliminar(id_asignacion) {
+                    var url = "asignacionControlador?accion=eliminar&id_asignacion=" + id_asignacion;
+                    console.log("eliminado");
+                    $.ajax({
+                        type: 'POST',
+                        url: url,
+                        async: true,
+                        success: function (r) {
+
+                        }
                     });
                 }
             });
-            </script>
+        </script>
+
+        <script>
+            $(document).ready(function () {
+                $('#example1').DataTable({
+                    searchPanes: {
+
+                        dtOpts: {
+                            dom: 'tp',
+
+                            searching: true
+                        }
+                    },
+                    dom: 'Pfrtip',
+                    "language": {
+                        "lengthMenu": "Mostrar _MENU_ registros",
+                        "zeroRecords": "No se encontraron resultados",
+                        "info": "Mostrando registros del _START_ al _END_ de _TOTAL_ registros",
+                        "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                        "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+                        "sSearch": "Buscar:",
+                        "oPaginate": {
+                            "sFirst": "Primero",
+                            "sLast": "Último",
+                            "sNext": "Siguiente",
+                            "sPrevious": "Anterior"
+                        },
+                        "sProcessing": "Procesando...",
+                    }
+                });
+
+            });
+        </script>
     </body>
 </html>

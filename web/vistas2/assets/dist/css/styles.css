@@ -74,6 +74,7 @@ fieldset{
 
 legend{
     font-size: 2.6rem;
+    text-align: center;
     font-weight: bold;
     margin: 0 auto;
 }
@@ -262,7 +263,7 @@ legend{
     }
 }
 
- @media (min-width: 480px) {
+@media (min-width: 480px) {
     .menuPrincipal{
         position: relative;
         height: 100vh;
@@ -346,9 +347,23 @@ legend{
     margin-bottom: 10rem;
 }
 
+input#btn-Inicio{
+    color: #FFF;
+    background-color: rgb(227 31 31);
+    box-shadow: 0 5px 0 rgb(168 6 6);
+    border-radius: 2rem;
+    padding-inline: 3rem;
+    padding-block: 1rem;
+    border-color: transparent;
+    position: relative;
+    top: 0;
+    transition: all .25s ease-in-out;
+    font-size: 14px;
+    font-weight: bold;
+}
 #btn-Inicio:hover{
-    color: #f7f7f7;
-    background-color: #08c;
+  color: #f7f7f7;
+    background-color: rgb(227 31 31);
     top: 3px;
-    box-shadow: 0 2px 0 #006394;
+    box-shadow: 0 2px 0 rgb(168 6 6);
 }

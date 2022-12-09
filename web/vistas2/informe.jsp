@@ -72,7 +72,7 @@
                         </a>
                     </li>  
                     <li class="nav-item">
-                        <a class="nav-link"  href="" role="button" >
+                        <a class="nav-link"  href="index.jsp" role="button" >
                             <i class="fas fa fa-power-off"></i>
                         </a>
                     </li>
@@ -87,7 +87,7 @@
             <!-- Main Sidebar Container -->
             <aside class="main-sidebar sidebar-dark-primary elevation-4">
                 <!-- Brand Logo -->
-                <a href="menuPrincipal.jsp" class="brand-link">
+                <a href="asignacionControlador?accion=listar" class="brand-link">
                     <img src="vistas2/assets/dist/img/logoTES4 .png" alt=""class="brand-image"/>
                     <span class="brand-text font-weight-light">Tecnológico Espíritu Santo</span><br>
                 </a>
@@ -238,9 +238,9 @@
                                                         <td>${a.materia.nombre_materia}</td>
                                                         <td>${a.profesor.nombres_profesor}</td>
                                                         <td>${a.periodo.semestre_modulo}</td>
-                                                        <td>${a.horario.horario}</td>
+                                                        <td class="text-center">${a.horario.horario}</td>
                                                         <td class="text-center" ><span class="badge badge-success">Aprobado</span></td> 
-                                                        <td>${a.fecha_entrega}</td>
+                                                        <td class="text-center">${a.fecha_entrega}</td>
                                                     </tr>
                                                 </c:forEach>
                                             </tbody>

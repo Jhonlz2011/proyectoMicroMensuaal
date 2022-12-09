@@ -151,18 +151,18 @@ public class AsignarDAO implements AsignarCRUD {
 
     @Override
     public void eliminar(Asignar id_asignacion) {
-     try{
-           con=DriverManager.getConnection(db.getStringConexion(), db.getUsuarioConexion(), db.getClaveConexion());
-            if (con!=null){
-            pst=con.prepareStatement("UPDATE tblasignar SET estado_asignacion= 'I' WHERE id_asignacion= " + id_asignacion.getId_asignacion());
-            pst.executeUpdate();
-            
-            pst.close();
-            con.close();
+        try {
+            con = DriverManager.getConnection(db.getStringConexion(), db.getUsuarioConexion(), db.getClaveConexion());
+            if (con != null) {
+                pst = con.prepareStatement("UPDATE tblasignar SET estado_asignacion= 'I' WHERE id_asignacion= " + id_asignacion.getId_asignacion());
+                pst.executeUpdate();
+
+                pst.close();
+                con.close();
             }
-       }catch(SQLException e){
-           System.out.println("Excepción: " + e.toString());
-       }
+        } catch (SQLException e) {
+            System.out.println("Excepción: " + e.toString());
+        }
     }
 
     @Override
@@ -171,9 +171,9 @@ public class AsignarDAO implements AsignarCRUD {
             con = DriverManager.getConnection(db.getStringConexion(), db.getUsuarioConexion(), db.getClaveConexion());
             if (con != null) {
                 pst = con.prepareStatement("UPDATE tblasignar SET fecha_entrega=now(), id_micro="
-                        + (a.getMicro()== 1 || a.getMicro()== 2 ? 2 : 3 )
+                        + (a.getMicro() == 1 || a.getMicro() == 2 ? 2 : 3)
                         + " WHERE id_asignacion = " + a.getId_asignacion());
- 
+
                 pst.executeUpdate();
                 con.close();
                 pst.close();
@@ -181,6 +181,24 @@ public class AsignarDAO implements AsignarCRUD {
         } catch (SQLException e) {
             System.out.println("Error al actualizar estado en la BD");
         }
+    }
+
+    @Override
+    public int limpiar(Asignar a) {
+        try {
+            con = DriverManager.getConnection(db.getStringConexion(), db.getUsuarioConexion(), db.getClaveConexion());
+            if (con != null) {
+                pst = con.prepareStatement("UPDATE public.tblasignar\n"
+                        + " SET estado_asignacion='I'\n" 
+                        + " WHERE id_micro= " + a.getMicro());
+                pst.executeUpdate();
+                con.close();
+                pst.close();
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al actualizar estado en la BD");
+        }
+        return 0;
     }
 
 }
