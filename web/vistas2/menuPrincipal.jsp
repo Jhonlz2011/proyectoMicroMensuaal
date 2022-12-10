@@ -239,7 +239,7 @@
                                                     <tr>
                                                         <td >${a.id_asignacion}</td>
                                                         <td>${a.materia.nombre_materia}</td>
-                                                        <td>${a.profesor.nombres_profesor}</td>
+                                                        <td>${a.profesor.nombres_profesor} ${a.profesor.apellidos_profesor}</td>
                                                         <td>${a.periodo.semestre_modulo}</td>
                                                         <td class="text-center">${a.horario.horario}</td>
                                                         <!-- COLUMNA MICRO -->

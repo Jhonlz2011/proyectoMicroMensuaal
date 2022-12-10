@@ -81,7 +81,7 @@ public class AsignarDAO implements AsignarCRUD {
             con = DriverManager.getConnection(db.getStringConexion(), db.getUsuarioConexion(), db.getClaveConexion());
             if (con != null) {
                 stm = con.createStatement();
-                strSQL = " SELECT a.id_asignacion, a.id_micro, p.id_profesor,p.nombres_profesor,h.id_horario, h.horario,\n"
+                strSQL = " SELECT a.id_asignacion, a.id_micro, p.id_profesor,p.nombres_profesor, p.apellidos_profesor, h.id_horario, h.horario,\n"
                         + "pe.id_periodo,pe.semestre_modulo,m.id_materia,m.nombre_materia\n"
                         + "FROM public.tblasignar a \n"
                         + "JOIN public.tblprofesor p ON a.id_profesor=p.id_profesor\n"
@@ -95,7 +95,7 @@ public class AsignarDAO implements AsignarCRUD {
                     a.setMateria(new Materia(rst.getInt("id_materia"),
                             rst.getString("nombre_materia")));
                     a.setProfesor(new Profesor(rst.getInt("id_profesor"),
-                            rst.getString("nombres_profesor")));
+                            rst.getString("nombres_profesor"), rst.getString("apellidos_profesor")));       
                     a.setHorario(new Horario(rst.getInt("id_horario"),
                             rst.getString("horario")));
                     a.setPeriodo(new Periodo(rst.getInt("id_periodo"),

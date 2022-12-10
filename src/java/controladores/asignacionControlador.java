@@ -36,7 +36,7 @@ public class asignacionControlador extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        request.setCharacterEncoding("utf8");
         response.setContentType("text/html;charset=UTF-8");
 
         String accion = request.getParameter("accion");
