@@ -25,7 +25,7 @@
         <div class="bg-header header-login">
             <header class="container header">
              
-                <img src="vistas2/assets/dist/img/LogoIndex.png" alt=""/>
+                <img src="" alt=""/>
             </header>
         </div>
         <!-- fin de header -->

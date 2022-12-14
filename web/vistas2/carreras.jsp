@@ -351,11 +351,11 @@
         <!-- DataTables  & Plugins -->
         <script src="vistas2/assets/plugins/datatables/jquery.dataTables.min.js" type="text/javascript"></script>
         <script src="vistas2/assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js" type="text/javascript"></script>
-        <script src="vistas2/scripts/dataTable.js" type="text/javascript"></script>
+        <script src="vistas2/dist/scripts/dataTableInfo.js" type="text/javascript"></script>
         <!-- SweetAlert -->
         <script src="vistas2/assets/plugins/swetalert/sweetalert.js" type="text/javascript"></script>
         
-        <script src="vistas2/scripts/principal.js" type="text/javascript"></script>
+        <script src="vistas2/dist/scripts/principal.js" type="text/javascript"></script>
         
         <script>
             $(document).ready(function () {
@@ -398,6 +398,39 @@
                         }
                     });
                 }
+            });
+        </script>
+        
+        
+        <script>
+            $(document).ready(function () {
+                $('#example1').DataTable({
+                    searchPanes: {
+
+                        dtOpts: {
+                            dom: 'tp',
+
+                            searching: true
+                        }
+                    },
+                    dom: 'Pfrtip',
+                    "language": {
+                        "lengthMenu": "Mostrar _MENU_ registros",
+                        "zeroRecords": "No se encontraron resultados",
+                        "info": "Mostrando registros del _START_ al _END_ de _TOTAL_ registros",
+                        "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                        "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+                        "sSearch": "Buscar:",
+                        "oPaginate": {
+                            "sFirst": "Primero",
+                            "sLast": "Último",
+                            "sNext": "Siguiente",
+                            "sPrevious": "Anterior"
+                        },
+                        "sProcessing": "Procesando...",
+                    }
+                });
+
             });
         </script>
     </body>

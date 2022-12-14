@@ -45,7 +45,7 @@ public class ProfesorDAO implements CRUD {
             if (con!=null)
             {
                 stm=con.createStatement();
-                strSQL=" SELECT id_profesor, nombres_profesor, apellidos_profesor";
+                strSQL=" SELECT id_profesor, nombres_profesor, apellidos_profesor, cedula";
                 strSQL+=" FROM tblprofesor";
                strSQL+=" WHERE estado='A'";
                 strSQL+=" ORDER BY id_profesor";
@@ -56,7 +56,7 @@ public class ProfesorDAO implements CRUD {
                     profesor.setId_profesor(rst.getInt("id_profesor"));
                     profesor.setNombres_profesor(rst.getString("nombres_profesor"));
                     profesor.setApellidos_profesor(rst.getString("apellidos_profesor"));
-        
+                    profesor.setCedula(rst.getString("cedula"));
                     listProfe.add(profesor);
                 }
                 rst.close();
@@ -107,9 +107,10 @@ public class ProfesorDAO implements CRUD {
             con=DriverManager.getConnection(db.getStringConexion(), db.getUsuarioConexion(), db.getClaveConexion());
             if (con!=null){
            // stm=con.createStatement();
-            pst=con.prepareStatement("INSERT INTO tblprofesor(nombres_profesor, apellidos_profesor) VALUES (?,?)");
+            pst=con.prepareStatement("INSERT INTO tblprofesor(nombres_profesor, apellidos_profesor, cedula) VALUES (?,?,?)");
             pst.setString(1, p.getNombres_profesor());
             pst.setString(2, p.getApellidos_profesor());
+            pst.setString(3, p.getCedula());
             resultado=pst.executeUpdate();
           //  stm.close();
             con.close();
@@ -128,10 +129,11 @@ public class ProfesorDAO implements CRUD {
         try {
             con = DriverManager.getConnection(db.getStringConexion(), db.getUsuarioConexion(), db.getClaveConexion());
             if (con != null) {
-                pst = con.prepareStatement("UPDATE tblprofesor SET nombres_profesor=?, apellidos_profesor=? WHERE id_profesor=?");
-                pst.setString(1, p.getNombres_profesor());
-                pst.setString(2, p.getApellidos_profesor());
-                pst.setInt(3, p.getId_profesor());
+                pst = con.prepareStatement("UPDATE tblprofesor SET cedula=?, nombres_profesor=?, apellidos_profesor=? WHERE id_profesor=?");
+                pst.setString(1, p.getCedula());
+                pst.setString(2, p.getNombres_profesor());
+                pst.setString(3, p.getApellidos_profesor());
+                pst.setInt(4, p.getId_profesor());
                 r = pst.executeUpdate();
                 con.close();
                 pst.close();

@@ -38,15 +38,19 @@ public class profesorControlador extends HttpServlet {
                 int r = 0;
                 String nombres = request.getParameter("txtNombres");
                 String apellidos = request.getParameter("txtApellidos");
-                if (!"".equals(nombres) && !"".equals(apellidos)) {
+                String cedula = request.getParameter("txtCedula");
+                if (!"".equals(nombres) && !"".equals(apellidos) && !"".equals(cedula)) {
                     //   for (int i = 0; i < nombres.length(); i++) {
-                    String name = nombres;
-                    String lastname = apellidos;
-                    name = Normalizer.normalize(name, Normalizer.Form.NFD);
-                    lastname = Normalizer.normalize(lastname, Normalizer.Form.NFD);
+                  
+                    
+                    nombres = Normalizer.normalize(nombres, Normalizer.Form.NFD);
+                    apellidos = Normalizer.normalize(apellidos, Normalizer.Form.NFD);
+                    cedula = Normalizer.normalize(cedula, Normalizer.Form.NFD);
+                    
                     Profesor pro = new Profesor();
                     pro.setNombres_profesor(nombres);
                     pro.setApellidos_profesor(apellidos);
+                    pro.setCedula(cedula);
                     r = dao.agregar(pro);
                     if (r != 0) {
                         request.getRequestDispatcher("profesorControlador?accion=listar").forward(request, response);
@@ -63,8 +67,9 @@ public class profesorControlador extends HttpServlet {
                 int id = Integer.valueOf(request.getParameter("txtid"));
                 String n = request.getParameter("txtNombre");
                 String a = request.getParameter("txtApellido");
+                String c =  request.getParameter("txtCedula");
 
-                Profesor prof = new Profesor(id, n, a);
+                Profesor prof = new Profesor(id, n, a, c);
                 int respuesta = dao.editar(prof);
                 if (respuesta != 0) {
                     request.getRequestDispatcher("profesorControlador?accion=listar").forward(request, response);

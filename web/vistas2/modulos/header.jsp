@@ -201,10 +201,10 @@
             <!-- DataTables  & Plugins -->
             <script src="vistas2/assets/plugins/datatables/jquery.dataTables.min.js" type="text/javascript"></script>
             <script src="vistas2/assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js" type="text/javascript"></script>
-            <script src="vistas2/scripts/dataTable.js" type="text/javascript"></script>
+            <script src="vistas2/dist/scripts/dataTable.js" type="text/javascript"></script>
             <!-- SweetAlert -->
             <script src="vistas2/assets/plugins/swetalert/sweetalert.js" type="text/javascript"></script>
-            <script src="vistas2/scripts/principal.js" type="text/javascript"></script>
+            <script src="vistas2/dist/scripts/principal.js" type="text/javascript"></script>
 
             <script>
                 $(document).ready(function () {

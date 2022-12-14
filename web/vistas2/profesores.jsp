@@ -231,14 +231,16 @@
                                             <thead>
                                                 <tr>
                                                     <th>ID</th>
-                                                    <th>Apellidos</th> 
-                                                    <th>Nombres</th>                                                 
-                                                    <th>Acciones</th>
+                                                    <th>CEDULA</th>
+                                                    <th>APELLIDOS</th> 
+                                                    <th>NOMBRES</th>                                                 
+                                                    <th>ACCIONES</th>
                                                 </tr>
                                             </thead> 
                                             <c:forEach var="profesor" items="${Profesores}">
                                                 <tr>
                                                     <td >${profesor.id_profesor}</td>
+                                                    <td>${profesor.cedula}</td>
                                                     <td>${profesor.apellidos_profesor}</td>
                                                     <td>${profesor.nombres_profesor}</td>
                                                     <!-- <td></td>    -->
@@ -325,13 +327,15 @@
                             <form action="profesorControlador" method="POST">   
                                 <input  class="form-control inputId--editar" type="text" name="txtid" style="
                                         border-color: black !important; display: none !important"><br> <!--  -->
+                                Cedula:<br>
+                                <input class="form-control inputCedula--editar" type="text" name="txtCedula" style="
+                                       border-color: black !important; "><br>                               
                                 Nombres:<br>
                                 <input class="form-control inputNombre--editar" type="text" name="txtNombre" style="
                                        border-color: black !important;"><br>
                                 Apellidos:<br>
                                 <input class="form-control inputApellido--editar" type="text" name="txtApellido" style="
                                        border-color: black !important; "><br>
-
                                 <div class="justify-content-between">
                                     <button type="button" class="btn btn-danger" data-dismiss="modal"<i class="fa-solid fa-right-from-bracket"></i>  Cerrar</button>
                                     <input type="submit" class="btn btn-success" value="Actualizar" name="accion">
@@ -373,11 +377,11 @@
         <script src="vistas2/assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js" type="text/javascript"></script>
         <script src="vistas2/assets/plugins/datatables-responsive/js/dataTables.responsive.min.js" type="text/javascript"></script>
         <script src="vistas2/assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js" type="text/javascript"></script>
-        <script src="vistas2/scripts/dataTable.js" type="text/javascript"></script>
+        <!-- <script src="vistas2/dist/scripts/dataTable.js" type="text/javascript"></script> -->
         <!-- SweetAlert -->
         <script src="vistas2/assets/plugins/swetalert/sweetalert.js" type="text/javascript"></script>
 
-        <script src="vistas2/scripts/principal.js" type="text/javascript"></script> 
+        <script src="vistas2/dist/scripts/principal.js" type="text/javascript"></script> 
 
         <script>
             document.addEventListener("DOMContentLoaded", eventoTabla);
@@ -391,33 +395,36 @@
                     const seleccion = e.target;
                     const editarNombre = document.querySelector(".inputNombre--editar");
                     const editarApellido = document.querySelector(".inputApellido--editar");
+                    const editarCedula = document.querySelector(".inputCedula--editar");
                     const inputId = document.querySelector(".inputId--editar");
 
                     //Si es que el click selecciono el boton
                     if (seleccion.classList.contains("button__editar--b")) {
                         const fila = seleccion.parentElement.parentElement;
                         const id = fila.children[0].textContent;
-                        const nombre = fila.children[2].textContent;
-                        const apellido = fila.children[1].textContent;
+                        const nombre = fila.children[3].textContent;
+                        const apellido = fila.children[2].textContent;
+                        const cedula = fila.children[1].textContent;
 
                         editarNombre.value = nombre;
                         editarApellido.value = apellido;
                         inputId.value = id;
+                        editarCedula.value = cedula;
 
                     } else if (seleccion.classList.contains("fa-pencil")) {
                         const fila = seleccion.parentElement.parentElement.parentElement;
                         const id = fila.children[0].textContent;
-                        const nombre = fila.children[2].textContent;
-                        const apellido = fila.children[1].textContent;
-
+                        const nombre = fila.children[3].textContent;
+                        const apellido = fila.children[2].textContent;
+                        const cedula = fila.children[1].textContent;
+                         
                         editarNombre.value = nombre;
                         editarApellido.value = apellido;
+                        editarCedula.value = cedula;
                         inputId.value = id;
-
                     }
                 });
             }
-
         </script>
 
 

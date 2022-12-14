@@ -12,14 +12,22 @@ package entidades;
 public class Profesor {
 
     private int id_profesor;
-    private String nombres_profesor, apellidos_profesor, estado;
+    private String nombres_profesor, apellidos_profesor, estado, cedula;
 
-    public Profesor(int id_profesor, String nombres_profesor, String apellidos_profesor) {
+    public Profesor(int id_profesor, String nombres_profesor, String apellidos_profesor, String cedula) {
 
         this.id_profesor = id_profesor;
         this.apellidos_profesor = apellidos_profesor;
         this.nombres_profesor = nombres_profesor;
+        this.cedula = cedula;
 
+    }
+
+    public Profesor(int id_profesor, String nombres_profesor, String apellidos_profesor) {
+        this.id_profesor = id_profesor;
+        this.apellidos_profesor = apellidos_profesor;
+        this.nombres_profesor = nombres_profesor;
+  
     }
 
     public Profesor() {
@@ -28,6 +36,19 @@ public class Profesor {
     public Profesor(int id_profesor, String nombres_profesor) {
         this.id_profesor = id_profesor;
         this.nombres_profesor = nombres_profesor;
+    }
+    /**
+     * @return the cedula
+     */
+    public String getCedula() {
+        return cedula;
+    }
+
+    /**
+     * @param cedula the cedula to set
+     */
+    public void setCedula(String cedula) {
+        this.cedula = cedula;
     }
 
     /**
