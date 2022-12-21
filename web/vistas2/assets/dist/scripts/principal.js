@@ -7,27 +7,32 @@ function eventoTabla() {
         e.preventDefault();
 
         const seleccion = e.target;
-        const editarNombre = document.querySelector(".inputNombre--editar");
-        const inputId = document.querySelector(".inputId--editar");
+        const editarNombre = document.querySelector("#edit-nombre");
+        const editarCodigo = document.querySelector("#edit-codigo");
+        const inputId = document.querySelector("#edit-Id");
 
         //Si es que el click selecciono el boton
         if (seleccion.classList.contains("button__editar--b")) {
             const fila = seleccion.parentElement.parentElement;
             const id = fila.children[0].textContent;
-            const nombre = fila.children[1].textContent;
-
+            const codigo = fila.children[1].textContent;
+            const nombre = fila.children[2].textContent;
+         
 
             editarNombre.value = nombre;
             inputId.value = id;
+            editarCodigo.value = codigo;
 
         } else if (seleccion.classList.contains("fa-pencil")) {
             const fila = seleccion.parentElement.parentElement.parentElement;
             const id = fila.children[0].textContent;
-            const nombre = fila.children[1].textContent;
+            const nombre = fila.children[2].textContent;
+            const codigo = fila.children[1].textContent;
 
 
             editarNombre.value = nombre;
             inputId.value = id;
+            editarCodigo.value = codigo;
 
         }
     });
@@ -50,7 +55,7 @@ $(document).ready(function () {
             confirmButtonText: "Sí, Eliminar!",
             cancelButtonText: "No, Cancelar!",
             closeOnConfirm: false,
-            closeOnCancel: false
+            closeOnCancel: true
         },
                 function (isConfirm) {
                     if (isConfirm) {
@@ -80,7 +85,7 @@ $(document).ready(function () {
 });
 
 $(function () {
-    tabla =  $("#example1").DataTable({
+    tabla = $("#example1").DataTable({
         "responsive": true, "lengthChange": false, "autoWidth": false,
         "language": {"url": "https://cdn.datatables.net/plug-ins/1.12.1/i18n/es-ES.json"}
 

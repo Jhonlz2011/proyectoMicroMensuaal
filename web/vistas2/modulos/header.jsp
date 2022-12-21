@@ -204,9 +204,11 @@
             <script src="vistas2/dist/scripts/dataTable.js" type="text/javascript"></script>
             <!-- SweetAlert -->
             <script src="vistas2/assets/plugins/swetalert/sweetalert.js" type="text/javascript"></script>
-            <script src="vistas2/dist/scripts/principal.js" type="text/javascript"></script>
-
+           
+            <script src="vistas2/assets/dist/scripts/principal.js" type="text/javascript"></script>
             <script>
+                
+                
                 $(document).ready(function () {
                     $("tr #deleteMate").click(function (e) {
                         e.preventDefault();
@@ -242,6 +244,8 @@
                             url: url,
                             async: true,
                             success: function (r) {
+                                
+                                
                             }
                         });
                     }

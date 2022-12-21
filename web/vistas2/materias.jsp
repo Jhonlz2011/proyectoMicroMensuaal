@@ -48,13 +48,15 @@
                                             <thead>
                                                 <tr>
                                                     <th>ID</th>
-                                                    <th>Materia</th>                                               
-                                                    <th>Acciones</th>
+                                                    <th>CODIGO</th>
+                                                    <th>MATERIA</th>                                               
+                                                    <th class="text-center">ACCIONES</th>
                                                 </tr>
                                             </thead> 
                                             <c:forEach var="materia" items="${Materias}">
                                                 <tr>
                                                     <td >${materia.id_materia}</td>
+                                                    <td>${materia.codigo_materia}</td>
                                                     <td>${materia.nombre_materia}</td>
                                                     <td class="text-center">
                                                         <button type="button" class="btn btn-warning button__editar--b" data-toggle="modal" data-target="#modal-danger1" title="Editar" data-original-title="Editar">
@@ -90,23 +92,31 @@
 
             <div class="modal fade" id="modal-danger">
                 <div class="modal-dialog">
-                    <div class="modal-content bg-danger" style="
-                         background: #487c3b !important;">
-                        <div class="modal-header">
-                            <h4 class="modal-title">Nueva Materia</h4>
+                    <div class="modal-content modal-nuevo">
+                        <div class="modal-header header-color-nuevo">
+                            <h4 class="modal-title title-nuevo">Nueva Materia</h4>
 
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="modal-body">
-                            <form id="formNuevo" action="materiaControlador" method="POST">                   
-                                Nombre de la materia:<br>
-                                <input class="form-control" type="text" name="txtNombres" style="
-                                       border-color: black !important;"><br>
+                            <form id="formNuevo" autocomplete="off" action="materiaControlador" method="POST">                   
+                                <div class="form-row-nuevo">
+                                    <div class="input-data">
+                                        <input class="input-nuevo" type="text" name="txtCodigo" required>
+                                        <div class="underline"></div>
+                                        <label>Codigo</label>
+                                    </div>  
+                                    <div class="input-data">
+                                        <input class="input-nuevo" type="text" name="txtNombres" required>
+                                        <div class="underline"></div>
+                                        <label>Nombre de la carrera</label>
+                                    </div>          
+                                </div>                              
                                 <div class="justify-content-between">
-                                    <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa-solid fa-right-from-bracket"></i> Cerrar</button>
-                                    <input type="submit" class="btn btn-success" value="Agregar" name="accion">
+                                    <button type="button" class="btn btn-dark" data-dismiss="modal"><i class="fa-solid fa-right-from-bracket"></i> Cerrar</button>
+                                    <button type="submit" class="btn btn-success" value="Agregar" name="accion"><i class="fa-solid fa-user-plus"></i></i>  Agregar</button>
                                 </div>
                             </form>
                         </div>
@@ -120,8 +130,7 @@
             <!--Editar Materia-->
             <div class="modal fade" id="modal-danger1">
                 <div class="modal-dialog">
-                    <div class="modal-content bg-danger" style="
-                         background: #487c3b !important;">
+                    <div class="modal-content bg-warning">
                         <div class="modal-header">
                             <h4 class="modal-title">Editar Materia</h4>
 
@@ -129,17 +138,27 @@
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <div class="modal-body">
-                            <form action="materiaControlador" method="POST">   
-                                <input  class="form-control inputId--editar" type="text" name="txtid" style="
-                                       border-color: black !important; display: none !important"><br> <!--  -->
-                                Nombre de la materia:<br>
-                                <input class="form-control inputNombre--editar" type="text" name="txtNombre" style="
-                                       border-color: black !important;"><br> 
-
+                        <div class="modal-body editar">
+                            <form  autocomplete="off" action="materiaControlador" method="POST">   
+                                <input  id="edit-Id" class="form-control" type="text" name="txtid" style="
+                                       border-color: black !important; display: none !important">
+                                <div class="form-row-editar">
+                                    <div class="input-data-edit">
+                                         <input id="edit-codigo" class="input-editar" type="text" name="txtCodigo" required>  
+                                        <div class="underline-e"></div>                             
+                                        <label>Codigo</label>
+                                    </div>
+                                    <div class="input-data-edit">  
+                                        <input id="edit-nombre" class="input-editar" type="text" name="txtNombre" required>
+                                        <div class="underline-e"></div>                             
+                                        <label>Nombre de la materia</label>
+                                    </div>
+                                    
+                                    
+                                </div>   
                                 <div class="justify-content-between">
-                                    <button type="button" class="btn btn-danger" data-dismiss="modal"<i class="fa-solid fa-right-from-bracket"></i> Cerrar</button>
-                                    <input type="submit" class="btn btn-success" value="Actualizar" name="accion">
+                                     <button type="button" class="btn btn-white" data-dismiss="modal" ><i class="fa-solid fa-right-from-bracket"></i>  Cerrar</button>
+                                     <button type="submit" class="btn btn-warning" value="Actualizar" name="accion"><i class="fa-solid fa-pen-to-square"></i>  Actualizar</button>
                                 </div>
                             </form>
                         </div>

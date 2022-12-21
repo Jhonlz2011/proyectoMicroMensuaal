@@ -46,7 +46,7 @@ public class MateriaDAO implements MateriaCRUD {
             if (con!=null)
             {
                 stm=con.createStatement();
-                strSQL=" SELECT id_materia, nombre_materia";
+                strSQL=" SELECT id_materia, nombre_materia, codigo_materia";
                 strSQL+=" FROM tblmaterias";
                strSQL+=" WHERE estado_materia='A'";
                 strSQL+=" ORDER BY id_materia";
@@ -56,6 +56,7 @@ public class MateriaDAO implements MateriaCRUD {
                     Materia materia=new Materia();
                     materia.setId_materia(rst.getInt("id_materia"));
                     materia.setNombre_materia(rst.getString("nombre_materia"));
+                     materia.setCodigo_materia(rst.getString("codigo_materia"));
                     listMate.add(materia);
                 }
                 rst.close();
@@ -104,8 +105,9 @@ public class MateriaDAO implements MateriaCRUD {
             con = DriverManager.getConnection(db.getStringConexion(), db.getUsuarioConexion(), db.getClaveConexion());
             if (con != null) {
                 stm = con.createStatement();
-                pst = con.prepareStatement("INSERT INTO tblmaterias(nombre_materia) VALUES (?)");
+                pst = con.prepareStatement("INSERT INTO tblmaterias(nombre_materia, codigo_materia) VALUES (?,?)");
                 pst.setString(1, m.getNombre_materia()); 
+                pst.setString(2, m.getCodigo_materia()); 
                 resultado = pst.executeUpdate();
                 stm.close();
                 con.close();
@@ -124,10 +126,11 @@ public class MateriaDAO implements MateriaCRUD {
         try {
             con = DriverManager.getConnection(db.getStringConexion(), db.getUsuarioConexion(), db.getClaveConexion());
             if (con != null) {
-                pst = con.prepareStatement("UPDATE tblmaterias SET nombre_materia=? WHERE id_materia=?");
+                pst = con.prepareStatement("UPDATE tblmaterias SET nombre_materia=?, codigo_materia=? WHERE id_materia=?");
               
                 pst.setString(1, m.getNombre_materia());
-                pst.setInt(2, m.getId_materia());
+                pst.setString(2, m.getCodigo_materia());
+                pst.setInt(3, m.getId_materia());
                 r = pst.executeUpdate();
                 con.close();
                 pst.close();

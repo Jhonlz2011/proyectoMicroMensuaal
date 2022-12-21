@@ -176,7 +176,7 @@
                                     <li class="nav-item">
                                         <a href="reporteControlador?accion=listar" class="nav-link">
                                             <i class="fa-solid fa-chart-column nav-icon"></i>
-                                          <p>Informe</p>
+                                            <p>Informe</p>
                                         </a>
                                     </li>
                                 </ul>
@@ -263,23 +263,26 @@
 
             <div class="modal fade" id="modal-danger">
                 <div class="modal-dialog">
-                    <div class="modal-content bg-danger" style="
-                         background: #487c3b !important;">
-                        <div class="modal-header">
-                            <h4 class="modal-title">Nueva Carrera</h4>
+                    <div class="modal-content modal-nuevo">
+                        <div class="modal-header header-color-nuevo">
+                            <h4 class="modal-title title-nuevo">Nueva Carrera</h4>
 
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                               <span aria-hidden="true">&times;</span> 
+                                <span aria-hidden="true">&times;</span> 
                             </button>
                         </div>
                         <div class="modal-body">
-                            <form id="formNuevo" action="carreraControlador" method="POST">                   
-                                Nombre de carrera:<br>
-                                <input class="form-control" type="text" name="txtNombres" style="
-                                       border-color: black !important;"><br>
+                            <form id="formNuevo" autocomplete="off" action="carreraControlador" method="POST"> 
+                                <div class="form-row-nuevo">
+                                    <div class="input-data">
+                                        <input class="input-nuevo" type="text" name="txtNombres" required>
+                                        <div class="underline"></div>
+                                        <label>Nombre de carrera</label>
+                                    </div>                     
+                                </div> 
                                 <div class="justify-content-between">
-                                    <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa-solid fa-right-from-bracket"></i> Cerrar</button>
-                                    <input type="submit" class="btn btn-success" value="Agregar" name="accion">
+                                    <button type="button" class="btn btn-dark" data-dismiss="modal"><i class="fa-solid fa-right-from-bracket"></i> Cerrar</button>
+                                    <button type="submit" class="btn btn-success" value="Agregar" name="accion"><i class="fa-solid fa-user-plus"></i></i>  Agregar</button>
                                 </div>
                             </form>
                         </div>
@@ -293,8 +296,7 @@
             <!--Editar Carrera-->
             <div class="modal fade" id="modal-danger1">
                 <div class="modal-dialog">
-                    <div class="modal-content bg-danger" style="
-                         background: #487c3b !important;">
+                    <div class="modal-content bg-warning">
                         <div class="modal-header">
                             <h4 class="modal-title">Editar Carrera</h4>
 
@@ -302,17 +304,21 @@
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <div class="modal-body">
-                            <form action="carreraControlador" method="POST">   
-                                <input  class="form-control inputId--editar" type="text" name="txtid" style="
-                                        border-color: black !important; display: none !important"><br> <!--  -->
-                                Nombre de carrera:<br>
-                                <input class="form-control inputNombre--editar" type="text" name="txtNombre" style="
-                                       border-color: black !important;"><br> 
+                        <div class="modal-body editar">
+                            <form autocomplete="off" action="carreraControlador" method="POST">   
+                                <input  id="edit-Id" class="form-control" type="text" name="txtid" style="
+                                        border-color: black !important; display: none !important">
+                                <div class="form-row-editar">
+                                    <div class="input-data-edit">
+                                        <input id="edit-nombre" class="input-editar" type="text" name="txtNombre" required>  
+                                        <div class="underline-e"></div>                             
+                                        <label>Nombre de carrera</label>
+                                    </div>
+                                </div>
 
                                 <div class="justify-content-between">
-                                    <button type="button" class="btn btn-danger" data-dismiss="modal"<i class="fa-solid fa-right-from-bracket"></i> Cerrar</button>
-                                    <input type="submit" class="btn btn-success" value="Actualizar" name="accion">
+                                    <button type="button" class="btn btn-white" data-dismiss="modal" ><i class="fa-solid fa-right-from-bracket"></i>  Cerrar</button>
+                                    <button type="submit" class="btn btn-warning" value="Actualizar" name="accion"><i class="fa-solid fa-pen-to-square"></i>  Actualizar</button>
                                 </div>
                             </form>
                         </div>
@@ -354,84 +360,96 @@
         <script src="vistas2/dist/scripts/dataTableInfo.js" type="text/javascript"></script>
         <!-- SweetAlert -->
         <script src="vistas2/assets/plugins/swetalert/sweetalert.js" type="text/javascript"></script>
-        
-        <script src="vistas2/dist/scripts/principal.js" type="text/javascript"></script>
-        
+
+
+
         <script>
-            $(document).ready(function () {
-                $("tr #deleteCarre").click(function (e) {
+            
+            document.addEventListener("DOMContentLoaded", eventoTabla);
+            function eventoTabla() {
+                const tabla = document.querySelector(".selectorTabla");
+
+                tabla.addEventListener("click", function guardarId(e) {
                     e.preventDefault();
-                    var id_carrera = $(this).parent().find('#id_carrera').val();
-                    swal({
-                        title: "Esta Seguro de Eliminar?",
-                        text: "Una vez eliminado no podra recuperarlo!",
-                        type: "warning",
-                        showCancelButton: true,
-                        confirmButtonClass: "btn-danger",
-                        confirmButtonText: "Sí, Eliminar!",
-                        cancelButtonText: "No, Cancelar!",
-                        closeOnConfirm: false,
-                        closeOnCancel: false
-                    },
-                            function (isConfirm) {
-                                if (isConfirm) {
-                                    eliminarCarrera(id_carrera);
-                                    swal("Eliminado!", "La carrera se ha eliminado con exito", "success");
-                                    setTimeout(function () {
-                                        parent.location.href = "carreraControlador?accion=listar";
-                                    }, 1800);
-                                } else {
-                                    swal("Cancelado", "Cancelaste la eliminación", "error");
-                                }
-                            });
-                });
 
-                function eliminarCarrera(id_carrera) {
-                    var url = "carreraControlador?accion=eliminarCarrera&id_carrera=" + id_carrera;
-                    console.log("eliminado");
-                    $.ajax({
-                        type: 'POST',
-                        url: url,
-                        async: true,
-                        success: function (data) {
-                         tabla.ajax.reload(null, false);    
-                        }
-                    });
-                }
-            });
-        </script>
-        
-        
-        <script>
-            $(document).ready(function () {
-                $('#example1').DataTable({
-                    searchPanes: {
+                    const seleccion = e.target;
+                    const editarNombre = document.querySelector("#edit-nombre");  
+                    const inputId = document.querySelector("#edit-Id");
 
-                        dtOpts: {
-                            dom: 'tp',
+                    //Si es que el click selecciono el boton
+                    if (seleccion.classList.contains("button__editar--b")) {
+                        const fila = seleccion.parentElement.parentElement;
+                        const id = fila.children[0].textContent;
+                        const nombre = fila.children[1].textContent;
 
-                            searching: true
-                        }
-                    },
-                    dom: 'Pfrtip',
-                    "language": {
-                        "lengthMenu": "Mostrar _MENU_ registros",
-                        "zeroRecords": "No se encontraron resultados",
-                        "info": "Mostrando registros del _START_ al _END_ de _TOTAL_ registros",
-                        "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-                        "infoFiltered": "(filtrado de un total de _MAX_ registros)",
-                        "sSearch": "Buscar:",
-                        "oPaginate": {
-                            "sFirst": "Primero",
-                            "sLast": "Último",
-                            "sNext": "Siguiente",
-                            "sPrevious": "Anterior"
-                        },
-                        "sProcessing": "Procesando...",
+
+                        editarNombre.value = nombre;
+                        inputId.value = id;
+                 
+
+                    } else if (seleccion.classList.contains("fa-pencil")) {
+                        const fila = seleccion.parentElement.parentElement.parentElement;
+                        const id = fila.children[0].textContent;
+                        const nombre = fila.children[1].textContent;
+
+                        editarNombre.value = nombre;
+                        inputId.value = id;
                     }
                 });
+            }
+             $(document).ready(function () {
+            $("tr #deleteCarre").click(function (e) {
+                e.preventDefault();
+                var id_carrera = $(this).parent().find('#id_carrera').val();
+                swal({
+                    title: "Esta Seguro de Eliminar?",
+                    text: "Una vez eliminado no podra recuperarlo!",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonClass: "btn-danger",
+                    confirmButtonText: "Sí, Eliminar!",
+                    cancelButtonText: "No, Cancelar!",
+                    closeOnConfirm: false,
+                    closeOnCancel: true
+                },
+                        function (isConfirm) {
+                            if (isConfirm) {
+                                eliminarCarrera(id_carrera);
+                                swal("Eliminado!", "La carrera se ha eliminado con exito", "success");
+                                setTimeout(function () {
+                                parent.location.href = "carreraControlador?accion=listar";
+                                }, 1700);
+                            }
+                        });
+            });
+
+            function eliminarCarrera(id_carrera) {
+                var url = "carreraControlador?accion=eliminarCarrera&id_carrera=" + id_carrera;
+               
+                $.ajax({
+                    type: 'POST',
+                    url: url,
+                    async: true,
+                    success: function (r) {
+                    
+                    }
+                });
+            }
+        }
+        );
+
+           $(function () {
+            tabla = $("#example1").DataTable({
+
+                "responsive": true, "lengthChange": false, "autoWidth": false,
+                "language": {"url": "https://cdn.datatables.net/plug-ins/1.12.1/i18n/es-ES.json"}
 
             });
+        });
+
+        $(document).on("click", "#btnNuevo", function () {
+            $("#formNuevo").trigger("reset");
+        });
         </script>
     </body>
 </html>

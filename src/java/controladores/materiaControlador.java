@@ -39,9 +39,11 @@ public class materiaControlador extends HttpServlet {
             case "Agregar":
                 int r = 0;
                 String nombres = request.getParameter("txtNombres");
+                String codigo = request.getParameter("txtCodigo");
                 if (!"".equals(nombres)) {
                     Materia mate = new Materia();
                     mate.setNombre_materia(nombres);
+                    mate.setCodigo_materia(codigo);
                     r = dao.agregar(mate);
                     if (r != 0) {
                         request.getRequestDispatcher("materiaControlador?accion=listar").forward(request, response);
@@ -55,8 +57,9 @@ public class materiaControlador extends HttpServlet {
             case "Actualizar":            
                 int id= Integer.valueOf(request.getParameter("txtid"));
                 String n= request.getParameter("txtNombre");
+                String c= request.getParameter("txtCodigo");
 
-                Materia mate = new Materia(id,n);
+                Materia mate = new Materia(id,n,c);
                 int respuesta=dao.editar(mate);
                 if(respuesta != 0){
                      request.getRequestDispatcher("materiaControlador?accion=listar").forward(request, response);

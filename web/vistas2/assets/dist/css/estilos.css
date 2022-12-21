@@ -41,15 +41,9 @@
 
 .dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover{
     color: white !important;
-
 }
-
-.form-control:focus {
-    border-color: #e10000 !important;
-}
-
 td{
-    font-size: 1.2rem
+    font-size: 1.08rem;
 
 }
 .btn-warning.focus, .btn-warning:focus{
@@ -81,21 +75,17 @@ body:not(.layout-fixed) .main-sidebar {
 }
 
 .btn-dark{
-    background-color: #d42828 !important;
-    border-color:#dc3545 !important;
+     background-color:  rgb(0 0 0 / 84%) !important;
+    border-color: #343a40 !important;
 }
 .btn-dark:hover{
-    background-color:  #bd0000 !important;
-    border-color: #bd003b !important;
+    background-color:  rgb(0 0 0 / 84%) !important;
+    border-color: #343a40 !important;
 }
 #darkbutton{
     background-color: #343a40 !important;
     border-color: #343a40 !important;
     color: #ffffff !important;
-}
-.btn-dark:hover{
-    background-color:  #f18429 !important;
-    border-color: #fd7e14 !important;
 }
 
 table.dataTable tbody>tr.selected, table.dataTable tbody>tr>.selected{
@@ -104,4 +94,146 @@ table.dataTable tbody>tr.selected, table.dataTable tbody>tr>.selected{
 }
 table.dataTable tbody tr.selected, table.dataTable tbody th.selected, table.dataTable tbody td.selected{
     color: rgb(255, 255 ,255)!important;
+}
+
+form .form-row-nuevo .input-data{
+    width: 100%;
+    height: 40px;
+    position: relative;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+input:focus-visible{
+    outline: none;
+}
+.input-data input{
+    display: block;
+    width: 100%;
+    background-color: transparent;
+    border:none;
+    font-size: 20px;
+    border-bottom: 2px solid rgb(120 120 120 / 72%);
+}
+
+.input-data label{
+    position: absolute;
+    bottom: 1px;
+    color: #767676eb;
+    font-size: 22px;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    font-weight: 500 !important;
+}
+.input-data input:focus ~ label,
+.input-data input:valid ~ label{
+    transform: translateY(-25px);
+    color: #28a745;
+    font-size: 16px;
+    font-weight: 600 !important;
+}
+
+
+.header-color-nuevo{
+    background-color: #28a745;
+}
+
+.input-data .underline{
+    position: absolute;
+    bottom: 6px;
+    height: 2px;
+    width: 100%;
+   
+}
+.input-data .underline:before,
+.input-data .underline:after{
+    position: absolute;
+    content: "";
+    height: 100%;
+    width: 100%;
+     background: #28a745;
+     transform: scaleX(0);
+     transform-origin: center;
+     transition: transform 0.4s ease;
+}
+
+.input-data input:focus ~ .underline:before, .underline:after,
+.input-data input:valid ~ .underline:before, .underline:after{
+    transform: scaleX(1);
+}
+
+
+h4.modal-title.title-nuevo{
+    color: white;
+}
+
+.editar{
+    background-color:#4a3700 ;
+}
+
+form .form-row-editar .input-data-edit{
+    width: 100%;
+    height: 40px;
+    position: relative;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.input-data-edit input{
+    display: block;
+    width: 100%;
+    color: white;
+    background-color: transparent;
+    border:none;
+    font-size: 20px;
+    border-bottom: 2px solid rgb(255 255 255 / 78%);
+}
+
+.input-data-edit label{
+    position: absolute;
+    bottom: 1px;
+    color: #ffffffd1;
+    font-size: 22px;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    font-weight: 500 !important;
+}
+.input-data-edit input:focus ~ label,
+.input-data-edit input:valid ~ label{
+    transform: translateY(-25px);
+    color: #ffc107;
+    font-size: 16px;
+    font-weight: 600 !important;
+}
+
+
+.input-data-edit .underline-e{
+    position: absolute;
+    bottom: 6px;
+    height: 2px;
+    width: 100%;
+   
+}
+.input-data-edit .underline-e:before,
+.input-data-edit .underline-e:after{
+    position: absolute;
+    content: "";
+    height: 100%;
+    width: 100%;
+     background: #ffc107;
+     transform: scaleX(0);
+     transform-origin: center;
+     transition: transform 0.4s ease;
+}
+.input-data-edit input:focus ~ .underline-e:before, .underline-e:after,
+.input-data-edit input:valid ~ .underline-e:before, .underline-e:after{
+    transform: scaleX(1);
+}
+
+.btn-white{
+    background-color: white;
+    border-color: antiquewhite;
+}
+.btn-white:hover{
+    background-color: #fff9e7;
+    border-color: antiquewhite;
 }

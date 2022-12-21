@@ -11,12 +11,20 @@ package entidades;
  */
 public class Materia {
     private int id_materia;
-    private String nombre_materia, estado_materia; 
+    private String nombre_materia, estado_materia, codigo_materia; 
     
-    public Materia(int id_materia, String nombre_materia) {
+    public Materia(int id_materia, String nombre_materia, String codigo_materia) {
 
         this.id_materia = id_materia;
         this.nombre_materia = nombre_materia;
+        this.codigo_materia = codigo_materia;
+        
+    }
+      public Materia(int id_materia, String nombre_materia) {
+
+        this.id_materia = id_materia;
+        this.nombre_materia = nombre_materia;
+  
     }
 
     public Materia() {
@@ -62,6 +70,20 @@ public class Materia {
      */
     public void setEstado_materia(String estado_materia) {
         this.estado_materia = estado_materia;
+    }
+
+    /**
+     * @return the codigo_materia
+     */
+    public String getCodigo_materia() {
+        return codigo_materia;
+    }
+
+    /**
+     * @param codigo_materia the codigo_materia to set
+     */
+    public void setCodigo_materia(String codigo_materia) {
+        this.codigo_materia = codigo_materia;
     }
 
     

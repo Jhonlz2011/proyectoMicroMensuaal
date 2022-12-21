@@ -40,13 +40,7 @@ public class profesorControlador extends HttpServlet {
                 String apellidos = request.getParameter("txtApellidos");
                 String cedula = request.getParameter("txtCedula");
                 if (!"".equals(nombres) && !"".equals(apellidos) && !"".equals(cedula)) {
-                    //   for (int i = 0; i < nombres.length(); i++) {
-                  
-                    
-                    nombres = Normalizer.normalize(nombres, Normalizer.Form.NFD);
-                    apellidos = Normalizer.normalize(apellidos, Normalizer.Form.NFD);
-                    cedula = Normalizer.normalize(cedula, Normalizer.Form.NFD);
-                    
+                    //   for (int i = 0; i < nombres.length(); i++) {   
                     Profesor pro = new Profesor();
                     pro.setNombres_profesor(nombres);
                     pro.setApellidos_profesor(apellidos);
